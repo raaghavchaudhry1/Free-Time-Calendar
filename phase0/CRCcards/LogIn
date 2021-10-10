@@ -1,0 +1,5 @@
+Class name: LogIn
+Parent class: None
+
+Responsibilities:
+* Keep track of the user's login details (username and password)
