@@ -1,0 +1,12 @@
+Class name: Event
+Parent class: None
+Child classes: OneOffEvent
+
+Responsibilities:
+* Keeps track of the name, time, and duration of the event
+
+class Event(cname, cstart, cend):
+    self.cname = ...
+    self.cstart = Time(cstart)
+    self.cend = Time(cend
+    self.duration = Time(cend - cstart)

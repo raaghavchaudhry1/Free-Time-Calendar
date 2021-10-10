@@ -1,0 +1,25 @@
+Class name: GroupController
+Parent class: None
+
+Responsibilities:
+* Joining the current logged-in user to a group
+* Deleting the current logged-in user from a group they are in
+
+Collaborators:
+* GroupManager
+
+
+UI:
+<Join/leave a group>
+<Request group ID>
+
+method AddToGroup(member, groupID):
+    addMemberToGroup(member, group)
+
+method AddToGroup(member, groupID):
+    group = GroupManager.getGroup(groupID)
+    addMemberToGroup(member, group)
+
+method RemoveFromGroup(member, groupID):
+    group = GroupManager.getGroup(groupID)
+    removeMemberFromGroup(member, group)

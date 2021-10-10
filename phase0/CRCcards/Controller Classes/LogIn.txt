@@ -1,0 +1,14 @@
+Class name: LogIn
+Parent class: None
+
+Responsibilities:
+* Validates any log-in attempts made
+* Returns a message based on whether log-in attempt was successful or not
+
+Collaborators:
+* StudentManager
+
+class LogIn:
+
+    method validate(String username):
+        ...
