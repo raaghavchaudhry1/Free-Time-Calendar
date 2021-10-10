@@ -1,0 +1,20 @@
+Class name: LogIn
+Parent class: None
+
+Responsibilities:
+* Keep track of all user's login details (username and password)
+
+class LogIn:
+    self.logIns = HashMap<Student.username: Student>
+    ...
+
+    method addStudent(student: Student):
+        self.logins.add(student.username) = student
+        ...
+
+    method LogIn(username: String, password: String):
+        valid_password = StudentUser.getPassword(self.logIns(username))
+        if password == valid_password:
+            continue
+            ...
+        ...
