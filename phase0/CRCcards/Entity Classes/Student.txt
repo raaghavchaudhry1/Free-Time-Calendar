@@ -2,9 +2,10 @@ Class name: Student
 Parent class: None
 
 Responsibilities:
-* Keeps track of the individual user's login details (username and password)
-*
+* Keeps track of the individual user's login details (username and password), and schedule
 
+Collaborators:
+* Calendar
 
 class Student:
     self.username = ...

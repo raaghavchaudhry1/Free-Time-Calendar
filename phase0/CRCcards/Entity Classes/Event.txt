@@ -1,5 +1,6 @@
 Class name: Event
 Parent class: None
+Child classes: OneOffEvent
 
 Responsibilities:
 * Keeps track of the name, time, and duration of the event

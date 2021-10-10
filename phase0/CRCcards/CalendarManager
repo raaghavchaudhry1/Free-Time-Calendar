@@ -1,6 +1,0 @@
-Class name: CalendarManager
-Parent class: None
-
-Responsibilities:
-* Generate a recurring event to add to a calendar
-* Generate a one-off-event to add to a calendar

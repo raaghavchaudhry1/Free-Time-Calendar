@@ -1,0 +1,14 @@
+Class name: EventCreator
+Parent class: None
+
+Responsibilities:
+* Create an event based on whether it should be recurring or one-off
+
+Collaborators:
+* Event
+
+class EventCreator(recurring, ename, edate, estart, eend):
+    if recurring is True:
+        return Event(ename, estart, eend)
+    else:
+        return OneOffEvent(ename, edate, estart, eend)

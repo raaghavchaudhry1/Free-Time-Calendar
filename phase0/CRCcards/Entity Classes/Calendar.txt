@@ -4,6 +4,9 @@ Parent class: None
 Responsibilities:
 * Keeps track of the student's week-to-week and day-to-day schedule
 
+Collaborators:
+* Event
+
 class Calendar:
     self.routine = HashMap<day: course>
     self.schedule = HashMap<datetime: (HashMap<timeslot: event>)>
@@ -15,3 +18,7 @@ class Calendar:
 
    * method addOneOffEvent(ename, edate, estart, eend):
         ...
+
+    @Override
+    toString() ...
+    ...

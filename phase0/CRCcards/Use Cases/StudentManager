@@ -1,0 +1,15 @@
+Class name: StudentManager
+Parent class: None
+
+Responsibilities:
+* Create new students
+* Keeps track of all students created
+
+Collaborators:
+* Student
+* CalendarManager
+
+class StudentManager:
+    this.students = HashMap<Student.username: Student>
+
+
