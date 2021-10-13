@@ -5,12 +5,14 @@ public class CalendarEvent {    // error message - missing package statement
     private float start;     // hour.minute
     private float end;
     private float duration;     // end - start
+    private String day;     // day of the week
 
-    public CalendarEvent(String name, float start, float end) {
+    public CalendarEvent(String name, float start, float end, String day) {
         this.name = name;
         this.start = start;
         this.end = end;
         this.duration = end - start;
+        this.day = day;
     }
 
     public String getName() {
@@ -29,6 +31,8 @@ public class CalendarEvent {    // error message - missing package statement
         return this.duration;
     }
 
+    public String getDay() { return this.day;}
+
     public void setName(String name) {
         this.name = name;
     }
@@ -41,6 +45,10 @@ public class CalendarEvent {    // error message - missing package statement
     public void setEndTime(float time) {
         this.end = time;
         this.duration = time - getStartTime();
+    }
+
+    public void setDay(String day){
+        this.day = day;
     }
 
 }

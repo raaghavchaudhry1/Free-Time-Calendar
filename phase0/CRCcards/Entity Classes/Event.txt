@@ -1,11 +1,11 @@
-Class name: Event
+Class name: CalendarEvent
 Parent class: None
 Child classes: OneOffEvent
 
 Responsibilities:
 * Keeps track of the name, time, and duration of the event
 
-class Event(cname, cstart, cend):
+class CalendarEvent(cname, cstart, cend):
     self.cname = ...
     self.cstart = Time(cstart)
     self.cend = Time(cend
