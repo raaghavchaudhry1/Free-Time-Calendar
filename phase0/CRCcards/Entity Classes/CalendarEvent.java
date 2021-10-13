@@ -1,12 +1,13 @@
-// import java.util.Date
+// import java.sql.Time;
+// import java.util.Date;
 
-public class Event {    // error message - missing package statement
+public class CalendarEvent {    // error message - missing package statement
     private String name;
     private float start;     // hour.minute
     private float end;
     private float duration;     // end - start
 
-    public Event(String name, float start, float end) {
+    public CalendarEvent(String name, float start, float end) {
         this.name = name;
         this.start = start;
         this.end = end;
