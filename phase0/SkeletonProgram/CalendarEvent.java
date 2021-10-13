@@ -31,7 +31,7 @@ public class CalendarEvent {    // error message - missing package statement
         return this.duration;
     }
 
-    public String getDay() { return this.day;}
+    public String getDay() { return this.day; }
 
     public void setName(String name) {
         this.name = name;
@@ -47,8 +47,16 @@ public class CalendarEvent {    // error message - missing package statement
         this.duration = time - getStartTime();
     }
 
-    public void setDay(String day){
+    public void setDay(String day) {
         this.day = day;
+    }
+
+    public int compareTo(CalendarEvent other) {
+        /* Compares 2 events based on their start times
+        Returns -1 if current event starts earlier than other event
+                1 if current event starts later than other event
+                0 if 2 events have the same start time */
+        return Float.compare(this.start, other.start);
     }
 
 }
