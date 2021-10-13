@@ -6,9 +6,3 @@ Responsibilities:
 
 Collaborators:
 * Calendar
-
-class Student:
-    self.username = ...
-    self.password = ...
-    self.schedule = Calendar()
-    ...

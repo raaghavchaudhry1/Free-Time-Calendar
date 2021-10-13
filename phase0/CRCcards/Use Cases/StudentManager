@@ -9,7 +9,4 @@ Collaborators:
 * Student
 * CalendarManager
 
-class StudentManager:
-    this.students = HashMap<Student.username: Student>
-
 

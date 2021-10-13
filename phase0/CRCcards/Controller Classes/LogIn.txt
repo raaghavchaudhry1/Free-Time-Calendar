@@ -7,8 +7,3 @@ Responsibilities:
 
 Collaborators:
 * StudentManager
-
-class LogIn:
-
-    method validate(String username):
-        ...
