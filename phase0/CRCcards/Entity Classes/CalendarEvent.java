@@ -1,4 +1,3 @@
-// import java.sql.Time;
 // import java.util.Date;
 
 public class CalendarEvent {    // error message - missing package statement
