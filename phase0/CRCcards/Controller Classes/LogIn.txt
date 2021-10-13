@@ -3,7 +3,7 @@ Parent class: None
 
 Responsibilities:
 * Validates any log-in attempts made
-* Returns a message based on whether log-in attempt was successful or not
+* Returns a boolean based on whether log-in attempt was successful or not
 
 Collaborators:
 * StudentManager
