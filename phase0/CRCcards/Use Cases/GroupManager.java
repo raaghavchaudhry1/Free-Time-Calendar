@@ -14,8 +14,8 @@ class GroupManager {
     public Group CreateGroup(ArrayList<Student> groupMembers, String groupName) {
 
         Group newGroup = new Group(groupMembers, groupName);
-        newGroup.setId(((this.groupMap).size()).toString());
-        (this.groupMap).put((newGroup.getID).toString(), newGroup);
+        newGroup.setgID(((this.groupMap).size()).toString());
+        (this.groupMap).put((newGroup.getgID).toString(), newGroup);
 
         return newGroup;
     }
@@ -24,7 +24,13 @@ class GroupManager {
 
         if ((this.groupMap).containsKey(GroupId)) {
 
-            (groupMap.get(GroupId)).addMember(student);
+            ArrayList<Student> students=  ((this.groupMap).get(GroupID)).getStudentsInGroup();
+            students = new ArrayList<Student>(students);
+            students.add(student);
+            ((this.groupMap).get(GroupID)).setStudentsInGroup(students);
+
+
+
             return true;
 
 
@@ -38,16 +44,22 @@ class GroupManager {
 
     public boolean removeGroupMember(Student student, String GroupID) {
 
-        if ((this.groupMap).containsKey(GroupID)) {
+        if ((this.groupMap).containsKey(GroupId)) {
 
-            (groupMap.get(GroupID)).RemoveMember(student);
+            ArrayList<Student> students=  ((this.groupMap).get(GroupID)).getStudentsInGroup();
+            students = new ArrayList<Student>(students);
+            students.remove(student);
+            ((this.groupMap).get(GroupID)).setStudentsInGroup(students);
+
+
+
             return true;
 
 
         } else {
+
             return false;
         }
-
 
     }
 
