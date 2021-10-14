@@ -5,20 +5,4 @@ Responsibilities:
 * Keeps track of the student's week-to-week and day-to-day schedule
 
 Collaborators:
-* Event
-
-class Calendar:
-    self.routine = HashMap<day: course>
-    self.schedule = HashMap<datetime: (HashMap<timeslot: event>)>
-    if self.routine(self.schedule.key.day) is not null:
-        #user is available at time
-
-   * method addEvent(ename, estart, eend):
-        ...
-
-   * method addOneOffEvent(ename, edate, estart, eend):
-        ...
-
-    @Override
-    toString() ...
-    ...
+* CalendarEvent
