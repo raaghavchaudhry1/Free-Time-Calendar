@@ -10,7 +10,7 @@ be asked for:
   - the courses they are currently participating in,
   - the time/days when any aspect of the course occurs,
   
-  -NOTE: users can also import a compatible calendar file instead 
+  - NOTE: users can also import a compatible calendar file instead 
 of manually inputting their course information
 
 
