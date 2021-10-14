@@ -6,12 +6,3 @@ Responsibilities:
 
 Collaborators:
 * Student
-
-class Group(List<Students> students, String name):
-    this.students = students
-    this.name = name
-    this.group = null
-
-
-new Group = GroupManager.createGroup(students, name)
-Group.groupID = ...
