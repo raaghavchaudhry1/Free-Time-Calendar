@@ -6,7 +6,7 @@ public class EventCreator {
         return new CalendarEvent(name, start, end, day);
     }
 
-    public CalendarEvent createEvent(String name, float start, float end, float date) {
+    public OneOffEvent createEvent(String name, float start, float end, float date) {
         // if not recurring
         return new OneOffEvent(name, start, end, date);
     }
