@@ -15,3 +15,4 @@ class GroupManager:
     this.groupMap = HashMap<groupID: Group>
 
 method addMemberToGroup(member, group)
+
