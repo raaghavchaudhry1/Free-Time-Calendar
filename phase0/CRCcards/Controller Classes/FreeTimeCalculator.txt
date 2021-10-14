@@ -5,12 +5,6 @@ Responsibilities:
 * Generating all times for a group of students in which they have no events
 
 Collaborators:
-* StudentManager
-* EventManager
+* GroupManager
+* EventCreator
 * CalendarManager
-
-class FreeTimeCalculator:
-    self.students = List<Student>
-    self.aggregate_routine = HashMap<day: (List<Event>)>
-    self.free_calendar =
-    self.aggregate_free = HashMap<day: (List<Event>)>

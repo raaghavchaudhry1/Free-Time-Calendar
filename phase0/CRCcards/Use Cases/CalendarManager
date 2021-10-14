@@ -2,9 +2,9 @@ Class name: CalendarManager
 Parent class: None
 
 Responsibilities:
-* Generate an event and add to a calendar
-* Delete an event from a calendar
+* Add given events to a student's calendar
+* Delete given events to a student's calendar
 
 Collaborators:
 * Calendar
-* EventManager
+* EventCreator
