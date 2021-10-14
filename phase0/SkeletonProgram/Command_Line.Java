@@ -1,3 +1,4 @@
+import java.beans.DesignMode;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ class Commandline {
         LogIn login = new LogIn(studM);
         CalendarManager calManager = new CalendarManager();
         String currUsername = new String();
+        Student currStudent = null;
         while (!LoggedIN) {
             System.out.println("Choose to Login By entering 0, or Choose to make new account by entering 1");
             String input = in.nextLine();
@@ -54,8 +56,8 @@ class Commandline {
         while (!valid) {
 
             if (Decision.equals("1")) {
-                Student curr_student = studM.getAllStudents().get(currUsername);
-                System.out.println("Add Recurring event (0) or Add Onetime event (1)");
+                currStudent = studM.getAllStudents().get(currUsername);
+                System.out.println("Add Recurring event (0) or Add Onetime event (1) or exit (2)");
                 String Calendar_Decision = in.nextLine();
 
                 if (Calendar_Decision.equals("1")) {
@@ -79,9 +81,9 @@ class Commandline {
                             KeepAdding = false;
                         }
                     }
-                    calManager.addSingleEvents(curr_student, events);
+                    calManager.addSingleEvents(currStudent, events);
                     System.out.println("Here is your calendar so far");
-                    System.out.println(curr_student.getStudentSchedule().getSingle().toString());
+                    System.out.println(currStudent.getStudentSchedule().getSingle().toString());
 
 
                 } else if (Calendar_Decision.equals("0")) {
@@ -106,11 +108,17 @@ class Commandline {
                             KeepAdding = false;
                         }
                     }
-                    calManager.addRecurringEvents(curr_student, events);
+                    calManager.addRecurringEvents(currStudent, events);
                     System.out.println("Here is your calendar so far");
-                    System.out.println(curr_student.getStudentSchedule().getRecurring().toString());
+                    System.out.println(currStudent.getStudentSchedule().getRecurring().toString());
 
+                } else if(Calendar_Decision.equals("2")){
+                    valid = true;
+                } else {
+                    System.out.println("Invalid Input! ");
                 }
+
+
             } else if (Decision.equals("0")) {
 
                 System.out.println("Feature not yet created");
@@ -120,23 +128,20 @@ class Commandline {
             }
         }
 
-
-
-
-
-
-
-
-
-
+        System.out.println("Create Group? Y or N");
+        String answer = in.nextLine();
+        if (answer.equals("Y")){
+            GroupManager gr = new GroupManager();
+            ArrayList<Student> temp = new ArrayList<Student>();
+            temp.add(currStudent);
+            System.out.println("Enter In a Group Name");
+            String grName = in.nextLine();
+            gr.CreateGroup(temp, grName);
+            // TODO maybe print the group name
+            System.out.println("Group is created");
+        }
 
     }
-
-
-
-
-
-
 
 
 }
