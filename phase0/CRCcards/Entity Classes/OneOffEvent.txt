@@ -1,10 +1,6 @@
 Class name: OneOffEvent
-Parent class: Event
+Parent class: CalendarEvent
 
 Responsibilities:
 * Keeps track of the name, time, duration, and date of the one-off-event
 
-
-class OneOffEvent(ename, edate, estart, eend):
-    Event(ename, estart, eend)
-    self.date = edate
