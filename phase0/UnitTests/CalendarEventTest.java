@@ -16,6 +16,11 @@ public class CalendarEventTest {
     }
 
     @Test(timeout = 50)
+    public void TestGetDuration() {
+        assertEquals(1.0f, event.getDuration(), 0);
+    }
+
+    @Test(timeout = 50)
     public void TestCompareTo() {
         CalendarEvent tut = new CalendarEvent("Tutorial", 2.0f, 5.0f, "Wednesday");
         assertEquals(1, event.compareTo(tut));
