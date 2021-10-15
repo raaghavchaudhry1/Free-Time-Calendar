@@ -1,1 +1,12 @@
+Class name: Commandline
+Parent class: None
 
+Responsibilities:
+* Executes the main skeleton program by calling individual Controller Classes and Use Case Classes
+* Run and terminate the program
+* Provide access to other classes
+
+
+
+Collaborators:
+* FreeTimeCalculator, GroupController, LogIn, CalendarManager, EventCreator, GroupManager, StudentManager
