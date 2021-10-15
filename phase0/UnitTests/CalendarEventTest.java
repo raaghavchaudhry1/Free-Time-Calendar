@@ -3,23 +3,22 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class CalendarEventTest {
-    CalendarEvent lec;
-    CalendarEvent tut;
+    CalendarEvent event;
 
     @Before
     public void setUp() {
-        lec = new CalendarEvent("Lecture", 3.0f, 4.0f, "Tuesday");
-        tut = new CalendarEvent("Tutorial", 2.0f, 5.0f, "Wednesday");;
+        event = new CalendarEvent("Lecture", 3.0f, 4.0f, "Tuesday");
     }
 
     @Test(timeout = 50)
-    public void TestGetDuration() {
-        assertEquals(1.0, lec.getDuration());
+    public void TestGetDay() {
+        assertEquals("Tuesday", event.getDay());
     }
 
     @Test(timeout = 50)
     public void TestCompareTo() {
-        assertEquals(1, lec.compareTo(tut));
+        CalendarEvent tut = new CalendarEvent("Tutorial", 2.0f, 5.0f, "Wednesday");
+        assertEquals(1, event.compareTo(tut));
     }
 
 }
