@@ -7,7 +7,7 @@ public class Student {
     public Student(String userName, String password) {
         this.username = userName;
         this.password = password;
-        this.schedule = new Calendar;
+        this.schedule = new Calendar();
     }
 
     public Student(String userName, String password, Calendar schedule) {

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 class GroupManager {
 
-    private Hashmap<String, Group> groupMap;
+    private HashMap<String, Group> groupMap;
 
     public GroupManager() {
 
@@ -13,16 +13,18 @@ class GroupManager {
 
     public Group CreateGroup(ArrayList<Student> groupMembers, String groupName) {
 
-        Group newGroup = new Group(groupMembers, groupName);
-        newGroup.setgID(((this.groupMap).size()).toString());
-        (this.groupMap).put((newGroup.getgID).toString(), newGroup);
+        Group newGroup = new Group(groupName);
+        newGroup.setStudentsInGroup(groupMembers);
+        Integer groupSize = ((this.groupMap).size());
+        newGroup.setgID(groupSize.toString());
+        (this.groupMap).put((newGroup.getgID()).toString(), newGroup);
 
         return newGroup;
     }
 
-    public boolean addToGroup(Student student, String GroupId) {
+    public boolean addToGroup(Student student, String GroupID) {
 
-        if ((this.groupMap).containsKey(GroupId)) {
+        if ((this.groupMap).containsKey(GroupID)) {
 
             ArrayList<Student> students=  ((this.groupMap).get(GroupID)).getStudentsInGroup();
             students = new ArrayList<Student>(students);
@@ -44,7 +46,7 @@ class GroupManager {
 
     public boolean removeGroupMember(Student student, String GroupID) {
 
-        if ((this.groupMap).containsKey(GroupId)) {
+        if ((this.groupMap).containsKey(GroupID)) {
 
             ArrayList<Student> students=  ((this.groupMap).get(GroupID)).getStudentsInGroup();
             students = new ArrayList<Student>(students);

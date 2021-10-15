@@ -27,5 +27,8 @@ public class StudentManager {
 
     public Set<String> getAllStudentUsers() { return this.students.keySet(); }
 
+    public void addNewStudent(String username, String password){
+        students.put(username, new Student(username, password));
+    }
 
 }

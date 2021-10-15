@@ -1,6 +1,6 @@
 // import java.util.Date;
 
-public class CalendarEvent {    // error message - missing package statement
+public class CalendarEvent implements Comparable<CalendarEvent>{
     private String name;
     private float start;     // hour.minute
     private float end;
@@ -51,12 +51,12 @@ public class CalendarEvent {    // error message - missing package statement
         this.day = day;
     }
 
+    @Override
     public int compareTo(CalendarEvent other) {
         /* Compares 2 events based on their start times
         Returns -1 if current event starts earlier than other event
                 1 if current event starts later than other event
                 0 if 2 events have the same start time */
-        return Float.compare(this.start, other.start);
+        return Float.compare(this.start, other.getStartTime());
     }
-
 }
