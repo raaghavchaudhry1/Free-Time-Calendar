@@ -7,19 +7,3 @@ Responsibilities:
 
 Collaborators:
 * GroupManager
-
-
-UI:
-<Join/leave a group>
-<Request group ID>
-
-method AddToGroup(member, groupID):
-    addMemberToGroup(member, group)
-
-method AddToGroup(member, groupID):
-    group = GroupManager.getGroup(groupID)
-    addMemberToGroup(member, group)
-
-method RemoveFromGroup(member, groupID):
-    group = GroupManager.getGroup(groupID)
-    removeMemberFromGroup(member, group)
