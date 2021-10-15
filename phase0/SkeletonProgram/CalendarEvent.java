@@ -1,6 +1,6 @@
 // import java.util.Date;
 
-public class CalendarEvent {    // error message - missing package statement
+public class CalendarEvent {
     private String name;
     private float start;     // hour.minute
     private float end;
