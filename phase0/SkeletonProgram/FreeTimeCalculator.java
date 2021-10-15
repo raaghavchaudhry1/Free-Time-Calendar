@@ -47,7 +47,7 @@
 //    private ArrayList<CalendarEvent> getDayFreeTime(String day, List<CalendarEvent> daySchedule) {
 //        ArrayList<CalendarEvent> dayFreeTime= new ArrayList<CalendarEvent>();
 //        EventCreator eventC = new EventCreator();
-//        dayFreeTime.add(eventC.createEvent("Free", 0, 23.59));
+//        dayFreeTime.add(eventC.createEvent("Free", 0, (float) 23.59, day));
 //
 //        for (CalendarEvent event: daySchedule){
 //            float startTime = event.getStartTime();
