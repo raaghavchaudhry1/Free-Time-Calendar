@@ -12,7 +12,7 @@ public class CalendarEventTest {
 
     @Test(timeout = 50)
     public void TestGetDay() {
-        assertEquals("Tuesday", event.getDay());
+        assertEquals("Tuesday", event.getDayOrDate());
     }
 
     @Test(timeout = 50)
