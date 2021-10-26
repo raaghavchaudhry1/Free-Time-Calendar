@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Calendar {
     private HashMap<String, ArrayList<CalendarEvent>> recurring;
-    private HashMap<Float, ArrayList<CalendarEvent>> single;
+    private HashMap<Float, ArrayList<OneOffEvent>> single;
 
     public Calendar() {
         this.recurring = new HashMap<>();
@@ -24,11 +24,11 @@ public class Calendar {
         this.recurring.get(day).add(event);
     }
 
-    public void addSingleEvent(float date, CalendarEvent event) {
+    public void addSingleEvent(float date, OneOffEvent event) {
         if (this.single.containsKey(date)) {
             this.single.get(date).add(event);
         } else {
-            ArrayList<CalendarEvent> eventList = new ArrayList<CalendarEvent>();
+            ArrayList<OneOffEvent> eventList = new ArrayList<OneOffEvent>();
             eventList.add(event);
             this.single.put(date, eventList);
         }
@@ -38,7 +38,7 @@ public class Calendar {
         this.recurring.get(day).remove(event);
     }
 
-    public void removeSingleEvent(float date, CalendarEvent event) {
+    public void removeSingleEvent(float date, OneOffEvent event) {
         this.single.get(date).remove(event);
     }
 
@@ -46,7 +46,7 @@ public class Calendar {
         return this.recurring;
     }
 
-    public HashMap<Float, ArrayList<CalendarEvent>> getSingle() {
+    public HashMap<Float, ArrayList<OneOffEvent>> getSingle() {
         return this.single;
     }
 
