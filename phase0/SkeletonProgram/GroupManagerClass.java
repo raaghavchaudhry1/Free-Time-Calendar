@@ -65,27 +65,7 @@ class GroupManager {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public Group getGroup(String gID) { return this.groupMap.get(gID); }
 
 }
 
