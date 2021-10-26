@@ -35,7 +35,7 @@ public class Group {
     public void setgID(String gID) {
         this.gID = gID;
     }
-    
+
     public ArrayList<Calendar> getCalendars() {
 
         ArrayList<Calendar> calendars = new ArrayList<Calendar>();

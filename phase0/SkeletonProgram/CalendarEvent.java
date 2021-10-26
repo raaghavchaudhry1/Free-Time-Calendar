@@ -1,6 +1,8 @@
 // import java.util.Date;
 
-public class CalendarEvent implements Comparable<CalendarEvent>{
+import java.util.WeakHashMap;
+
+public class CalendarEvent implements Comparable<CalendarEvent>, EventInterface{
     private String name;
     private float start;     // hour.minute
     private float end;
@@ -15,39 +17,48 @@ public class CalendarEvent implements Comparable<CalendarEvent>{
         this.day = day;
     }
 
+    @Override
     public String getName() {
         return this.name;
     }
 
+    @Override
     public float getStartTime() {
         return this.start;
     }
 
+    @Override
     public float getEndTime() {
         return this.end;
     }
 
+    @Override
     public float getDuration() {
         return this.duration;
     }
 
-    public String getDay() { return this.day; }
+    @Override
+    public String getDayOrDate() { return this.day; }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public void setStartTime(float time) {
         this.start = time;
         this.duration = getEndTime() - time;
     }
 
+    @Override
     public void setEndTime(float time) {
         this.end = time;
         this.duration = time - getStartTime();
     }
 
-    public void setDay(String day) {
+    @Override
+    public void setDayOrDate(String day) {
         this.day = day;
     }
 
