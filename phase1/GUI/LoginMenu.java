@@ -69,7 +69,7 @@ public class LoginMenu implements ActionListener {
 
             if (this.loginController.validateLogIn(this.username, this.password)) {
 
-                MainMenu mainMenu = new MainMenu(this.loginController, this.groupController);
+                MainMenu mainMenu = new MainMenu(this.loginController, this.groupController, this.username);
                 this.frame.dispose();
 
             } else {
