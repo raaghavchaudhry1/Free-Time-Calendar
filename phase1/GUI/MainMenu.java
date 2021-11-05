@@ -50,7 +50,7 @@ public class MainMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.addRecurButton){
             this.frame.dispose();
-            RecurringMenu recurringMenu = new RecurringMenu();
+            //RecurringMenu recurringMenu = new RecurringMenu();
         }else if(e.getSource() == this.addOneOffButton){
             this.frame.dispose();
             OneOffMenu oneOffMenu = new OneOffMenu();

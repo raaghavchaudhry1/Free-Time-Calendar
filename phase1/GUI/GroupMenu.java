@@ -9,27 +9,37 @@ public class GroupMenu implements ActionListener {
     private JButton joinGroup;
     private JButton viewGroups;
     private JFrame frame;
+    private JButton homeMenu;
 
     // need username as a paramater for constructor
     public GroupMenu() {
 
         this.frame = new JFrame();
         this.frame.setLayout(null);
-        this.frame.setSize(500,500);
-        this.createGroup = new JButton();
-        this.createGroup.setBounds(10,80,80,25);
+        this.frame.setSize(1000,1000);
+        this.createGroup = new JButton("Create Group");
+        this.createGroup.setBounds(10,80,200,25);
         this.createGroup.addActionListener(this);
         this.frame.add(this.createGroup);
-        this.joinGroup = new JButton();
-        this.joinGroup.setBounds(110,80,80,25);
+        this.joinGroup = new JButton("Join Group");
+        this.joinGroup.setBounds(300,80,200,25);
         this.joinGroup.addActionListener(this);
-        this.frame.add(this.createGroup);
-        this.viewGroups = new JButton();
-        this.viewGroups.setBounds(110,80,80,25);
+        this.frame.add(this.joinGroup);
+        this.viewGroups = new JButton("View Groups");
+        this.viewGroups.setBounds(600,80,200,25);
         this.viewGroups.addActionListener(this);
-        this.frame.add(this.createGroup);
+        this.frame.add(this.viewGroups);
+
+        this.homeMenu = new JButton("Return to Home Menu");
+        this.homeMenu.setBounds(300,280,200,25);
+        this.homeMenu.addActionListener(this);
+        this.frame.add(this.homeMenu);
         this.frame.setVisible(true);
 
+    }
+
+    public static void main(String[] args) {
+        GroupMenu menu = new GroupMenu();
     }
 
     @Override
@@ -48,7 +58,7 @@ public class GroupMenu implements ActionListener {
 
 
 
-        } else {
+        } else if (e.getSource() == this.joinGroup){
 
             this.frame.dispose();
             JoinGroup joinGroup = new JoinGroup();
@@ -56,7 +66,17 @@ public class GroupMenu implements ActionListener {
 
 
 
+        } else {
+
+            this.frame.dispose();
+           // new StartMenu()
+            //add this when controller classes created
+
+
+
+
         }
+
 
 
     }
