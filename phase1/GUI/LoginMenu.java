@@ -13,9 +13,13 @@ public class LoginMenu implements ActionListener {
     private LogIn loginController;
     private GroupController groupController;
 
+
     public LoginMenu(LogIn login, GroupController group) {
+        this.loginController = login;
+        this.groupController = group;
         this.username = new String();
         this.password = new String();
+
 
         this.frame = new JFrame();
 
@@ -56,25 +60,33 @@ public class LoginMenu implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.cancelButton) {
+        if(e.getSource() == this.cancelButton){
             this.frame.dispose();
             StartMenu startMenu = new StartMenu(this.loginController, this.groupController);
-        } else if (e.getSource() == this.loginButton) {
+        }else if(e.getSource() == this.loginButton){
             this.username = this.userText.getText();
             this.password = this.passwordText.getText();
 
             if (this.loginController.validateLogIn(this.username, this.password)) {
 
-                MainMenu mainMenu = new MainMenu(this.loginController, this.groupController, this.username);
+                MainMenu mainMenu = new MainMenu(this.loginController, this.groupController);
                 this.frame.dispose();
 
-
             } else {
-
+                JLabel invalidLogin = new JLabel("Invalid Login! Try Again bitch!");
+                invalidLogin.setBounds(100,150,250,250);
+                this.frame.add(invalidLogin);
+                this.frame.revalidate();
+                this.frame.repaint();
 
             }
+
+
+
+
         }
     }
+
 
 
 
