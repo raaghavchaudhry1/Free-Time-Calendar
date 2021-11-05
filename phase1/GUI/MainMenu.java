@@ -50,18 +50,18 @@ public class MainMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.addRecurButton){
             this.frame.dispose();
-            SignupMenu signupMenu = new SignupMenu(this.loginController, this.groupController);
+            RecurringMenu recurringMenu = new RecurringMenu();
         }else if(e.getSource() == this.addOneOffButton){
             this.frame.dispose();
-            LoginMenu loginMenu = new LoginMenu(this.loginController, this.groupController);
+            OneOffMenu oneOffMenu = new OneOffMenu();
 
         }else if(e.getSource() == this.groupsButton){
             this.frame.dispose();
-            LoginMenu loginMenu = new LoginMenu(this.loginController, this.groupController);
+            GroupMenu groupMenu = new GroupMenu();
 
         }else if(e.getSource() == this.viewCalendarButton){
             this.frame.dispose();
-            LoginMenu loginMenu = new LoginMenu(this.loginController, this.groupController);
+            ViewCalenderMenu viewCalenderMenu = new ViewCalenderMenu();
 
         }
 
