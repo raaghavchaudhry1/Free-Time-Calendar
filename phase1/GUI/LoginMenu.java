@@ -10,8 +10,10 @@ public class LoginMenu implements ActionListener {
     private JButton loginButton;
     private String username;
     private String password;
+    private LogIn loginController;
+    private GroupController groupController;
 
-    public LoginMenu() {
+    public LoginMenu(LogIn login, GroupController group) {
         this.username = new String();
         this.password = new String();
 
@@ -56,21 +58,24 @@ public class LoginMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.cancelButton){
             this.frame.dispose();
-            StartMenu startMenu = new StartMenu();
+            StartMenu startMenu = new StartMenu(this.loginController, this.groupController);
         }else if(e.getSource() == this.loginButton){
             this.username = this.userText.getText();
             this.password = this.passwordText.getText();
-            //check for correct login credentials
-            System.out.println(this.username);
-            System.out.println(this.password);
-            this.frame.dispose();
+
+            if (this.loginController.validateLogIn(this.username, this.password)) {
+
+                MainMenu mainMenu = new MainMenu(this.loginController, this.groupController);
+                this.frame.dispose();
+
+
+
+            }
+
+
 
 
         }
-    }
-
-    public static void main(String[] args) {
-        new LoginMenu();
     }
 
 
@@ -85,9 +90,11 @@ public class LoginMenu implements ActionListener {
 
     public String getPassword() {
 
-        return this.username;
+        return this.password;
 
     }
+
+
 
 
 

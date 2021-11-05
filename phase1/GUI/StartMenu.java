@@ -7,8 +7,13 @@ public class StartMenu implements ActionListener {
     private JFrame frame;
     private JButton signupButton;
     private JButton loginButton;
+    private LogIn loginController;
+    private GroupController groupController;
+   // private StudentController studentController;
 
-    public StartMenu(){
+    public StartMenu(LogIn login, GroupController group){
+        this.loginController = login;
+        this.groupController = group;
         this.frame = new JFrame();
         this.signupButton= new JButton("Sign up");
         this.loginButton=  new JButton("Login");
@@ -24,10 +29,16 @@ public class StartMenu implements ActionListener {
 
 
 
+
     }
 
     public static void main(String[] args) {
-        new StartMenu();
+        //StudentController studentController = new StudentController();
+        StudentManager studentManager = new StudentManager(); //only for testing, change LogIn
+        LogIn login = new LogIn(studentManager);
+        GroupManager groupManager = new GroupManager();
+        GroupController groupControllerTest = new GroupController(groupManager);
+        new StartMenu(login, groupControllerTest);
     }
 
     @Override
@@ -37,7 +48,7 @@ public class StartMenu implements ActionListener {
             SignupMenu signupMenu = new SignupMenu();
         }else if(e.getSource() == this.loginButton){
             this.frame.dispose();
-            LoginMenu loginMenu = new LoginMenu();
+            LoginMenu loginMenu = new LoginMenu(this.loginController, this.groupController);
 
         }
     }
