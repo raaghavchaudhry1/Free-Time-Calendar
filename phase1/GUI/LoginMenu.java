@@ -56,29 +56,25 @@ public class LoginMenu implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == this.cancelButton){
+        if (e.getSource() == this.cancelButton) {
             this.frame.dispose();
             StartMenu startMenu = new StartMenu(this.loginController, this.groupController);
-        }else if(e.getSource() == this.loginButton){
+        } else if (e.getSource() == this.loginButton) {
             this.username = this.userText.getText();
             this.password = this.passwordText.getText();
 
             if (this.loginController.validateLogIn(this.username, this.password)) {
 
-                MainMenu mainMenu = new MainMenu(this.loginController, this.groupController);
+                MainMenu mainMenu = new MainMenu(this.loginController, this.groupController, this.username);
                 this.frame.dispose();
-
-
 
 
             } else {
 
 
-
-
+            }
         }
     }
-
 
 
 

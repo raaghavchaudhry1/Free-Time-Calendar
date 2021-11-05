@@ -45,7 +45,7 @@ public class StartMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.signupButton){
             this.frame.dispose();
-            SignupMenu signupMenu = new SignupMenu();
+            SignupMenu signupMenu = new SignupMenu(this.loginController, this.groupController);
         }else if(e.getSource() == this.loginButton){
             this.frame.dispose();
             LoginMenu loginMenu = new LoginMenu(this.loginController, this.groupController);

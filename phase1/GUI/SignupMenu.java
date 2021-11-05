@@ -2,15 +2,20 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SignupMenu {
+public class SignupMenu implements ActionListener{
     private JTextField userText;
     private JPasswordField passwordText;
     private JFrame frame;
-    private JButton signUp;
+    private JButton signUpButton;
+    private JButton cancelButton;
     private String username;
     private String password;
+    private LogIn loginController;
+    private GroupController groupController;
 
-    public SignupMenu() {
+    public SignupMenu(LogIn login, GroupController group) {
+        this.loginController = login;
+        this.groupController = group;
         this.username = new String();
         this.password = new String();
         this.frame = new JFrame();
@@ -21,21 +26,51 @@ public class SignupMenu {
         userLabel.setBounds(10,20,80,25);
         this.frame.add(userLabel);
 
+        this.userText = new JTextField();
+        this.userText.setBounds(100,20,165,25);
+        this.frame.add(this.userText);
+
         JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setBounds(10,50,80,25);
         this.frame.add(passwordLabel);
 
+        this.passwordText = new JPasswordField();
+        this.passwordText.setBounds(100,50,165,25);
+        this.frame.add(this.passwordText);
 
+        this.signUpButton = new JButton("Sign Up");
+        this.signUpButton.setBounds(10,80,80,25);
+        this.signUpButton.addActionListener(this);
+        this.frame.add(this.signUpButton);
 
+        this.cancelButton = new JButton("Cancel");
+        this.cancelButton.setBounds(100,80,80,25);
+        this.cancelButton.addActionListener(this);
+        this.frame.add(this.cancelButton);
 
-
-
-
-
+        this.frame.setVisible(true);
 
 
 
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == this.signUpButton){
+            this.username = this.userText.getText();
+            this.password = this.passwordText.getText();
+//            this.studentController.addStudent(this.username, this.password);
+
+            this.frame.dispose();
+            StartMenu startMenu = new StartMenu(this.loginController, this.groupController);
+
+        }else if(e.getSource() == this.cancelButton){
+            this.frame.dispose();
+            StartMenu startMenu = new StartMenu(this.loginController, this.groupController);
+
+        }
+    }
+
 
 
 
