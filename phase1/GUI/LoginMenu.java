@@ -23,7 +23,7 @@ public class LoginMenu implements ActionListener {
         this.frame.setLayout(null);
         this.frame.setSize(500,500);
 
-        JLabel userLabel = new JLabel("User");
+        JLabel userLabel = new JLabel("Username");
         userLabel.setBounds(10,20,80,25);
         this.frame.add(userLabel);
 
@@ -72,4 +72,23 @@ public class LoginMenu implements ActionListener {
     public static void main(String[] args) {
         new LoginMenu();
     }
+
+
+
+
+
+    public String getUsername() {
+
+        return this.username;
+
+    }
+
+    public String getPassword() {
+
+        return this.username;
+
+    }
+
+
+
 }
