@@ -13,9 +13,13 @@ public class LoginMenu implements ActionListener {
     private LogIn loginController;
     private GroupController groupController;
 
+
     public LoginMenu(LogIn login, GroupController group) {
+        this.loginController = login;
+        this.groupController = group;
         this.username = new String();
         this.password = new String();
+
 
         this.frame = new JFrame();
 
@@ -68,10 +72,14 @@ public class LoginMenu implements ActionListener {
                 MainMenu mainMenu = new MainMenu(this.loginController, this.groupController);
                 this.frame.dispose();
 
-
-
-
             } else {
+                JLabel invalidLogin = new JLabel("Invalid Login! Try Again bitch!");
+                invalidLogin.setBounds(100,150,250,250);
+                this.frame.add(invalidLogin);
+                this.frame.revalidate();
+                this.frame.repaint();
+
+            }
 
 
 
