@@ -70,7 +70,8 @@ public class LoginMenu implements ActionListener {
 
 
 
-            }
+
+            } else {
 
 
 
