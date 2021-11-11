@@ -70,9 +70,6 @@ class SwingCalendar {
         nextButton.setBounds(260, 25, 50, 25);
         scroll.setBounds(10, 50, 300, 250);
 
-        //Make frame visible
-        frame.setResizable(false);
-        frame.setVisible(true);
 
         //Get real month/year
         GregorianCalendar cal = new GregorianCalendar();
@@ -111,6 +108,14 @@ class SwingCalendar {
 
         //Refresh calendar
         refreshCalendar(realMonth, realYear);
+
+        for (int i = 0; i != 7; i++) {
+            table.getColumn(headers[i]).setCellRenderer(new ButtonRenderer());
+            table.getColumn(headers[i]).setCellEditor(new ButtonEditor(new JCheckBox()));
+        }
+        //Make frame visible
+        frame.setResizable(false);
+        frame.setVisible(true);
     }
 
     public static void refreshCalendar(int month, int year) {
@@ -151,7 +156,7 @@ class SwingCalendar {
             mtblCalendar.setValueAt(i, row, column);
         }
 
-        table.setDefaultRenderer(table.getColumnClass(0), new tblCalendarRenderer());
+
     }
 
     static class tblCalendarRenderer extends DefaultTableCellRenderer {
@@ -210,6 +215,81 @@ class SwingCalendar {
                 currentYear = Integer.parseInt(b);
                 refreshCalendar(currentMonth, currentYear);
             }
+        }
+    }
+
+
+    static class ButtonRenderer extends JButton implements TableCellRenderer {
+
+        public ButtonRenderer() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                                                       boolean isSelected, boolean hasFocus, int row, int column) {
+            if (isSelected) {
+                setForeground(table.getSelectionForeground());
+                setBackground(table.getSelectionBackground());
+            } else {
+                setForeground(table.getForeground());
+                setBackground(UIManager.getColor("Button.background"));
+            }
+            setText((value == null) ? "" : value.toString());
+            return this;
+        }
+    }
+
+
+    static class ButtonEditor extends DefaultCellEditor {
+
+        protected JButton button;
+        private String label;
+        private boolean isPushed;
+
+        public ButtonEditor(JCheckBox checkBox) {
+            super(checkBox);
+            button = new JButton();
+            button.setOpaque(true);
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("hi");
+                    fireEditingStopped();
+                }
+            });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                                                     boolean isSelected, int row, int column) {
+            if (isSelected) {
+                button.setForeground(table.getSelectionForeground());
+                button.setBackground(table.getSelectionBackground());
+            } else {
+                button.setForeground(table.getForeground());
+                button.setBackground(table.getBackground());
+            }
+            label = (value == null) ? "" : value.toString();
+            button.setText(label);
+            isPushed = true;
+            return button;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            if (isPushed) {
+                System.out.println("hi");
+                JOptionPane.showMessageDialog(button, label + ": Ouch!");
+            }
+            isPushed = false;
+            return label;
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+            isPushed = false;
+            return super.stopCellEditing();
         }
     }
 }
