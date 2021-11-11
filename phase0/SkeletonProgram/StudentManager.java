@@ -31,4 +31,10 @@ public class StudentManager {
         students.put(username, new Student(username, password));
     }
 
+    public boolean checkValidStudent(Student student) {
+        // returns true if student is already within hashmap, false otherwise
+        String user = student.getUsername();
+        return this.students.containsKey(user);
+    }
+
 }
