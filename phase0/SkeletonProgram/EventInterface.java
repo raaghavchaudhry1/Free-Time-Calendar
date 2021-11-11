@@ -1,4 +1,4 @@
-public interface EventInterface {
+public interface EventInterface extends Comparable<EventInterface>{
     public String getName();
 
     public float getStartTime();

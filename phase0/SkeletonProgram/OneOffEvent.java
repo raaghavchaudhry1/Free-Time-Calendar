@@ -61,4 +61,13 @@ public class OneOffEvent implements EventInterface {
     public void setDayOrDate(String date) {
         this.date = Float.parseFloat(date);
     }
+
+    @Override
+    public int compareTo(EventInterface other) {
+        /* Compares 2 events based on their start times
+        Returns -1 if current event starts earlier than other event
+                1 if current event starts later than other event
+                0 if 2 events have the same start time */
+        return Float.compare(this.start, other.getStartTime());
+    }
 }

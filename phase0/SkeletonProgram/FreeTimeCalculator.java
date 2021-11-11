@@ -12,16 +12,44 @@ public class FreeTimeCalculator {
     public Calendar getFreeCalendar(GroupManager groupManager, String groupID){
         Group group = groupManager.getGroup(groupID);
         Map<String, List<CalendarEvent>> aggregateRoutine = getAggregateRoutine(group);
-        return calculateFreeTime(aggregateRoutine);
+        Map<Float, List<OneOffEvent>> aggregateOneOff = getAggregateOneOff(group);
+        return calculateFreeTime(aggregateRoutine, aggregateOneOff);
     }
+
+
 
     /**
      * Calculates the free-times of a given aggregateRoutine and returns the Calendar for the free-times
      * @param aggregateRoutine
+     * @param aggregateOneOff
      * @return the free-time Calendar
      */
-    private Calendar calculateFreeTime(Map<String, List<CalendarEvent>> aggregateRoutine){
+    private Calendar calculateFreeTime(Map<String, List<CalendarEvent>> aggregateRoutine,
+                                       Map<Float, List<OneOffEvent>> aggregateOneOff){
         Calendar freeCalendar = new Calendar();
+        addFreeRecurringEvents(aggregateRoutine, freeCalendar);
+        addFreeOneOffEvents(aggregateOneOff, freeCalendar);
+        return freeCalendar;
+    }
+
+    private void addFreeOneOffEvents(Map<Float, List<OneOffEvent>> aggregateOneOff, Calendar freeCalendar) {
+        for(Map.Entry<Float, List<OneOffEvent>> entry : aggregateOneOff.entrySet()) {
+            Float date = entry.getKey();
+            List<OneOffEvent> dateSchedule = entry.getValue();
+
+            //calculate every day's free time as an ArrayList
+            Collections.sort(dateSchedule); //need compareTo method from Comparable Interface
+            ArrayList<OneOffEvent> dateFreeTime = getDateFreeTime(date, dateSchedule);
+
+            //Convert ArrayList to a value in the Calendar
+            for (OneOffEvent event : dateFreeTime){
+                freeCalendar.addSingleEvent(date, event);
+            }
+        }
+    }
+
+
+    private void addFreeRecurringEvents(Map<String, List<CalendarEvent>> aggregateRoutine, Calendar freeCalendar) {
         //for each day in aggregateRoutine, calculate freeTime
         for(Map.Entry<String, List<CalendarEvent>> entry : aggregateRoutine.entrySet()) {
             String day = entry.getKey();
@@ -36,7 +64,36 @@ public class FreeTimeCalculator {
                 freeCalendar.addRecurEvent(day, event);
             }
         }
-        return freeCalendar;
+    }
+
+    /**
+     * Calculates the aggregate routines of the students in a StudentManager
+     * @param group the StudentManager that stores all the students
+     * @return the aggregate routines of the students in StudentManager
+     */
+    private Map<String, List<CalendarEvent>> getAggregateRoutine(Group group){
+        ArrayList<Calendar> calendars  = group.getCalendars();
+        Map<String, List<CalendarEvent>> aggregateRoutine= new HashMap<String, List<CalendarEvent>>();
+        createAggregateRoutine(aggregateRoutine);
+        calendars.forEach((calendar) -> {
+            calendar.getRecurring().forEach((day, events) -> aggregateRoutine.put(day,
+                    getUnionCalendarEvent(aggregateRoutine.get(day), events)));
+        });
+        return aggregateRoutine;
+    }
+
+    private Map<Float, List<OneOffEvent>> getAggregateOneOff(Group group) {
+        ArrayList<Calendar> calendars  = group.getCalendars();
+        Map<Float, List<OneOffEvent>> aggregateOneOff = new HashMap<>();
+        calendars.forEach((calendar) -> {
+            calendar.getSingle().forEach((date, events) -> {
+                if(aggregateOneOff.containsKey(date)){
+                    aggregateOneOff.put(date, getUnionOneOffEvent(aggregateOneOff.get(date), events));
+                }else
+                    aggregateOneOff.put(date, events);
+            });
+        });
+        return aggregateOneOff;
     }
 
     /**
@@ -55,11 +112,71 @@ public class FreeTimeCalculator {
             float endTime = event.getEndTime();
 
             List<CalendarEvent> toRemove = new ArrayList<>();
-            List<CalendarEvent> toAdd = addToRemoveAndAdd(dayFreeTime, startTime, endTime, toRemove, day);
-            removeAndAdd(dayFreeTime, toRemove, toAdd);
+            List<CalendarEvent> toAdd = addToRemoveAndAddRecurring(dayFreeTime, startTime, endTime, toRemove, day);
+            removeAndAddRecurring(dayFreeTime, toRemove, toAdd);
             Collections.sort(dayFreeTime);
         }
         return dayFreeTime;
+    }
+
+    private ArrayList<OneOffEvent> getDateFreeTime(Float date, List<OneOffEvent> dateSchedule) {
+        ArrayList<OneOffEvent> dateFreeTime= new ArrayList<OneOffEvent>();
+        EventCreator eventC = new EventCreator();
+        dateFreeTime.add(eventC.createEvent("Free", 0, (float) 23.59, date));
+
+        for (OneOffEvent event: dateSchedule){
+            float startTime = event.getStartTime();
+            float endTime = event.getEndTime();
+
+            List<OneOffEvent> toRemove = new ArrayList<>();
+            List<OneOffEvent> toAdd = addToRemoveAndAddOneOff(dateFreeTime, startTime, endTime, toRemove, date);
+            removeAndAddOneOff(dateFreeTime, toRemove, toAdd);
+            Collections.sort(dateFreeTime);
+        }
+        return dateFreeTime;
+    }
+
+
+
+    private List<OneOffEvent> addToRemoveAndAddOneOff(ArrayList<OneOffEvent> dateFreeTime, float startTime,
+                                                      float endTime, List<OneOffEvent> toRemove, Float date) {
+        List<OneOffEvent> toAdd = new ArrayList<>();
+        for (int i = 0; i < dateFreeTime.size(); i++) {
+            EventCreator eventC = new EventCreator();
+            OneOffEvent eventToCheck = dateFreeTime.get(i);
+            float startFree = eventToCheck.getStartTime();
+            float endFree = eventToCheck.getEndTime();
+
+
+            if (startTime >= startFree && endTime <= endFree) {
+                toRemove.add(eventToCheck);
+                if (startTime != startFree){
+                    toAdd.add(eventC.createEvent("", startFree, startTime, date));
+                }
+                if (endTime != endFree) {
+                    toAdd.add(eventC.createEvent("", endTime, endFree, date));
+                }
+            } else if (startTime >= startFree && endTime >= endFree && startTime <= endFree) {
+                toRemove.add(eventToCheck);
+                toAdd.add(eventC.createEvent("", startFree, startTime, date));
+            } else if (startTime <= startFree && endTime <= endFree && endTime >= startFree)  {
+                toRemove.add(eventToCheck);
+                toAdd.add(eventC.createEvent("", endTime, endFree, date));
+            }
+
+        }
+
+        return toAdd;
+    }
+
+    private void removeAndAddOneOff(ArrayList<OneOffEvent> dateFreeTime,
+                                    List<OneOffEvent> toRemove, List<OneOffEvent> toAdd) {
+        for (OneOffEvent toRemEvent: toRemove){
+            dateFreeTime.remove(toRemEvent);
+        }
+        for (OneOffEvent toAddEvent: toAdd){
+            dateFreeTime.add(toAddEvent);
+        }
     }
 
     /**
@@ -67,8 +184,8 @@ public class FreeTimeCalculator {
      * @param dayFreeTime
      * @param toRemove
      */
-    private void removeAndAdd(ArrayList<CalendarEvent> dayFreeTime, List<CalendarEvent> toRemove,
-                              List<CalendarEvent> toAdd) {
+    private void removeAndAddRecurring(ArrayList<CalendarEvent> dayFreeTime, List<CalendarEvent> toRemove,
+                                       List<CalendarEvent> toAdd) {
         for (CalendarEvent toRemEvent: toRemove){
             dayFreeTime.remove(toRemEvent);
         }
@@ -86,8 +203,8 @@ public class FreeTimeCalculator {
      * @param day
      * @return
      */
-    private List<CalendarEvent> addToRemoveAndAdd(ArrayList<CalendarEvent> dayFreeTime,
-                                             float startTime, float endTime, List<CalendarEvent> toRemove, String day) {
+    private List<CalendarEvent> addToRemoveAndAddRecurring(ArrayList<CalendarEvent> dayFreeTime,
+                                                           float startTime, float endTime, List<CalendarEvent> toRemove, String day) {
         List<CalendarEvent> toAdd = new ArrayList<>();
         for (int i = 0; i < dayFreeTime.size(); i++) {
             EventCreator eventC = new EventCreator();
@@ -118,22 +235,6 @@ public class FreeTimeCalculator {
     }
 
 
-    /**
-     * Calculates the aggregate routines of the students in a StudentManager
-     * @param group the StudentManager that stores all the students
-     * @return the aggregate routines of the students in StudentManager
-     */
-    private Map getAggregateRoutine(Group group){
-        ArrayList<Calendar> calendars  = group.getCalendars();//assuming group has a get all calendars method
-        Map<String, List<CalendarEvent>> aggregateRoutine= new HashMap<String, List<CalendarEvent>>();
-        createAggregateRoutine(aggregateRoutine);
-        calendars.forEach((calendar) -> {
-            calendar.getRecurring().forEach((day, events) -> aggregateRoutine.put(day,
-                    getUnionEvent(aggregateRoutine.get(day), events)));
-        });
-        return aggregateRoutine;
-    }
-
     private void createAggregateRoutine(Map<String, List<CalendarEvent>> aggregateRoutine) {
         aggregateRoutine.put("Monday", new ArrayList<>());
         aggregateRoutine.put("Tuesday", new ArrayList<>());
@@ -150,12 +251,27 @@ public class FreeTimeCalculator {
      * @param list2 the other list to calculate the union of
      * @return the union of the two Lists as an ArrayList
      */
-    private static List<CalendarEvent> getUnionEvent(List<CalendarEvent> list1, List<CalendarEvent> list2) {
+    private static List<CalendarEvent> getUnionCalendarEvent(List<CalendarEvent> list1, List<CalendarEvent> list2) {
 
         Set<CalendarEvent> set = new HashSet<CalendarEvent>();
         set.addAll(list1);
         set.addAll(list2);
 
         return new ArrayList<CalendarEvent>(set);
+    }
+
+    /**
+     * Calculates the union of two lists
+     * @param list1 one of the list to calculate union of
+     * @param list2 the other list to calculate the union of
+     * @return the union of the two Lists as an ArrayList
+     */
+    private static List<OneOffEvent> getUnionOneOffEvent(List<OneOffEvent> list1, List<OneOffEvent> list2) {
+
+        Set<OneOffEvent> set = new HashSet<OneOffEvent>();
+        set.addAll(list1);
+        set.addAll(list2);
+
+        return new ArrayList<OneOffEvent>(set);
     }
 }
