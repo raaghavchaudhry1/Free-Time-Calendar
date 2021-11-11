@@ -69,7 +69,7 @@ public class MainMenu implements ActionListener {
 
         }else if(e.getSource() == this.viewCalendarButton){
             this.frame.dispose();
-            ViewCalenderMenu viewCalenderMenu = new ViewCalenderMenu(this.loginController, this.groupController,
+            ViewCalender viewCalenderMenu = new ViewCalender(this.loginController, this.groupController,
                     this.calendarController, this.studentController, this.studentUsername);
 
         }
