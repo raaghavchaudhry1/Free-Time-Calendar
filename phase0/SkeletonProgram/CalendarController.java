@@ -5,6 +5,10 @@ public class CalendarController {
     private CalendarManager calendarManager;
     private EventCreator eventCreator;
 
+    public CalendarController() {
+        this.calendarManager = new CalendarManager();
+        this.eventCreator = new EventCreator();
+    }
     public void addRecEvent(Student student, ArrayList<CalendarEvent> events) {
         calendarManager.addRecurringEvents(student, events);
     }
@@ -13,12 +17,12 @@ public class CalendarController {
         calendarManager.addSingleEvents(student, events);
     }
 
-    public CalendarEvent createRecEvent(String name, float start, float end, String day) {
-        eventCreator.createEvent(name, start, end, day);
+    public EventInterface createRecEvent(String name, float start, float end, String day) {
+        return eventCreator.createEvent(name, start, end, day);
     }
 
-    public CalendarEvent createRecEvent(String name, float start, float end, float date) {
-        eventCreator.createEvent(name, start, end, date);
+    public EventInterface createOneOffEvent(String name, float start, float end, float date) {
+        return eventCreator.createEvent(name, start, end, date);
     }
 
 }
