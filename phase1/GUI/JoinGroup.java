@@ -9,7 +9,20 @@ public class JoinGroup implements ActionListener {
     private JButton submitButton;
     private JButton cancelButton;
 
-    public JoinGroup(){
+    private LogIn loginController;
+    private GroupController groupController;
+    private CalendarController calendarController;
+    private StudentController studentController;
+    private String studentUsername;
+
+    public JoinGroup(LogIn loginController, GroupController groupController, CalendarController calendarController,
+                     StudentController studentController, String studentUsername){
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+        this.studentUsername = studentUsername;
+
         this.frame = new JFrame();
         this.frame.setLayout(null);
         this.frame.setSize(500,500);
@@ -45,15 +58,21 @@ public class JoinGroup implements ActionListener {
             this.frame.revalidate();
             this.frame.repaint();
             //going back to GroupMenu
+
+            MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
+                    this.studentController, this.studentUsername);
+
         }
         else if(e.getSource() == this.cancelButton){
             this.frame.dispose();
+            GroupMenu menu = new GroupMenu(this.loginController, this.groupController, this.calendarController,
+                    this.studentController, this.studentUsername);
 //            going back to GroupMenu
         }
     }
 
-    public static void main(String[] args) {
-        new JoinGroup();
-    }
+//    public static void main(String[] args) {
+//        new JoinGroup();
+//    }
 }
 

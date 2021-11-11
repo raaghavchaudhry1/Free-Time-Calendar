@@ -26,7 +26,7 @@ public class MainMenu implements ActionListener {
         this.frame = new JFrame();
         this.addRecurButton= new JButton("Create Recurring Events");
         this.addOneOffButton=  new JButton("Create OneOff Events");
-        this.groupsButton= new JButton("View Groups");
+        this.groupsButton= new JButton("Groups");
         this.viewCalendarButton=  new JButton("View Your Calendar");
 
         this.addRecurButton.setBounds(50,250, 100, 20);

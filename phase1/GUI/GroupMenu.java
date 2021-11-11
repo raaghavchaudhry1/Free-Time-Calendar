@@ -10,6 +10,7 @@ public class GroupMenu implements ActionListener {
     private JButton viewGroups;
     private JFrame frame;
     private JButton homeMenu;
+
     private LogIn loginController;
     private GroupController groupController;
     private CalendarController calendarController;
@@ -63,21 +64,22 @@ public class GroupMenu implements ActionListener {
         } else if (e.getSource() == this.createGroup) {
 
             this.frame.dispose();
-            CreateGroup createGroup = new CreateGroup();
-
+            CreateGroup createGroup = new CreateGroup(this.loginController, this.groupController, this.calendarController,
+                    this.studentController, this.studentUsername);
 
 
         } else if (e.getSource() == this.joinGroup){
 
             this.frame.dispose();
-            JoinGroup joinGroup = new JoinGroup();
-
-
+            JoinGroup joinGroup = new JoinGroup(this.loginController, this.groupController, this.calendarController,
+                    this.studentController, this.studentUsername);
 
 
         } else {
 
             this.frame.dispose();
+            MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
+                    this.studentController, this.studentUsername);
            // new StartMenu()
             //add this when controller classes created
 
