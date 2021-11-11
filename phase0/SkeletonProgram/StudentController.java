@@ -18,6 +18,9 @@ public class StudentController {
             return true;
         }
     }
+    public void addNewStudent(String username, String password){
+        this.studentManager.addNewStudent(username,password);
+    }
 
     public HashMap<String, Student> getAllStudent(){
         return this.studentManager.getAllStudents();

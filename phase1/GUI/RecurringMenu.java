@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.EventListener;
 
 public class RecurringMenu implements ActionListener {
     private JTextField eventNameText;
@@ -20,11 +23,19 @@ public class RecurringMenu implements ActionListener {
     private float endMinute;
     private LogIn loginController;
     private GroupController groupController;
+    private CalendarController calendarController;
+    private StudentController studentController;
+    private String studentUsername;
 
 
-    public RecurringMenu() {
-//        this.loginController = login;
-//        this.groupController = group;
+    public RecurringMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
+                         StudentController studentController, String studentUsername) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+        this.studentUsername = studentUsername;
+
         String[] days = {"Monday", "Tuesday", "Wednesday",
                 "Thursday", "Friday", "Saturday", "Sunday"};
         String[] hours = new String[24];
@@ -88,37 +99,39 @@ public class RecurringMenu implements ActionListener {
 
         this.frame.setVisible(true);
 
-
-
     }
 
-    public static void main(String[] args) {
-        new RecurringMenu();
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.returnButton){
             this.frame.dispose();
-//            MainMenu mainMenu = new MainMenu();
+            MainMenu mainMenu = new MainMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController, this.studentUsername);
         }else if(e.getSource() == this.daysOfWeek){
             this.day = (String) daysOfWeek.getSelectedItem();
 
         }else if(e.getSource() == this.startMinutes){
-            this.startMinute = (float) startMinutes.getSelectedItem();
+            this.startMinute =  Float.parseFloat((String) startMinutes.getSelectedItem());
 
         }else if(e.getSource() == this.startHours){
-            this.startHour = (float) startHours.getSelectedItem();
+            this.startHour =  Float.parseFloat((String) startHours.getSelectedItem());
 
         }else if(e.getSource() == this.endMinutes){
-            this.endMinute = (float) endMinutes.getSelectedItem();
+            this.endMinute =  Float.parseFloat((String) endMinutes.getSelectedItem());
 
         }else if(e.getSource() == this.endHours){
-            this.endHour = (float) endMinutes.getSelectedItem();
+            this.endHour =  Float.parseFloat((String) endHours.getSelectedItem());
 
         }else if(e.getSource() == this.confirmButton){
             this.frame.dispose();
-            //use EventController to create event to add to user.
+            MainMenu mainMenu = new MainMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController, this.studentUsername);
+            this.eventName = this.eventNameText.getText();
 
+            ArrayList<CalendarEvent> events = new ArrayList();
+            events.add(this.calendarController.createRecEvent(this.eventName, this.startHour + (this.startMinute / 100),
+                    this.endHour + (this.endMinute/100), this.day));
+            this.calendarController.addRecEvent(this.studentUsername, events);
         }
 
     }

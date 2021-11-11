@@ -10,9 +10,22 @@ public class GroupMenu implements ActionListener {
     private JButton viewGroups;
     private JFrame frame;
     private JButton homeMenu;
+    private LogIn loginController;
+    private GroupController groupController;
+    private CalendarController calendarController;
+    private StudentController studentController;
+    private String studentUsername;
 
     // need username as a paramater for constructor
-    public GroupMenu() {
+    public GroupMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
+                     StudentController studentController, String studentUsername) {
+
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+        this.studentUsername = studentUsername;
+
 
         this.frame = new JFrame();
         this.frame.setLayout(null);
@@ -36,10 +49,6 @@ public class GroupMenu implements ActionListener {
         this.frame.add(this.homeMenu);
         this.frame.setVisible(true);
 
-    }
-
-    public static void main(String[] args) {
-        GroupMenu menu = new GroupMenu();
     }
 
     @Override
@@ -71,8 +80,6 @@ public class GroupMenu implements ActionListener {
             this.frame.dispose();
            // new StartMenu()
             //add this when controller classes created
-
-
 
 
         }

@@ -11,12 +11,17 @@ public class MainMenu implements ActionListener {
     private LogIn loginController;
     private GroupController groupController;
     private String studentUsername;
-    // private StudentController studentController;
+    private CalendarController calendarController;
+    private StudentController studentController;
 
     //pass in parameters including username to access it in studentController
-    public MainMenu(LogIn loginController, GroupController groupController, String studentUsername) {
+    public MainMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
+                    StudentController studentController, String studentUsername) {
         this.loginController = loginController;
         this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+        this.studentUsername = studentUsername;
 
         this.frame = new JFrame();
         this.addRecurButton= new JButton("Create Recurring Events");
@@ -50,18 +55,22 @@ public class MainMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.addRecurButton){
             this.frame.dispose();
-            //RecurringMenu recurringMenu = new RecurringMenu();
+            RecurringMenu recurringMenu = new RecurringMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController, this.studentUsername);
         }else if(e.getSource() == this.addOneOffButton){
             this.frame.dispose();
-            OneOffMenu oneOffMenu = new OneOffMenu();
+            OneOffMenu oneOffMenu = new OneOffMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController, this.studentUsername);
 
         }else if(e.getSource() == this.groupsButton){
             this.frame.dispose();
-            GroupMenu groupMenu = new GroupMenu();
+            GroupMenu groupMenu = new GroupMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController, this.studentUsername);
 
         }else if(e.getSource() == this.viewCalendarButton){
             this.frame.dispose();
-            ViewCalenderMenu viewCalenderMenu = new ViewCalenderMenu();
+            ViewCalenderMenu viewCalenderMenu = new ViewCalenderMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController, this.studentUsername);
 
         }
 

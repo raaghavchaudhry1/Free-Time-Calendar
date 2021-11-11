@@ -3,7 +3,7 @@ import java.util.ArrayList;
 class FreeTimeCalculatorTest {
     Calendar freeCalendar;
 
-    @org.junit.jupiter.api.Test
+//    @org.junit.jupiter.api.Test
     void setUp() {
         StudentManager studentManager = new StudentManager();
         GroupManager groupManager = new GroupManager();

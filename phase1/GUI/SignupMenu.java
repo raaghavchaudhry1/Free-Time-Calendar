@@ -12,10 +12,15 @@ public class SignupMenu implements ActionListener{
     private String password;
     private LogIn loginController;
     private GroupController groupController;
+    private CalendarController calendarController;
+    private StudentController studentController;
 
-    public SignupMenu(LogIn login, GroupController group) {
+    public SignupMenu(LogIn login, GroupController group,
+                      CalendarController calendarController, StudentController studentController) {
         this.loginController = login;
         this.groupController = group;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
         this.username = new String();
         this.password = new String();
         this.frame = new JFrame();
@@ -59,14 +64,16 @@ public class SignupMenu implements ActionListener{
         if(e.getSource() == this.signUpButton){
             this.username = this.userText.getText();
             this.password = this.passwordText.getText();
-//            this.studentController.addStudent(this.username, this.password);
+            this.studentController.addNewStudent(this.username, this.password);
 
             this.frame.dispose();
-            StartMenu startMenu = new StartMenu(this.loginController, this.groupController);
+            StartMenu startMenu = new StartMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController);
 
         }else if(e.getSource() == this.cancelButton){
             this.frame.dispose();
-            StartMenu startMenu = new StartMenu(this.loginController, this.groupController);
+            StartMenu startMenu = new StartMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController);
 
         }
     }

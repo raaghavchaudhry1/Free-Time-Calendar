@@ -9,11 +9,16 @@ public class StartMenu implements ActionListener {
     private JButton loginButton;
     private LogIn loginController;
     private GroupController groupController;
-   // private StudentController studentController;
+    private CalendarController calendarController;
+    private StudentController studentController;
 
-    public StartMenu(LogIn login, GroupController group){
+
+    public StartMenu(LogIn login, GroupController group,
+                     CalendarController calendarController, StudentController studentController){
         this.loginController = login;
         this.groupController = group;
+        this.studentController = studentController;
+        this.calendarController = calendarController;
         this.frame = new JFrame();
         this.signupButton= new JButton("Sign up");
         this.loginButton=  new JButton("Login");
@@ -33,22 +38,24 @@ public class StartMenu implements ActionListener {
     }
 
     public static void main(String[] args) {
-        //StudentController studentController = new StudentController();
-        StudentManager studentManager = new StudentManager(); //only for testing, change LogIn
-        LogIn login = new LogIn(studentManager);
-        GroupManager groupManager = new GroupManager();
-        GroupController groupControllerTest = new GroupController(groupManager);
-        new StartMenu(login, groupControllerTest);
+
+        StudentController studentController = new StudentController();
+        LogIn login = new LogIn(studentController);
+        GroupController groupController = new GroupController();
+        CalendarController calendarController = new CalendarController(studentController);
+        new StartMenu(login, groupController, calendarController, studentController);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.signupButton){
             this.frame.dispose();
-            SignupMenu signupMenu = new SignupMenu(this.loginController, this.groupController);
+            SignupMenu signupMenu = new SignupMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController);
         }else if(e.getSource() == this.loginButton){
             this.frame.dispose();
-            LoginMenu loginMenu = new LoginMenu(this.loginController, this.groupController);
+            LoginMenu loginMenu = new LoginMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController);
 
         }
     }

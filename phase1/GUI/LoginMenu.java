@@ -12,11 +12,16 @@ public class LoginMenu implements ActionListener {
     private String password;
     private LogIn loginController;
     private GroupController groupController;
+    private CalendarController calendarController;
+    private StudentController studentController;
 
 
-    public LoginMenu(LogIn login, GroupController group) {
+    public LoginMenu(LogIn login, GroupController group,
+                     CalendarController calendarController, StudentController studentController) {
         this.loginController = login;
         this.groupController = group;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
         this.username = new String();
         this.password = new String();
 
@@ -62,14 +67,16 @@ public class LoginMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.cancelButton){
             this.frame.dispose();
-            StartMenu startMenu = new StartMenu(this.loginController, this.groupController);
+            StartMenu startMenu = new StartMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController);
         }else if(e.getSource() == this.loginButton){
             this.username = this.userText.getText();
             this.password = this.passwordText.getText();
 
             if (this.loginController.validateLogIn(this.username, this.password)) {
 
-                MainMenu mainMenu = new MainMenu(this.loginController, this.groupController, this.username);
+                MainMenu mainMenu = new MainMenu(this.loginController, this.groupController,
+                        this.calendarController, this.studentController, this.username);
                 this.frame.dispose();
 
             } else {

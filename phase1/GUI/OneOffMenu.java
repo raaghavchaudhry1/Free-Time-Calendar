@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class OneOffMenu implements ActionListener {
     private JTextField eventNameText;
@@ -22,11 +23,19 @@ public class OneOffMenu implements ActionListener {
     private float endMinute;
     private LogIn loginController;
     private GroupController groupController;
+    private CalendarController calendarController;
+    private StudentController studentController;
+    private String studentUsername;
 
 
-    public OneOffMenu() {
-//        this.loginController = login;
-//        this.groupController = group;
+    public OneOffMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
+                      StudentController studentController, String studentUsername) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+        this.studentUsername = studentUsername;
+
         String[] months = new String[12];
         String[] days = new String[31];
         for(int i = 0; i != 12; i++){
@@ -106,35 +115,40 @@ public class OneOffMenu implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        new OneOffMenu();
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.returnButton){
             this.frame.dispose();
-//            MainMenu mainMenu = new MainMenu();
+            MainMenu mainMenu = new MainMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController, this.studentUsername);
         }else if(e.getSource() == this.month){
-            this.dateMonth = (float) month.getSelectedItem()  ;
+            this.dateMonth = Float.parseFloat((String) month.getSelectedItem()) ;
 
         }else if(e.getSource() == this.day){
-            this.dateDay = (float) day.getSelectedItem()  ;
+            this.dateDay =  Float.parseFloat((String) day.getSelectedItem())  ;
 
         }else if(e.getSource() == this.startMinutes){
-            this.startMinute = (float) startMinutes.getSelectedItem();
+            this.startMinute =  Float.parseFloat((String) startMinutes.getSelectedItem());
 
         }else if(e.getSource() == this.startHours){
-            this.startHour = (float) startHours.getSelectedItem();
+            this.startHour =  Float.parseFloat((String) startHours.getSelectedItem());
 
         }else if(e.getSource() == this.endMinutes){
-            this.endMinute = (float) endMinutes.getSelectedItem();
+            this.endMinute =  Float.parseFloat((String) endMinutes.getSelectedItem());
 
         }else if(e.getSource() == this.endHours){
-            this.endHour = (float) endMinutes.getSelectedItem();
+            this.endHour =  Float.parseFloat((String) endHours.getSelectedItem());
 
         }else if(e.getSource() == this.confirmButton){
             this.frame.dispose();
-            //use EventController to create event to add to user.
+            MainMenu mainMenu = new MainMenu(this.loginController, this.groupController,
+                    this.calendarController, this.studentController, this.studentUsername);
+            this.eventName = this.eventNameText.getText();
+
+            ArrayList<OneOffEvent> events = new ArrayList();
+            events.add(this.calendarController.createOneOffEvent(this.eventName, this.startHour + (this.startMinute / 100),
+                    this.endHour + (this.endMinute/100), this.dateMonth + (this.dateDay/100)));
+            this.calendarController.addOneOffEvent(this.studentUsername, events);
 
         }
 
