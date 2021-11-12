@@ -1,15 +1,12 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.SystemColor;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
-public class MonthPanel extends JPanel {
+public class MonthPanel extends JPanel implements ActionListener {
 
     private static final long   serialVersionUID    = 1L;
 
@@ -22,6 +19,8 @@ public class MonthPanel extends JPanel {
 
     protected String[]          dayNames            = { "S", "M", "T", "W",
             "T", "F", "S"                           };
+
+    private ArrayList<JButton> buttons = new ArrayList<JButton>();
 
     public MonthPanel(int month, int year) {
         this.month = month;
@@ -88,6 +87,8 @@ public class MonthPanel extends JPanel {
         }
 
         int count = 0;
+
+
         int limit = dayNames.length * 6;
 
         while (iterator.getTimeInMillis() < maximum.getTimeInMillis()) {
@@ -101,6 +102,10 @@ public class MonthPanel extends JPanel {
             if ((lMonth == month) && (lYear == year)) {
                 int lDay = iterator.get(Calendar.DAY_OF_MONTH);
                 dayLabel.setText(Integer.toString(lDay));
+                JButton button = new JButton();
+                this.buttons.add(button);
+                button.addActionListener(this);
+                dPanel.add(button);
                 if ((tMonth == month) && (tYear == year) && (tDay == lDay)) {
                     dPanel.setBackground(Color.ORANGE);
                 } else {
@@ -116,17 +121,38 @@ public class MonthPanel extends JPanel {
             count++;
         }
 
+        System.out.println(count);
+
         for (int i = count; i < limit; i++) {
             JPanel dPanel = new JPanel(true);
+
+
             dPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             JLabel dayLabel = new JLabel();
             dayLabel.setText(" ");
             dPanel.setBackground(Color.WHITE);
             dPanel.add(dayLabel);
+
             dayPanel.add(dPanel);
         }
 
         return dayPanel;
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        for(int i = 0; i < this.buttons.size(); i++) {
+
+            if (e.getSource() == this.buttons.get(i)) {
+                System.out.println(i + 1);
+            }
+
+
+        }
+
+
+    }
+
 
 }
