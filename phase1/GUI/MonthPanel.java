@@ -157,27 +157,29 @@ public class MonthPanel extends JPanel implements ActionListener {
 
         for(int i = 0; i < this.buttons.size(); i++) {
             if (e.getSource() == this.buttons.get(i)) {
-
                 int day = i +  1;
                 Float date = (float) this.month + 1 + (float)(day) / 100;
-                GregorianCalendar calendar = new GregorianCalendar(year, month, day);
+                GregorianCalendar calendar = new GregorianCalendar(this.year, this.month, day);
                 int week = calendar.get(Calendar.DAY_OF_WEEK);
-
+                String dayOfWeek;
                 if(week == 2){
-                    System.out.println("Mon");
+                    dayOfWeek = "Monday";
                 } else if (week==3){
-                    System.out.println("Tue");
+                    dayOfWeek = "Tuesday";
                 } else if (week==4){
-                    System.out.println("Wed");
+                    dayOfWeek = "Wednesday";
                 } else if (week==5){
-                    System.out.println("Thur");
+                    dayOfWeek = "Thursday";
                 } else if (week==6){
-                    System.out.println("Fri");
+                    dayOfWeek = "Friday";
                 } else if (week==7){
-                    System.out.println("Sat");
-                } else if (week==1){
-                    System.out.println("Sun");
+                    dayOfWeek = "Saturday";
+                } else{
+                    dayOfWeek = "Sunday";
                 }
+
+                new ViewDay(this.loginController, this.groupController,
+                        this.calendarController, this.studentController, this.studentUsername, date, dayOfWeek);
             }
         }
     }
