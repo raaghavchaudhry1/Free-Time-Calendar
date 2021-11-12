@@ -178,7 +178,6 @@ public class MonthPanel extends JPanel implements ActionListener {
                 } else if (week==1){
                     System.out.println("Sun");
                 }
-
             }
         }
     }
