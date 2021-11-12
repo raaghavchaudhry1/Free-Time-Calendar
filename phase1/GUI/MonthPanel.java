@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.swing.*;
 
@@ -158,8 +159,25 @@ public class MonthPanel extends JPanel implements ActionListener {
             if (e.getSource() == this.buttons.get(i)) {
 
                 int day = i +  1;
-                Float date = (float) this.month + (float)(day / 100);
-                System.out.println(date);
+                Float date = (float) this.month + 1 + (float)(day) / 100;
+                GregorianCalendar calendar = new GregorianCalendar(year, month, day);
+                int week = calendar.get(Calendar.DAY_OF_WEEK);
+
+                if(week == 2){
+                    System.out.println("Mon");
+                } else if (week==3){
+                    System.out.println("Tue");
+                } else if (week==4){
+                    System.out.println("Wed");
+                } else if (week==5){
+                    System.out.println("Thur");
+                } else if (week==6){
+                    System.out.println("Fri");
+                } else if (week==7){
+                    System.out.println("Sat");
+                } else if (week==1){
+                    System.out.println("Sun");
+                }
 
             }
         }
