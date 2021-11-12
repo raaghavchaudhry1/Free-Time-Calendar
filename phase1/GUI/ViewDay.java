@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class ViewDay {
@@ -61,18 +62,48 @@ public class ViewDay {
         ArrayList<CalendarEvent> dayRecurring = recurringEvents.get(this.day);
         ArrayList<OneOffEvent> dayOneOff = oneOffEvents.get(this.date);
 
+        Collections.sort(dayRecurring);
+        Collections.sort(dayOneOff);
 
 
+    }
 
+
+    public void populate(HashMap<Float, String> timeTable,  ArrayList<CalendarEvent> dayRecurring,
+                         ArrayList<OneOffEvent> dayOneOff) {
+
+        ArrayList<ArrayList<Object>>  times = this.studentController.getTimes(this.studentUsername, this.date, this.day);
+
+        for (ArrayList<Object> curr: times) {
+
+            float start = (float) curr.get(0);
+            float end = (float) curr.get(1);
+
+            float i = start;
+            int counter;
+
+            if ((int)(start)==(start)) {
+                counter = 0;
+            } else {
+                counter = 1;
+            }
+
+            while (i < end) {
+                timeTable.put(i, (String) curr.get(2));
+                if (counter == 0) {
+                    counter ++;
+                    i += 0.3;
+
+                } else {
+                    counter = 0;
+                    i += 0.7;
+
+                }
+
+            }
         }
 
-
-
-        
-
-
-
-
+    }
 
 
 }

@@ -43,4 +43,12 @@ public class StudentController {
     }
 
 
+    public  ArrayList<ArrayList<Object>> getTimes(String username, Float date, String day) {
+
+        return studentManager.getTimes(username, date, day);
+
+
+    }
+
+
 }
