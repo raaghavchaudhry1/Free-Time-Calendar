@@ -155,7 +155,6 @@ public class MonthPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         for(int i = 0; i < this.buttons.size(); i++) {
-
             if (e.getSource() == this.buttons.get(i)) {
 
                 int day = i +  1;
@@ -163,11 +162,7 @@ public class MonthPanel extends JPanel implements ActionListener {
                 System.out.println(date);
 
             }
-
-
         }
-
-
     }
 
 
