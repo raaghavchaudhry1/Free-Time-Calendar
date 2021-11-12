@@ -14,6 +14,7 @@ public class ViewDay {
     private String day;
     private JFrame frame;
     private HashMap<Float, String> timeTable;
+    private JTable table;
 
 
     public ViewDay(LogIn loginController, GroupController groupController, CalendarController calendarController,
@@ -51,8 +52,7 @@ public class ViewDay {
 
         this.frame = new JFrame();
         this.frame.setSize(300, 1200);
-        this.frame.setLayout(new GridLayout(48, 2));
-        this.frame.setVisible(true);
+
 
 
         HashMap<Float, ArrayList<OneOffEvent>> oneOffEvents = studentController.getCalendarOneOff(this.studentUsername);
@@ -62,14 +62,18 @@ public class ViewDay {
         ArrayList<CalendarEvent> dayRecurring = recurringEvents.get(this.day);
         ArrayList<OneOffEvent> dayOneOff = oneOffEvents.get(this.date);
 
-        Collections.sort(dayRecurring);
-        Collections.sort(dayOneOff);
+        this.populate(dayRecurring, dayOneOff);
+        String[][] data = convertHashMapToNestedArray();
 
 
+        String [] coloumnNames = {"Time", "Event"};
+        this.table = new JTable(data, coloumnNames);
+        this.frame.add(this.table);
+        this.frame.setVisible(true);
     }
 
 
-    public void populate(HashMap<Float, String> timeTable,  ArrayList<CalendarEvent> dayRecurring,
+    public void populate(ArrayList<CalendarEvent> dayRecurring,
                          ArrayList<OneOffEvent> dayOneOff) {
 
         ArrayList<ArrayList<Object>> times = this.studentController.getTimes(this.studentUsername, this.date, this.day);
@@ -105,7 +109,7 @@ public class ViewDay {
 
     }
 
-    private String[][] convertHashMapToNestedArray(HashMap<Float, String> timeTable){
+    private String[][] convertHashMapToNestedArray(){
 
         int length = timeTable.size();
         String[][] arrayToReturn = new String[length][2];

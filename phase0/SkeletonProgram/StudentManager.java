@@ -79,28 +79,31 @@ public class StudentManager {
 
             Student curr  = students.get(username);
             Calendar studentScehdule = curr.getStudentSchedule();
-            ArrayList<OneOffEvent> oneOffs = studentScehdule.getSingle().get(date);
-            ArrayList<CalendarEvent> calendarEvents = studentScehdule.getRecurring().get(day);
-            int length1 = oneOffs.size();
-            int length2 = calendarEvents.size();
-            ArrayList<ArrayList<Object>> eventTimes = new ArrayList<>();
+            if (studentScehdule.getSingle().containsKey(date)) {
+                ArrayList<OneOffEvent> oneOffs = studentScehdule.getSingle().get(date);
+                ArrayList<CalendarEvent> calendarEvents = studentScehdule.getRecurring().get(day);
+                int length1 = oneOffs.size();
+                int length2 = calendarEvents.size();
+                ArrayList<ArrayList<Object>> eventTimes = new ArrayList<>();
 
-            for (int i = 0; i < length1; i++) {
-                ArrayList<Object> temp = new ArrayList<>();
-                temp.add(oneOffs.get(i).getStartTime());
-                temp.add(oneOffs.get(i).getEndTime());
-                temp.add(oneOffs.get(i).getName());
-                eventTimes.add(temp);
+                for (int i = 0; i < length1; i++) {
+                    ArrayList<Object> temp = new ArrayList<>();
+                    temp.add(oneOffs.get(i).getStartTime());
+                    temp.add(oneOffs.get(i).getEndTime());
+                    temp.add(oneOffs.get(i).getName());
+                    eventTimes.add(temp);
+                }
+                for (int i = 0; i < length2; i++) {
+                    ArrayList<Object> temp = new ArrayList<>();
+                    temp.add(calendarEvents.get(i).getStartTime());
+                    temp.add(calendarEvents.get(i).getEndTime());
+                    temp.add(calendarEvents.get(i).getName());
+                    eventTimes.add(temp);
+                }
+                return eventTimes;
+            }else{
+                return new ArrayList<>();
             }
-            for (int i = 0; i < length2; i++) {
-                ArrayList<Object> temp = new ArrayList<>();
-                temp.add(calendarEvents.get(i).getStartTime());
-                temp.add(calendarEvents.get(i).getEndTime());
-                temp.add(calendarEvents.get(i).getName());
-                eventTimes.add(temp);
-            }
-            return eventTimes;
-
         } else {
 
             return null;
