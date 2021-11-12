@@ -21,8 +21,21 @@ public class MonthPanel extends JPanel implements ActionListener {
             "T", "F", "S"                           };
 
     private ArrayList<JButton> buttons = new ArrayList<JButton>();
+    private LogIn loginController;
+    private GroupController groupController;
+    private String studentUsername;
+    private CalendarController calendarController;
+    private StudentController studentController;
 
-    public MonthPanel(int month, int year) {
+    public MonthPanel(int month, int year, LogIn loginController, GroupController groupController,
+                      CalendarController calendarController,
+                      StudentController studentController, String studentUsername) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+        this.studentUsername = studentUsername;
+
         this.month = month;
         this.year = year;
 
@@ -144,7 +157,11 @@ public class MonthPanel extends JPanel implements ActionListener {
         for(int i = 0; i < this.buttons.size(); i++) {
 
             if (e.getSource() == this.buttons.get(i)) {
-                System.out.println(i + 1);
+
+                int day = i +  1;
+                Float date = (float) this.month + (float)(day / 100);
+                System.out.println(date);
+
             }
 
 

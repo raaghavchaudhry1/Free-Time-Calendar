@@ -27,8 +27,14 @@ public class CalendarFrame implements ActionListener {
 
         this.currentMonth = currentMonth;
         this.currentYear = currentYear;
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+        this.studentUsername = studentUsername;
 
-        MonthPanel panel = new MonthPanel(this.currentMonth, this.currentYear);
+        MonthPanel panel = new MonthPanel(this.currentMonth, this.currentYear, this.loginController,
+                this.groupController, this.calendarController, this.studentController, this.studentUsername);
 
         frame = new JFrame();
         frame.setTitle("Calendar");
