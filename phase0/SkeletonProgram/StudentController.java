@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -25,4 +26,23 @@ public class StudentController {
     public HashMap<String, Student> getAllStudent(){
         return this.studentManager.getAllStudents();
     }
+
+
+    public HashMap<String, ArrayList<CalendarEvent>> getCalendarRecurring(String username) {
+
+        return studentManager.getCalendarRecurring(username);
+
+
+    }
+
+    public HashMap<Float, ArrayList<OneOffEvent>> getCalendarOneOff(String username) {
+
+        return studentManager.getCalendarOneOff(username);
+
+
+    }
+
+
+
+
 }

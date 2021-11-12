@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -36,5 +37,42 @@ public class StudentManager {
         String user = student.getUsername();
         return this.students.containsKey(user);
     }
+
+    public HashMap<String, ArrayList<CalendarEvent>> getCalendarRecurring(String username) {
+
+        if (students.containsKey(username)) {
+
+            Student curr  = students.get(username);
+            Calendar studentScehdule = curr.getStudentSchedule();
+            return  studentScehdule.getRecurring();
+
+
+
+        } else {
+
+            return null;
+        }
+
+
+    }
+
+    public HashMap<Float, ArrayList<OneOffEvent>> getCalendarOneOff(String username) {
+
+        if (students.containsKey(username)) {
+
+            Student curr  = students.get(username);
+            Calendar studentScehdule = curr.getStudentSchedule();
+            return  studentScehdule.getSingle();
+
+        } else {
+
+            return null;
+        }
+
+
+    }
+
+
+
 
 }
