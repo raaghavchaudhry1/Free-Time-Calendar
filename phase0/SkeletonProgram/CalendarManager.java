@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class CalendarManager {
+public class CalendarManager {
 
 
 

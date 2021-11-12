@@ -32,9 +32,6 @@ public class StartMenu implements ActionListener {
         this.frame.setVisible(true);
         this.frame.setSize(500,500);
 
-
-
-
     }
 
     public static void main(String[] args) {

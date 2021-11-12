@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.ArrayList;
 
-class GroupManager {
+public class GroupManager {
 
     private HashMap<String, Group> groupMap;
 

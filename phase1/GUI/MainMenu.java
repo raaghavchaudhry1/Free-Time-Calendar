@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 
 public class MainMenu implements ActionListener {
     private JFrame frame;
@@ -69,8 +70,11 @@ public class MainMenu implements ActionListener {
 
         }else if(e.getSource() == this.viewCalendarButton){
             this.frame.dispose();
-            ViewCalender viewCalenderMenu = new ViewCalender(this.loginController, this.groupController,
-                    this.calendarController, this.studentController, this.studentUsername);
+            GregorianCalendar cal = new GregorianCalendar();
+            int realMonth = cal.get(GregorianCalendar.MONTH);
+            int realYear = cal.get(GregorianCalendar.YEAR);
+            CalendarFrame calendarFrame = new CalendarFrame(this.loginController, this.groupController,
+                    this.calendarController, this.studentController, this.studentUsername, realMonth, realYear);
 
         }
 

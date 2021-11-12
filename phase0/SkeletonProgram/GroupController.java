@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.ArrayList;
 
-class GroupController {
+public class GroupController {
 
     private GroupManager manager;
 

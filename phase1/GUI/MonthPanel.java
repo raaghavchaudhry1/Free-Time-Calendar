@@ -121,7 +121,6 @@ public class MonthPanel extends JPanel implements ActionListener {
             count++;
         }
 
-        System.out.println(count);
 
         for (int i = count; i < limit; i++) {
             JPanel dPanel = new JPanel(true);
