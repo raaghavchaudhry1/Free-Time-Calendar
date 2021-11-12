@@ -72,9 +72,9 @@ public class ViewDay {
     public void populate(HashMap<Float, String> timeTable,  ArrayList<CalendarEvent> dayRecurring,
                          ArrayList<OneOffEvent> dayOneOff) {
 
-        ArrayList<ArrayList<Object>>  times = this.studentController.getTimes(this.studentUsername, this.date, this.day);
+        ArrayList<ArrayList<Object>> times = this.studentController.getTimes(this.studentUsername, this.date, this.day);
 
-        for (ArrayList<Object> curr: times) {
+        for (ArrayList<Object> curr : times) {
 
             float start = (float) curr.get(0);
             float end = (float) curr.get(1);
@@ -82,7 +82,7 @@ public class ViewDay {
             float i = start;
             int counter;
 
-            if ((int)(start)==(start)) {
+            if ((int) (start) == (start)) {
                 counter = 0;
             } else {
                 counter = 1;
@@ -91,7 +91,7 @@ public class ViewDay {
             while (i < end) {
                 timeTable.put(i, (String) curr.get(2));
                 if (counter == 0) {
-                    counter ++;
+                    counter++;
                     i += 0.3;
 
                 } else {
@@ -105,7 +105,24 @@ public class ViewDay {
 
     }
 
+    private String[][] convertHashMapToNestedArray(HashMap<Float, String> timeTable){
 
+        int length = timeTable.size();
+        String[][] arrayToReturn = new String[length][2];
+        ArrayList<Float> sortedKeys = new ArrayList(timeTable.keySet());
+        Collections.sort(sortedKeys);
+
+        for (int i = 0; i != length; i++){
+            for (int j = 0 ; j != 2; j++){
+                if(j == 0){
+                    arrayToReturn[i][j] = String.valueOf(sortedKeys.get(i)).replaceAll("[.]",":");
+                }else{
+                    arrayToReturn[i][j] = timeTable.get(sortedKeys.get(i));
+                }
+            }
+        }
+        return arrayToReturn;
+    }
 }
 
 
