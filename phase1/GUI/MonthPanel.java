@@ -142,15 +142,10 @@ public class MonthPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         for(int i = 0; i < this.buttons.size(); i++) {
-
             if (e.getSource() == this.buttons.get(i)) {
                 System.out.println(i + 1);
             }
-
-
         }
-
-
     }
 
 
