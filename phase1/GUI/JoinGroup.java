@@ -66,7 +66,7 @@ public class JoinGroup implements ActionListener {
             boolean check = this.groupController.addToGroup(curr, groupID);
 
             if (check) {
-
+                this.frame.dispose();
                 MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
                         this.studentController, this.studentUsername);
 
@@ -79,11 +79,6 @@ public class JoinGroup implements ActionListener {
                 this.frame.repaint();
 
             }
-
-
-
-
-
 
 
 

@@ -63,13 +63,14 @@ public class CreateGroup implements ActionListener {
 
             String name = this.groupName.getText();
             Group group = this.groupController.createGroup(newGroup, name);
-            String ID = this.groupController.getID(group);
+            String id = this.groupController.getID(group);
 
 
 
 
             this.frame.dispose();
-            new CreateGroupPopUp(ID);
+            new CreateGroupPopUp(this.loginController, this.groupController, this.calendarController,
+                        this.studentController, this.studentUsername,id);
 
 
 //            this.frame.dispose();
