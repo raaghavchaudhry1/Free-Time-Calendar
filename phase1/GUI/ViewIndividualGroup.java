@@ -105,7 +105,7 @@ public class ViewIndividualGroup implements ActionListener {
                     this.studentController, this.studentUsername);
 
 
-        } else {
+        } else if (e.getSource() == this.freeTime){
 
             this.frame.dispose();
             GregorianCalendar cal = new GregorianCalendar();
