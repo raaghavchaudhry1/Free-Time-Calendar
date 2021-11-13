@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
+import java.io.Serializable;
 
 
-public class Student implements Person {
+public class Student implements Person, Serializable {
 
     private String username;
     private String password;
@@ -10,6 +11,11 @@ public class Student implements Person {
     private TaskList tasks;
 
 
+    public Student() {
+        this.schedule = new Calendar();
+        this.tasks = new TaskList();
+
+    }
     public Student(String userName, String password) {
         this.username = userName;
         this.password = password;
