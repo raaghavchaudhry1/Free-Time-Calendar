@@ -14,6 +14,7 @@ public class JoinGroup implements ActionListener {
     private CalendarController calendarController;
     private StudentController studentController;
     private String studentUsername;
+    private  JLabel error;
 
     public JoinGroup(LogIn loginController, GroupController groupController, CalendarController calendarController,
                      StudentController studentController, String studentUsername){
@@ -45,6 +46,13 @@ public class JoinGroup implements ActionListener {
         this.cancelButton.addActionListener(this);
         this.frame.add(this.cancelButton);
 
+        JLabel error = new JLabel();
+        error.setText("Invalid Group ID! Try Again!");
+        error.setBounds(100, 100, 300, 300);
+        this.error = error;
+
+
+
 
         this.frame.setVisible(true);
     }
@@ -52,11 +60,32 @@ public class JoinGroup implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.submitButton){
 
+            String groupID = this.groupName.getText();
+
+            Student curr = this.studentController.getAllStudents().get(this.studentUsername);
+            boolean check = this.groupController.addToGroup(curr, groupID);
+
+            if (check) {
+
+                MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
+                        this.studentController, this.studentUsername);
+
+
+            } else {
+
+
+                this.frame.add(error);
+                this.frame.revalidate();
+                this.frame.repaint();
+
+            }
 
 
 
-            MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
-                    this.studentController, this.studentUsername);
+
+
+
+
 
         }
         else if(e.getSource() == this.cancelButton){
