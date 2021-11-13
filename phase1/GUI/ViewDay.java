@@ -28,7 +28,7 @@ public class ViewDay {
         while (i <= 24) {
             this.timeTable.put(i, "No Event");
             if (counter == 0) {
-                counter ++;
+                counter++;
                 i += 0.3;
 
             } else {
@@ -37,11 +37,6 @@ public class ViewDay {
 
             }
         }
-
-        System.out.println(this.timeTable);
-        System.out.println(this.timeTable.size());
-
-
         this.loginController = loginController;
         this.groupController = groupController;
         this.calendarController = calendarController;
@@ -63,7 +58,7 @@ public class ViewDay {
         ArrayList<OneOffEvent> dayOneOff = oneOffEvents.get(this.date);
 
         this.populate(dayRecurring, dayOneOff);
-        String[][] data = convertHashMapToNestedArray();
+        String[][] data = this.convertHashMapToNestedArray();
 
 
         String [] coloumnNames = {"Time", "Event"};

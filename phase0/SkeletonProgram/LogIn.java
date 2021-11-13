@@ -6,7 +6,7 @@ public class LogIn {
 
     public LogIn(StudentController students) {
 
-        this.userMap = students.getAllStudent();
+        this.userMap = students.getAllStudents();
 
     }
 
