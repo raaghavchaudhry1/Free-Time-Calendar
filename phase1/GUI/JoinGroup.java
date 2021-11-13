@@ -55,7 +55,6 @@ public class JoinGroup implements ActionListener {
 
 
 
-
             MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
                     this.studentController, this.studentUsername);
 
