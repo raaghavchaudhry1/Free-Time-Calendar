@@ -10,7 +10,6 @@ public class CreateGroup implements ActionListener {
     private JTextField groupName;
     private JButton submitButton;
     private JButton cancelButton;
-    private JButton returnButton;
 
     private LogIn loginController;
     private GroupController groupController;
