@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,6 +34,7 @@ public class LoginMenu implements ActionListener {
 
         this.frame.setLayout(null);
         this.frame.setSize(500,500);
+        this.frame.getContentPane().setBackground(Color.decode("#F4E2CB"));
 
         JLabel userLabel = new JLabel("Username");
         userLabel.setBounds(10,20,80,25);

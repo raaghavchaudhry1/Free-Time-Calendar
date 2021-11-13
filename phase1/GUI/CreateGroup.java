@@ -17,6 +17,8 @@ public class CreateGroup implements ActionListener {
     private StudentController studentController;
     private String studentUsername;
 
+    /** This constructor is used for creating a new */
+
     public CreateGroup(LogIn loginController, GroupController groupController, CalendarController calendarController,
                        StudentController studentController, String studentUsername){
 
