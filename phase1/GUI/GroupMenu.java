@@ -30,22 +30,25 @@ public class GroupMenu implements ActionListener {
 
         this.frame = new JFrame();
         this.frame.setLayout(null);
-        this.frame.setSize(1000,1000);
-        this.createGroup = new JButton("Create Group");
-        this.createGroup.setBounds(10,80,200,25);
-        this.createGroup.addActionListener(this);
-        this.frame.add(this.createGroup);
+        this.frame.setSize(500,500);
+
         this.joinGroup = new JButton("Join Group");
-        this.joinGroup.setBounds(300,80,200,25);
+        this.joinGroup.setBounds(30,120,200,40);
         this.joinGroup.addActionListener(this);
         this.frame.add(this.joinGroup);
+
+        this.createGroup = new JButton("Create Group");
+        this.createGroup.setBounds(250,120,200,40);
+        this.createGroup.addActionListener(this);
+        this.frame.add(this.createGroup);
+
         this.viewGroups = new JButton("View Groups");
-        this.viewGroups.setBounds(600,80,200,25);
+        this.viewGroups.setBounds(30,200,200,40);
         this.viewGroups.addActionListener(this);
         this.frame.add(this.viewGroups);
 
         this.homeMenu = new JButton("Return to Home Menu");
-        this.homeMenu.setBounds(300,280,200,25);
+        this.homeMenu.setBounds(250,200,200,40);
         this.homeMenu.addActionListener(this);
         this.frame.add(this.homeMenu);
         this.frame.setVisible(true);

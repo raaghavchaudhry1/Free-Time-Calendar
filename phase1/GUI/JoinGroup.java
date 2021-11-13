@@ -28,20 +28,20 @@ public class JoinGroup implements ActionListener {
         this.frame.setSize(500,500);
 
         JLabel groupNameLabel = new JLabel("Group ID: ");
-        groupNameLabel.setBounds(110,50,115, 25);
+        groupNameLabel.setBounds(110,50,115, 30);
         this.frame.add(groupNameLabel);
 
         this.groupName = new JTextField();
-        this.groupName.setBounds(210,50,165,25);
+        this.groupName.setBounds(210,50,165,30);
         this.frame.add(this.groupName);
 
         this.submitButton = new JButton("Submit");
-        this.submitButton.setBounds(150,100,80,25);
+        this.submitButton.setBounds(100,100,100,30);
         this.submitButton.addActionListener(this);
         this.frame.add(this.submitButton);
 
         this.cancelButton = new JButton("Cancel");
-        this.cancelButton.setBounds(250,100,80,25);
+        this.cancelButton.setBounds(240,100,100,30);
         this.cancelButton.addActionListener(this);
         this.frame.add(this.cancelButton);
 
@@ -51,10 +51,13 @@ public class JoinGroup implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.submitButton){
-            JLabel validGroupJoining = new JLabel("You joined the group successfully!");
+//            JLabel validGroupJoining = new JLabel("You joined the group successfully!");
             //this.groupName.getText();
-            validGroupJoining.setBounds(120,110,350,250);
-            this.frame.add(validGroupJoining);
+//            validGroupJoining.setBounds(120,110,350,250);
+//            this.frame.add(validGroupJoining);
+
+
+
             this.frame.revalidate();
             this.frame.repaint();
             //going back to GroupMenu

@@ -30,10 +30,10 @@ public class MainMenu implements ActionListener {
         this.groupsButton= new JButton("Groups");
         this.viewCalendarButton=  new JButton("View Your Calendar");
 
-        this.addRecurButton.setBounds(50,250, 100, 20);
-        this.addOneOffButton.setBounds(200, 250, 100,20);
-        this.groupsButton.setBounds(50,400, 100, 20);
-        this.viewCalendarButton.setBounds(200, 400, 100,20);
+        this.addRecurButton.setBounds(50,150, 170, 40);
+        this.addOneOffButton.setBounds(250, 150, 170,40);
+        this.groupsButton.setBounds(50,300, 170, 40);
+        this.viewCalendarButton.setBounds(250, 300, 170,40);
 
         this.addRecurButton.addActionListener(this);
         this.addOneOffButton.addActionListener(this);

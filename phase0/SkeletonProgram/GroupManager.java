@@ -11,6 +11,7 @@ public class GroupManager {
 
     }
 
+
     public Group CreateGroup(ArrayList<Student> groupMembers, String groupName) {
 
         Group newGroup = new Group(groupName);

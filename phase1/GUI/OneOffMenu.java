@@ -62,7 +62,7 @@ public class OneOffMenu implements ActionListener {
         this.frame.setSize(500,500);
 
         JLabel userLabel = new JLabel("Event Name");
-        userLabel.setBounds(110,20,80,25);
+        userLabel.setBounds(110,50,110,30);
         this.frame.add(userLabel);
 
         this.returnButton = new JButton("Return");
@@ -71,41 +71,41 @@ public class OneOffMenu implements ActionListener {
         this.frame.add(this.returnButton);
 
         this.confirmButton = new JButton("Confirm");
-        this.confirmButton.setBounds(250,400,100,30);
+        this.confirmButton.setBounds(300,200,100,30);
         this.confirmButton.addActionListener(this);
         this.frame.add(this.confirmButton);
 
         this.eventNameText = new JTextField();
-        this.eventNameText.setBounds(200,20,150,25);
+        this.eventNameText.setBounds(200,50,150,30);
         this.frame.add(this.eventNameText);
 
         this.month = new JComboBox(months);
-        this.month.setBounds(10,80,80,25);
+        this.month.setBounds(10,120,70,30);
         this.month.addActionListener(this);
         this.frame.add(this.month);
 
         this.day = new JComboBox(days);
-        this.day.setBounds(90,80,80,25);
+        this.day.setBounds(75,120,70,30);
         this.day.addActionListener(this);
         this.frame.add(this.day);
 
         this.startHours = new JComboBox(hours);
-        this.startHours.setBounds(200,80,50,25);
+        this.startHours.setBounds(170,120,70,30);
         this.startHours.addActionListener(this);
         this.frame.add(this.startHours);
 
         this.endHours = new JComboBox(hours);
-        this.endHours.setBounds(320,80,50,25);
+        this.endHours.setBounds(320,120,70,30);
         this.endHours.addActionListener(this);
         this.frame.add(this.endHours);
 
         this.startMinutes = new JComboBox(minutes);
-        this.startMinutes.setBounds(250,80,50,25);
+        this.startMinutes.setBounds(235,120,70,30);
         this.startMinutes.addActionListener(this);
         this.frame.add(this.startMinutes);
 
         this.endMinutes = new JComboBox(minutes);
-        this.endMinutes.setBounds(370,80,50,25);
+        this.endMinutes.setBounds(385,120,70,30);
         this.endMinutes.addActionListener(this);
         this.frame.add(this.endMinutes);
 

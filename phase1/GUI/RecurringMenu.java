@@ -55,7 +55,7 @@ public class RecurringMenu implements ActionListener {
         this.frame.setSize(500,500);
 
         JLabel userLabel = new JLabel("Event Name");
-        userLabel.setBounds(110,20,80,25);
+        userLabel.setBounds(110,50,110,30);
         this.frame.add(userLabel);
 
         this.returnButton = new JButton("Return");
@@ -64,36 +64,36 @@ public class RecurringMenu implements ActionListener {
         this.frame.add(this.returnButton);
 
         this.confirmButton = new JButton("Confirm");
-        this.confirmButton.setBounds(250,400,100,30);
+        this.confirmButton.setBounds(300,200,100,30);
         this.confirmButton.addActionListener(this);
         this.frame.add(this.confirmButton);
 
         this.eventNameText = new JTextField();
-        this.eventNameText.setBounds(200,20,150,25);
+        this.eventNameText.setBounds(200,50,150,30);
         this.frame.add(this.eventNameText);
 
         this.daysOfWeek = new JComboBox(days);
-        this.daysOfWeek.setBounds(10,80,80,25);
+        this.daysOfWeek.setBounds(25,120,100,30);
         this.daysOfWeek.addActionListener(this);
         this.frame.add(this.daysOfWeek);
 
         this.startHours = new JComboBox(hours);
-        this.startHours.setBounds(160,80,50,25);
+        this.startHours.setBounds(160,120,70,30);
         this.startHours.addActionListener(this);
         this.frame.add(this.startHours);
 
         this.endHours = new JComboBox(hours);
-        this.endHours.setBounds(310,80,50,25);
+        this.endHours.setBounds(315,120,70,30);
         this.endHours.addActionListener(this);
         this.frame.add(this.endHours);
 
         this.startMinutes = new JComboBox(minutes);
-        this.startMinutes.setBounds(210,80,50,25);
+        this.startMinutes.setBounds(230,120,70,30);
         this.startMinutes.addActionListener(this);
         this.frame.add(this.startMinutes);
 
         this.endMinutes = new JComboBox(minutes);
-        this.endMinutes.setBounds(360,80,50,25);
+        this.endMinutes.setBounds(385,120,70,30);
         this.endMinutes.addActionListener(this);
         this.frame.add(this.endMinutes);
 

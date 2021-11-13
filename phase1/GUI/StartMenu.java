@@ -22,8 +22,8 @@ public class StartMenu implements ActionListener {
         this.frame = new JFrame();
         this.signupButton= new JButton("Sign up");
         this.loginButton=  new JButton("Login");
-        this.loginButton.setBounds(50,250, 100, 20);
-        this.signupButton.setBounds(200, 250, 100,20);
+        this.loginButton.setBounds(100,200, 120, 30);
+        this.signupButton.setBounds(250, 200, 120,30);
         this.loginButton.addActionListener(this);
         this.signupButton.addActionListener(this);
         this.frame.setLayout(null);

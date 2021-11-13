@@ -11,6 +11,12 @@ public class GroupController {
 
     }
 
+//    should it be void??
+
+    public void createGroup(ArrayList<Student> groupMembers, String groupName){
+         (this.manager).CreateGroup(groupMembers, groupName);
+    }
+
 
     public boolean addToGroup(Student member, String groupID){
 
