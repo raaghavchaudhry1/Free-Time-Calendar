@@ -12,7 +12,7 @@ public class CalendarController {
     public CalendarController(StudentController studentController) {
         this.calendarManager = new CalendarManager();
         this.eventCreator = new EventCreator();
-        this.studentController = new StudentController();
+        this.studentController = studentController;
     }
     public void addRecEvent(String student, ArrayList<CalendarEvent> events) {
         calendarManager.addRecurringEvents(this.getStudent(student), events);
@@ -31,7 +31,8 @@ public class CalendarController {
     }
 
     public Student getStudent(String student){
-        HashMap<String, Student> students = this.studentController.getAllStudent();
+        HashMap<String, Student> students = this.studentController.getAllStudents();
+        System.out.println(students);
         return students.get(student);
     }
 

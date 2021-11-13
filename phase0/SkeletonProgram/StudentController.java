@@ -23,7 +23,7 @@ public class StudentController {
         this.studentManager.addNewStudent(username,password);
     }
 
-    public HashMap<String, Student> getAllStudent(){
+    public HashMap<String, Student> getAllStudents(){
         return this.studentManager.getAllStudents();
     }
 

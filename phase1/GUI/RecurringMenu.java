@@ -107,9 +107,6 @@ public class RecurringMenu implements ActionListener {
             this.frame.dispose();
             MainMenu mainMenu = new MainMenu(this.loginController, this.groupController,
                     this.calendarController, this.studentController, this.studentUsername);
-        }else if(e.getSource() == this.daysOfWeek){
-            this.day = (String) daysOfWeek.getSelectedItem();
-
         }else if(e.getSource() == this.startMinutes){
             this.startMinute =  Float.parseFloat((String) startMinutes.getSelectedItem());
 
@@ -127,6 +124,7 @@ public class RecurringMenu implements ActionListener {
             MainMenu mainMenu = new MainMenu(this.loginController, this.groupController,
                     this.calendarController, this.studentController, this.studentUsername);
             this.eventName = this.eventNameText.getText();
+            this.day = (String) daysOfWeek.getSelectedItem();
 
             ArrayList<CalendarEvent> events = new ArrayList();
             events.add(this.calendarController.createRecEvent(this.eventName, this.startHour + (this.startMinute / 100),
