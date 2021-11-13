@@ -32,7 +32,6 @@ public class CalendarController {
 
     public Student getStudent(String student){
         HashMap<String, Student> students = this.studentController.getAllStudents();
-        System.out.println(students);
         return students.get(student);
     }
 

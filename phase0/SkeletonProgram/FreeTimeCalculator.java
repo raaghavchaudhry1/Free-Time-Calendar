@@ -6,11 +6,11 @@ import java.util.*;
 public class FreeTimeCalculator {
     /**
      * Calculates the free-times of a group of students
-     * @param groupManager The GroupManager containing all created Students
+     * @param groupController The GroupManager containing all created Students
      * @return the Calendar containing all free-times of a week
      */
-    public Calendar getFreeCalendar(GroupManager groupManager, String groupID){
-        Group group = groupManager.getGroup(groupID);
+    public ArrayList<HashMap> getFreeCalendar(GroupController groupController, String groupID){
+        Group group = groupController.getGroup(groupID);
         Map<String, List<CalendarEvent>> aggregateRoutine = getAggregateRoutine(group);
         Map<Float, List<OneOffEvent>> aggregateOneOff = getAggregateOneOff(group);
         return calculateFreeTime(aggregateRoutine, aggregateOneOff);
@@ -24,12 +24,15 @@ public class FreeTimeCalculator {
      * @param aggregateOneOff
      * @return the free-time Calendar
      */
-    private Calendar calculateFreeTime(Map<String, List<CalendarEvent>> aggregateRoutine,
+    private ArrayList<HashMap> calculateFreeTime(Map<String, List<CalendarEvent>> aggregateRoutine,
                                        Map<Float, List<OneOffEvent>> aggregateOneOff){
         Calendar freeCalendar = new Calendar();
         addFreeRecurringEvents(aggregateRoutine, freeCalendar);
         addFreeOneOffEvents(aggregateOneOff, freeCalendar);
-        return freeCalendar;
+        ArrayList<HashMap> calendarSchedules = new ArrayList();
+        calendarSchedules.add(freeCalendar.getRecurring());
+        calendarSchedules.add(freeCalendar.getSingle());
+        return calendarSchedules;
     }
 
     private void addFreeOneOffEvents(Map<Float, List<OneOffEvent>> aggregateOneOff, Calendar freeCalendar) {

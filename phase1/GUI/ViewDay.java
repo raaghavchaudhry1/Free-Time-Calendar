@@ -14,6 +14,8 @@ public class ViewDay {
     private String day;
     private JFrame frame;
     private HashMap<Float, String> timeTable;
+
+
     private JTable table;
 
 
@@ -67,6 +69,20 @@ public class ViewDay {
         this.frame.setVisible(true);
     }
 
+    public ViewDay(LogIn loginController, GroupController groupController, CalendarController calendarController,
+                   StudentController studentController, String studentUsername) {
+
+        this.timeTable = new HashMap<Float, String>();
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+        this.studentUsername = studentUsername;
+        this.frame = new JFrame();
+        this.frame.setSize(300, 1200);
+    }
+
+
 
     public void populate(ArrayList<CalendarEvent> dayRecurring,
                          ArrayList<OneOffEvent> dayOneOff) {
@@ -104,7 +120,7 @@ public class ViewDay {
 
     }
 
-    private String[][] convertHashMapToNestedArray(){
+    public String[][] convertHashMapToNestedArray(){
 
         int length = timeTable.size();
         String[][] arrayToReturn = new String[length][2];
@@ -121,6 +137,58 @@ public class ViewDay {
             }
         }
         return arrayToReturn;
+    }
+
+
+    public LogIn getLoginController() {
+        return loginController;
+    }
+
+    public GroupController getGroupController() {
+        return groupController;
+    }
+
+    public String getStudentUsername() {
+        return studentUsername;
+    }
+
+    public CalendarController getCalendarController() {
+        return calendarController;
+    }
+
+    public StudentController getStudentController() {
+        return studentController;
+    }
+
+    public float getDate() {
+        return date;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public HashMap<Float, String> getTimeTable() {
+        return timeTable;
+    }
+
+    public JTable getTable() {
+        return table;
+    }
+    public void setDate(float date) {
+        this.date = date;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public void setTable(JTable table) {
+        this.table = table;
     }
 }
 
