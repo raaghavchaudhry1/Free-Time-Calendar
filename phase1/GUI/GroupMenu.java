@@ -61,7 +61,8 @@ public class GroupMenu implements ActionListener {
         if (e.getSource() == this.viewGroups) {
 
             this.frame.dispose();
-            ViewGroups viewGroups = new ViewGroups();
+            ViewGroups viewGroups = new ViewGroups(this.loginController, this.groupController, this.calendarController,
+                    this.studentController, this.studentUsername);
 
 
         } else if (e.getSource() == this.createGroup) {
