@@ -51,16 +51,10 @@ public class JoinGroup implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.submitButton){
-//            JLabel validGroupJoining = new JLabel("You joined the group successfully!");
-            //this.groupName.getText();
-//            validGroupJoining.setBounds(120,110,350,250);
-//            this.frame.add(validGroupJoining);
 
 
 
-            this.frame.revalidate();
-            this.frame.repaint();
-            //going back to GroupMenu
+
 
             MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
                     this.studentController, this.studentUsername);

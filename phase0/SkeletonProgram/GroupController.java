@@ -11,10 +11,10 @@ public class GroupController {
 
     }
 
-//    should it be void??
 
-    public void createGroup(ArrayList<Student> groupMembers, String groupName){
-         (this.manager).CreateGroup(groupMembers, groupName);
+
+    public Group createGroup(ArrayList<Student> groupMembers, String groupName){
+         return (this.manager).CreateGroup(groupMembers, groupName);
     }
 
 
@@ -27,6 +27,21 @@ public class GroupController {
     public boolean removeMember(Student member, String groupID){
 
         return (this.manager).removeGroupMember(member, groupID);
+
+    }
+
+
+
+    public String getID(Group group) {
+
+        return this.manager.getID(group);
+
+
+    }
+
+
+    public Group getGroup(String id) {
+        return this.manager.getGroup(id);
 
     }
 

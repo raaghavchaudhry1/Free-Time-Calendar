@@ -68,6 +68,13 @@ public class GroupManager {
 
     public Group getGroup(String gID) { return this.groupMap.get(gID); }
 
+    public String getID(Group group) {
+
+        return group.getgID();
+    }
+
+
+
 }
 
 

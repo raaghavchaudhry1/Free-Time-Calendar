@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CreateGroup implements ActionListener {
 
@@ -55,33 +56,21 @@ public class CreateGroup implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.submitButton){
-            this.returnButton = new JButton("Return");
-            this.returnButton.setBounds(200,130,80,25);
-            this.frame.add(this.returnButton);
 
-//            ArrayList<Student> students = new ArrayList<Student>();
-////            have no idea how to cast
-////            students.add((Student) this.studentController);
-//
-//            String groupName = this.groupName.getText();
-//            this.groupController.createGroup(students,groupName);
+            HashMap<String, Student> studentHashMap =  this.studentController.getAllStudents();
+            Student curr =  studentHashMap.get(this.studentUsername);
+            ArrayList<Student> newGroup = new ArrayList<Student>();
+            newGroup.add(curr);
 
+            String name = this.groupName.getText();
+            this.groupController.createGroup(newGroup, name);
 
-
-
-//            JLabel validGroupCreation = new JLabel("The group created successfully! Your groupId is ###");
-            //this.groupName.getText();
-//            validGroupCreation.setBounds(80,110,350,250);
-//            this.frame.add(validGroupCreation);
-            this.frame.revalidate();
-            this.frame.repaint();
 
             this.frame.dispose();
-
             MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
                         this.studentController, this.studentUsername);
 
-            //going back to GroupMenu
+
         }
         else if(e.getSource() == this.cancelButton){
             this.frame.dispose();
