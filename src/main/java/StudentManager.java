@@ -1,0 +1,46 @@
+import java.util.HashMap;
+import java.util.Set;
+
+public class StudentManager {
+
+    private HashMap<String, Student> students;
+
+    public StudentManager() {
+        this.students = new HashMap<String, Student>();
+    }
+
+    public StudentManager(HashMap<String, Student> students) {
+        this.students = students;
+    }
+
+    public void addStudent(Student student) {
+        this.students.put(student.getUsername(), student);
+    }
+
+    public HashMap<String, Student> getAllStudents() {
+        return students;
+    }
+
+    public void setAllStudents(HashMap<String, Student> students) {
+        this.students = students;
+    }
+
+    public Set<String> getAllStudentUsers() { return this.students.keySet(); }
+
+    public void addNewStudent(String username, String password){
+        students.put(username, new Student(username, password));
+    }
+
+    public void addTask(String user, Task task) {
+        this.students.get(user).getTaskList().addTask(task);
+
+    }
+
+    public void removeTask(String user, Task task) {
+        this.students.get(user).getTaskList().removeTask(task);
+    }
+
+    public void closeTask(String user, Task task) {
+        this.students.get(user).getTaskList().closeTask(task);
+    }
+}
