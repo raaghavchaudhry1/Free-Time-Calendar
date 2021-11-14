@@ -1,6 +1,8 @@
-## Replace this README.md!
+## Using the program
+Clone the directory and go to the main branch
 
-This is a standard README.md file for you to replace. You'll want to include your own content here!
+### Starting the Program
 
-MD (Markdown) files use [Markdown formatting](https://guides.github.com/features/mastering-markdown/): 
-these look very much like .txt files, so you can write them in a very similar way.
+Select the GUIRunner class and run the main function of that class
+Note that to login, first create a login by clicking the Sign Up button
+To add events choose Create Recurring Events, or Create OneOff Events
