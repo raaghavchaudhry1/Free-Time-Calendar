@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/** OneOffMenu window is made to create one event,without any recurrence
+ */
 public class OneOffMenu implements ActionListener {
     private JTextField eventNameText;
     private JFrame frame;
@@ -27,6 +29,13 @@ public class OneOffMenu implements ActionListener {
     private StudentController studentController;
     private String studentUsername;
 
+    /** constructor OneOffMenu with 4 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     */
 
     public OneOffMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
                       StudentController studentController, String studentUsername) {
@@ -115,6 +124,10 @@ public class OneOffMenu implements ActionListener {
 
     }
 
+
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.returnButton){

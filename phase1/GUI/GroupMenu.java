@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+/** GroupMenu window is for joining, creating a group and to view current groups.*/
 
 public class GroupMenu implements ActionListener {
     private JButton createGroup;
@@ -17,7 +18,13 @@ public class GroupMenu implements ActionListener {
     private StudentController studentController;
     private String studentUsername;
 
-    // need username as a paramater for constructor
+    /** constructor StartMenu with 4 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     */
     public GroupMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
                      StudentController studentController, String studentUsername) {
 
@@ -54,6 +61,10 @@ public class GroupMenu implements ActionListener {
         this.frame.setVisible(true);
 
     }
+
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** CreateGroup window is made to join an existing group.*/
+
 public class JoinGroup implements ActionListener {
 
     private JFrame frame;
@@ -15,6 +17,14 @@ public class JoinGroup implements ActionListener {
     private StudentController studentController;
     private String studentUsername;
     private  JLabel error;
+
+    /** This constructor is used for joining an existing Group, has 5 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     * */
 
     public JoinGroup(LogIn loginController, GroupController groupController, CalendarController calendarController,
                      StudentController studentController, String studentUsername){
@@ -57,6 +67,10 @@ public class JoinGroup implements ActionListener {
         this.frame.setVisible(true);
     }
 
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.submitButton){
 
@@ -90,9 +104,5 @@ public class JoinGroup implements ActionListener {
 //            going back to GroupMenu
         }
     }
-
-//    public static void main(String[] args) {
-//        new JoinGroup();
-//    }
 }
 

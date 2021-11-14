@@ -18,7 +18,15 @@ public class ViewDay {
 
     private JTable table;
 
-
+    /** constructor ViewDay with 7 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     * @param date
+     * @param day
+     */
     public ViewDay(LogIn loginController, GroupController groupController, CalendarController calendarController,
                    StudentController studentController, String studentUsername, Float date, String day) {
 

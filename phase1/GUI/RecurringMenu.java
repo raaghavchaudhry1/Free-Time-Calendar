@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.EventListener;
 
+/** RecurringMenu window is made to create recurring events
+ */
 public class RecurringMenu implements ActionListener {
     private JTextField eventNameText;
     private JFrame frame;
@@ -27,6 +29,13 @@ public class RecurringMenu implements ActionListener {
     private StudentController studentController;
     private String studentUsername;
 
+    /** constructor RecurringMenu with 4 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     */
 
     public RecurringMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
                          StudentController studentController, String studentUsername) {
@@ -100,6 +109,10 @@ public class RecurringMenu implements ActionListener {
         this.frame.setVisible(true);
 
     }
+
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
