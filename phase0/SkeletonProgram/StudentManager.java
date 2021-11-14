@@ -96,7 +96,6 @@ public class StudentManager {
                 temp.add(calendarEvents.get(i).getName());
                 eventTimes.add(temp);
             }
-            System.out.println("lol");
             return eventTimes;
 
         } else {

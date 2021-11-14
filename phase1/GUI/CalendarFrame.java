@@ -38,13 +38,6 @@ public class CalendarFrame implements ActionListener {
 
         frame = new JFrame();
         frame.setTitle("Calendar");
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent event) {
-                exitProcedure();
-            }
-        });
 
         this.previousMonth = new JButton("Prev");
         this.previousMonth.setBounds(10,10,80,25);
@@ -74,13 +67,6 @@ public class CalendarFrame implements ActionListener {
 
         frame = new JFrame();
         frame.setTitle("Calendar");
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent event) {
-                exitProcedure();
-            }
-        });
 
         this.previousMonth = new JButton("Prev");
         this.previousMonth.setBounds(10,10,80,25);

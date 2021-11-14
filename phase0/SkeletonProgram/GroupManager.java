@@ -89,33 +89,97 @@ public class GroupManager {
 
         for (Group group: this.groupMap.values()){
             ArrayList<Object> newList = new ArrayList<Object>();
-
-
-
-
             if (group.checkStudent(currStudent)) {
                 newList.add(group);
                 newList.add(group.getGroupName());
                 newList.add(group.getgID());
             }
-
             groups.add(newList);
-
-
         }
         return groups;
-
-
-
-
     }
 
+    public ArrayList<ArrayList<Object>> getFreeTimes(String gID, Float date, String day) {
 
+        if (groupMap.containsKey(gID)) {
+            FreeTimeCalculator freeTimeCalculator = new FreeTimeCalculator();
+            Calendar freeSchedule = freeTimeCalculator.getFreeCalendar(this, gID);
 
+            ArrayList<ArrayList<Object>> eventTimes = new ArrayList<>();
+            ArrayList<CalendarEvent> calendarEvents = freeSchedule.getRecurring().get(day);
 
+            if (freeSchedule.getSingle().containsKey(date)) {
+                ArrayList<OneOffEvent> oneOffs = freeSchedule.getSingle().get(date);
+                int length1 = oneOffs.size();
 
+                for (int i = 0; i < length1; i++) {
+                    ArrayList<Object> temp = new ArrayList<>();
+                    temp.add(oneOffs.get(i).getStartTime());
+                    temp.add(oneOffs.get(i).getEndTime());
+                    temp.add(oneOffs.get(i).getName());
+                    eventTimes.add(temp);
+                }
+            }
+            int length2 = calendarEvents.size();
 
+            ArrayList<ArrayList<Object>> toRemove = new ArrayList<>();
+            ArrayList<ArrayList<Object>> toAdd = new ArrayList<>();
+            addAndRemove(eventTimes, calendarEvents, length2, toRemove, toAdd);
+            for (int i = 0; i < toAdd.size(); i++){
+                eventTimes.add(toAdd.get(i));
+            }
+            for (int i = 0; i < toRemove.size(); i++){
+                eventTimes.remove(toRemove.get(i));
+            }
 
+            return eventTimes;
+
+        } else {
+
+            return new ArrayList<ArrayList<Object>>();
+        }
+    }
+
+    private void addAndRemove(ArrayList<ArrayList<Object>> eventTimes, ArrayList<CalendarEvent> calendarEvents,
+                              int length2, ArrayList<ArrayList<Object>> toRemove, ArrayList<ArrayList<Object>> toAdd) {
+        for (int i = 0; i < length2; i++) {
+            float startTime = calendarEvents.get(i).getStartTime();
+            float endTime = calendarEvents.get(i).getEndTime();
+            String name = calendarEvents.get(i).getName();
+            if(!eventTimes.isEmpty()){
+                for (int j = 0; j < eventTimes.size(); j++){
+                    float startCompare = (float) eventTimes.get(j).get(0);
+                    float endCompare = (float) eventTimes.get(j).get(1);
+                    ArrayList<Object> temp = new ArrayList<>();
+                    if(startTime >= startCompare && endTime <= endCompare){
+                        toRemove.add(eventTimes.get(j));
+                        temp.add(startTime);
+                        temp.add(endTime);
+                        temp.add(name);
+                        toAdd.add(temp);
+                    }else if(startTime >= startCompare && startTime <= endCompare && endTime >= endCompare){
+                        toRemove.add(eventTimes.get(j));
+                        temp.add(startTime);
+                        temp.add(endCompare);
+                        temp.add(name);
+                        toAdd.add(temp);
+                    }else if(startTime <= startCompare && endTime >= startCompare && endTime <= endCompare){
+                        toRemove.add(eventTimes.get(j));
+                        temp.add(startCompare);
+                        temp.add(endTime);
+                        temp.add(name);
+                        toAdd.add(temp);
+                    }
+                }
+            }else{
+                ArrayList<Object> temp = new ArrayList<>();
+                temp.add(startTime);
+                temp.add(endTime);
+                temp.add(name);
+                toAdd.add(temp);
+            }
+        }
+    }
 }
 
 

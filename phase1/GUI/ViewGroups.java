@@ -75,8 +75,6 @@ public class ViewGroups implements ActionListener {
 
             if (e.getSource() == button) {
 
-                this.frame.dispose();
-
                 String gID = this.mappings.get(button);
 
                 new ViewIndividualGroup(this.loginController, this.groupController,

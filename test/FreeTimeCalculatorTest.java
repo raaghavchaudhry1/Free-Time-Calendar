@@ -1,25 +1,27 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 class FreeTimeCalculatorTest {
     Calendar freeCalendar;
 
+
 //    @org.junit.jupiter.api.Test
     void setUp() {
         StudentManager studentManager = new StudentManager();
-        GroupController groupController = new GroupController();
+        GroupManager groupManager = new GroupManager();
         EventCreator eventCreator =  new EventCreator();
         CalendarManager calendarManager = new CalendarManager();
 
-        setUpGroup(studentManager, groupController, eventCreator, calendarManager);
+        setUpGroup(studentManager, groupManager, eventCreator, calendarManager);
 
         FreeTimeCalculator freeTimeCalculator = new FreeTimeCalculator();
-        ArrayList<HashMap> schedules = freeTimeCalculator.getFreeCalendar(groupController, "0");
-
+        freeCalendar = freeTimeCalculator.getFreeCalendar(groupManager, "0");
+        System.out.println(freeCalendar.getSingle().get((float)1.07).get(0).getStartTime());
+        System.out.println(freeCalendar.getSingle().get((float)1.07).get(0).getEndTime());
+        System.out.println(freeCalendar.getSingle().get((float)1.07).get(1).getStartTime());
+        System.out.println(freeCalendar.getSingle().get((float)1.07).get(1).getEndTime());
     }
 
-    private void setUpGroup(StudentManager studentManager, GroupController groupController,
+    private void setUpGroup(StudentManager studentManager, GroupManager groupManager,
                             EventCreator eventCreator, CalendarManager calendarManager) {
         ArrayList<Student> students= new ArrayList<>();
         Student tim = new Student("tim", "123");
@@ -52,7 +54,7 @@ class FreeTimeCalculatorTest {
         studentManager.addStudent(tom);
         studentManager.addStudent(tam);
         studentManager.addStudent(tem);
-        groupController.createGroup(students, "222");
+        groupManager.CreateGroup(students, "222");
     }
 
     private ArrayList<CalendarEvent> eventsTem(EventCreator eventCreator) {

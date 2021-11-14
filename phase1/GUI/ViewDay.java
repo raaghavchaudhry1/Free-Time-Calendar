@@ -27,7 +27,7 @@ public class ViewDay {
 
         float i = 0;
         int counter = 0;
-        while (i <= 24) {
+        while (i < 24) {
             this.timeTable.put(i, "No Event");
             if (counter == 0) {
                 counter++;
@@ -50,16 +50,7 @@ public class ViewDay {
         this.frame = new JFrame();
         this.frame.setSize(300, 1200);
 
-
-
-        HashMap<Float, ArrayList<OneOffEvent>> oneOffEvents = studentController.getCalendarOneOff(this.studentUsername);
-        HashMap<String, ArrayList<CalendarEvent>> recurringEvents =
-                studentController.getCalendarRecurring(this.studentUsername);
-
-        ArrayList<CalendarEvent> dayRecurring = recurringEvents.get(this.day);
-        ArrayList<OneOffEvent> dayOneOff = oneOffEvents.get(this.date);
-
-        this.populate(dayRecurring, dayOneOff);
+        this.populate();
         String[][] data = this.convertHashMapToNestedArray();
 
 
@@ -84,8 +75,7 @@ public class ViewDay {
 
 
 
-    public void populate(ArrayList<CalendarEvent> dayRecurring,
-                         ArrayList<OneOffEvent> dayOneOff) {
+    public void populate() {
 
         ArrayList<ArrayList<Object>> times = this.studentController.getTimes(this.studentUsername, this.date, this.day);
 

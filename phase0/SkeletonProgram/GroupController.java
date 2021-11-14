@@ -55,36 +55,18 @@ public class GroupController {
     }
 
 
-    public ArrayList<String> getStudentUsername( String gID) {
+    public ArrayList<String> getStudentUsername(String gID) {
 
         return this.manager.getStudentUsername(gID);
 
 
     }
+    public ArrayList<ArrayList<Object>> getFreeTimes(String gID, Float date, String day) {
+
+        return this.manager.getFreeTimes(gID, date, day);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 }

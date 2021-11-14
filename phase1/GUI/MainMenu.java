@@ -69,7 +69,6 @@ public class MainMenu implements ActionListener {
                     this.calendarController, this.studentController, this.studentUsername);
 
         }else if(e.getSource() == this.viewCalendarButton){
-            this.frame.dispose();
             GregorianCalendar cal = new GregorianCalendar();
             int realMonth = cal.get(GregorianCalendar.MONTH);
             int realYear = cal.get(GregorianCalendar.YEAR);
