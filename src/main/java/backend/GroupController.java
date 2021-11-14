@@ -13,7 +13,7 @@ public class GroupController {
 
 
 
-    public Group createGroup(ArrayList<Student> groupMembers, String groupName){
+    public Group createGroup(ArrayList<Person> groupMembers, String groupName){
          return (this.manager).CreateGroup(groupMembers, groupName);
     }
 

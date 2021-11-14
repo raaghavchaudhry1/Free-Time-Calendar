@@ -22,7 +22,7 @@ public class GroupManager {
     }
 
 
-    public Group CreateGroup(ArrayList<Student> groupMembers, String groupName) {
+    public Group CreateGroup(ArrayList<Person> groupMembers, String groupName) {
 
         Group newGroup = new Group(groupName);
         newGroup.setStudentsInGroup(groupMembers);
@@ -33,16 +33,11 @@ public class GroupManager {
         return newGroup;
     }
 
-    public boolean addToGroup(Student student, String GroupID) {
+    public boolean addToGroup(Person student, String GroupID) {
 
         if ((this.groupMap).containsKey(GroupID)) {
 
-            ArrayList<Student> students=  ((this.groupMap).get(GroupID)).getStudentsInGroup();
-            students = new ArrayList<Student>(students);
-            students.add(student);
-            ((this.groupMap).get(GroupID)).setStudentsInGroup(students);
-
-
+            this.groupMap.get(GroupID).getMembers().add(student);
 
             return true;
 
@@ -55,19 +50,15 @@ public class GroupManager {
 
     }
 
-    public boolean removeGroupMember(Student student, String GroupID) {
+    public boolean removeGroupMember(Person student, String GroupID) {
 
         if ((this.groupMap).containsKey(GroupID)) {
 
-            ArrayList<Student> students=  ((this.groupMap).get(GroupID)).getStudentsInGroup();
-            students = new ArrayList<Student>(students);
-            students.remove(student);
-            ((this.groupMap).get(GroupID)).setStudentsInGroup(students);
-
-
-
-            return true;
-
+            if (this.groupMap.get(GroupID).getMembers().contains(student)) {
+                this.groupMap.get(GroupID).getMembers().remove(student);
+                return true;
+            }
+            return false;
 
         } else {
 
@@ -179,6 +170,23 @@ public class GroupManager {
                 toAdd.add(temp);
             }
         }
+    }
+
+    public HashMap<String, Group> getGroups() {
+        return this.groupMap;
+    }
+
+    public void addTask(String gID, Task task) {
+        this.groupMap.get(gID).getTaskList().addTask(task);
+
+    }
+
+    public void removeTask(String gID, Task task) {
+        this.groupMap.get(gID).getTaskList().removeTask(task);
+    }
+
+    public void closeTask(String gID, Task task) {
+        this.groupMap.get(gID).getTaskList().closeTask(task);
     }
 }
 

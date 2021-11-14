@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -43,4 +44,80 @@ public class StudentManager {
     public void closeTask(String user, Task task) {
         this.students.get(user).getTaskList().closeTask(task);
     }
+
+
+    public boolean checkValidStudent(Student student) {
+        // returns true if student is already within hashmap, false otherwise
+        String user = student.getUsername();
+        return this.students.containsKey(user);
+    }
+
+    public HashMap<String, ArrayList<CalendarEvent>> getCalendarRecurring(String username) {
+
+        if (students.containsKey(username)) {
+
+            Student curr  = students.get(username);
+            Calendar studentScehdule = curr.getStudentSchedule();
+            return  studentScehdule.getRecurring();
+
+        } else {
+            return new HashMap<String, ArrayList<CalendarEvent>>();
+        }
+    }
+
+    public HashMap<Float, ArrayList<OneOffEvent>> getCalendarOneOff(String username) {
+
+        if (students.containsKey(username)) {
+
+            Student curr = students.get(username);
+            Calendar studentScehdule = curr.getStudentSchedule();
+            return studentScehdule.getSingle();
+        } else {
+            return new HashMap<Float, ArrayList<OneOffEvent>>();
+        }
+    }
+
+
+    public ArrayList<ArrayList<Object>> getTimes(String username, Float date, String day) {
+
+        if (students.containsKey(username)) {
+
+            Student curr = students.get(username);
+            Calendar studentScehdule = curr.getStudentSchedule();
+
+            ArrayList<ArrayList<Object>> eventTimes = new ArrayList<>();
+            ArrayList<CalendarEvent> calendarEvents = studentScehdule.getRecurring().get(day);
+
+            if (studentScehdule.getSingle().containsKey(date)) {
+                ArrayList<OneOffEvent> oneOffs = studentScehdule.getSingle().get(date);
+                int length1 = oneOffs.size();
+
+                for (int i = 0; i < length1; i++) {
+                    ArrayList<Object> temp = new ArrayList<>();
+                    temp.add(oneOffs.get(i).getStartTime());
+                    temp.add(oneOffs.get(i).getEndTime());
+                    temp.add(oneOffs.get(i).getName());
+                    eventTimes.add(temp);
+                }
+            }
+
+            int length2 = calendarEvents.size();
+
+            for (int i = 0; i < length2; i++) {
+                ArrayList<Object> temp = new ArrayList<>();
+                temp.add(calendarEvents.get(i).getStartTime());
+                temp.add(calendarEvents.get(i).getEndTime());
+                temp.add(calendarEvents.get(i).getName());
+                eventTimes.add(temp);
+            }
+            return eventTimes;
+
+        } else {
+
+            return new ArrayList<ArrayList<Object>>();
+        }
+
+
+    }
+
 }
