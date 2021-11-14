@@ -76,6 +76,42 @@ public class CalendarFrame implements ActionListener {
         frame.setVisible(true);
     }
 
+    public CalendarFrame(LogIn loginController, GroupController groupController,
+                         CalendarController calendarController,
+                         StudentController studentController, String studentUsername) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+        this.studentUsername = studentUsername;
+
+        frame = new JFrame();
+        frame.setTitle("Calendar");
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent event) {
+                exitProcedure();
+            }
+        });
+
+        this.previousMonth = new JButton("Prev");
+        this.previousMonth.setBounds(10,10,80,25);
+        this.previousMonth.addActionListener(this);
+        this.frame.add(this.previousMonth);
+
+        this.nextMonth = new JButton("Next");
+        this.nextMonth.setBounds(100,10,80,25);
+        this.nextMonth.addActionListener(this);
+        this.frame.add(this.nextMonth);
+
+        frame.setLayout(new FlowLayout());
+
+        frame.pack();
+        // frame.setBounds(100, 100, 400, 200);
+    }
+
+
     public void exitProcedure() {
         frame.dispose();
         System.exit(0);
@@ -113,5 +149,45 @@ public class CalendarFrame implements ActionListener {
                         this.studentUsername, this.currentMonth + 1, this.currentYear);
             }
         }
+    }
+
+    public LogIn getLoginController() {
+        return loginController;
+    }
+
+    public GroupController getGroupController() {
+        return groupController;
+    }
+
+    public String getStudentUsername() {
+        return studentUsername;
+    }
+
+    public CalendarController getCalendarController() {
+        return calendarController;
+    }
+
+    public StudentController getStudentController() {
+        return studentController;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public int getCurrentYear() {
+        return currentYear;
+    }
+
+    public int getCurrentMonth() {
+        return currentMonth;
+    }
+
+    public JButton getPreviousMonth() {
+        return previousMonth;
+    }
+
+    public JButton getNextMonth() {
+        return nextMonth;
     }
 }

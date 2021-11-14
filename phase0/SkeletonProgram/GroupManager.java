@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GroupManager {
 
@@ -8,6 +9,15 @@ public class GroupManager {
     public GroupManager() {
 
         this.groupMap = new HashMap<String, Group>();
+
+    }
+
+    public ArrayList<String> getStudentUsername( String gID) {
+
+        Group curr = this.groupMap.get(gID);
+        return curr.getStudentsUsername();
+
+
 
     }
 
@@ -72,6 +82,37 @@ public class GroupManager {
 
         return group.getgID();
     }
+
+
+    public ArrayList<ArrayList<Object>> getStudentGroups(Student currStudent) {
+        ArrayList<ArrayList<Object>> groups = new ArrayList<>();
+
+        for (Group group: this.groupMap.values()){
+            ArrayList<Object> newList = new ArrayList<Object>();
+
+
+
+
+            if (group.checkStudent(currStudent)) {
+                newList.add(group);
+                newList.add(group.getGroupName());
+                newList.add(group.getgID());
+            }
+
+            groups.add(newList);
+
+
+        }
+        return groups;
+
+
+
+
+    }
+
+
+
+
 
 
 

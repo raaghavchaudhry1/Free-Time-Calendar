@@ -184,5 +184,30 @@ public class MonthPanel extends JPanel implements ActionListener {
         }
     }
 
+    public ArrayList<JButton> getButtons() {
+        return buttons;
+    }
+
+    public LogIn getLoginController() {
+        return loginController;
+    }
+
+    public GroupController getGroupController() {
+        return groupController;
+    }
+
+    public String getStudentUsername() {
+        return studentUsername;
+    }
+
+    public CalendarController getCalendarController() {
+        return calendarController;
+    }
+
+    public StudentController getStudentController() {
+        return studentController;
+    }
+
+
 
 }

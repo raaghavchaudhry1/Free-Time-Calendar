@@ -45,6 +45,29 @@ public class GroupController {
 
     }
 
+    public ArrayList<ArrayList<Object>> getStudentGroups(Student currStudent) {
+
+        return this.manager.getStudentGroups(currStudent);
+
+
+
+
+    }
+
+
+    public ArrayList<String> getStudentUsername( String gID) {
+
+        return this.manager.getStudentUsername(gID);
+
+
+    }
+
+
+
+
+
+
+
 
 
 
