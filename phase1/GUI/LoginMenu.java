@@ -93,7 +93,7 @@ public class LoginMenu implements ActionListener {
                 this.frame.dispose();
 
             } else {
-                JLabel invalidLogin = new JLabel("Invalid Login! Try Again bitch!");
+                JLabel invalidLogin = new JLabel("Invalid Login! Try Again!");
                 invalidLogin.setBounds(100,150,250,250);
                 this.frame.add(invalidLogin);
                 this.frame.revalidate();
