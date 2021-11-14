@@ -1,9 +1,13 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class TaskList {
+public class TaskList implements Serializable {
     private ArrayList<Task> tasks;
 
+    @JsonCreator
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
@@ -25,6 +29,10 @@ public class TaskList {
     }
 
     public ArrayList<Task> getTasks() {
+        return this.tasks;
+    }
+
+    public ArrayList<Task> getTaskList() {
         return this.tasks;
     }
 }

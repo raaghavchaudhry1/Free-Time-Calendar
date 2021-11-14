@@ -1,10 +1,16 @@
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.ArrayList;
 
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
+
+@JsonTypeInfo(use = NAME, include = PROPERTY)
 public interface Person {
     TaskList getTaskList();
-    ArrayList<Task> getOpenTasks();
-    ArrayList<Task> getClosedTasks();
-    int getNumTasks();
+    ArrayList<Task> OpenTasks();
+    ArrayList<Task> ClosedTasks();
+    int NumTasks();
     float totalMinutesCloseTasks();
     float avgTaskCloseTimeDays();
     float avgTaskCloseTimeHours();

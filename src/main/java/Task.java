@@ -1,7 +1,11 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Task {
+public class Task implements Serializable {
     private String title;
     private String description;
     private LocalDateTime startDT;
@@ -9,7 +13,8 @@ public class Task {
     private boolean finished;
     private final int id;
 
-    public Task(int id, String title, String description) {
+    @JsonCreator
+    public Task(@JsonProperty("id") int id, @JsonProperty("title") String title, @JsonProperty("description") String description) {
         this.title = title;
         this.description = description;
         this.startDT = LocalDateTime.now();
