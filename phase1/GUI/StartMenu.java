@@ -3,7 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/** Startmenu class the first window that pops up. */
+/** StartMenu class the first window that pops up.
+ * With two options to continue, either logIn or SignUp */
 
 public class StartMenu implements ActionListener {
 
