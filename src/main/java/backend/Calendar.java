@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-public class Calendar {
+public class Calendar implements Serializable {
     private HashMap<String, ArrayList<CalendarEvent>> recurring;
     private HashMap<Float, ArrayList<OneOffEvent>> single;
 
