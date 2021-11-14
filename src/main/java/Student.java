@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.time.temporal.ChronoUnit;
 import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class Student implements Person, Serializable {
@@ -16,18 +18,21 @@ public class Student implements Person, Serializable {
         this.tasks = new TaskList();
 
     }
-    public Student(String userName, String password) {
+
+    @JsonCreator
+    public Student(@JsonProperty("username") String userName, @JsonProperty("password") String password) {
         this.username = userName;
         this.password = password;
         this.schedule = new Calendar();
         this.tasks = new TaskList();
     }
 
-    public Student(String userName, String password, Calendar schedule) {
-        this.username = userName;
-        this.password = password;
-        this.schedule = schedule;
-    }
+//    @JsonCreator
+//    public Student(@JsonProperty("username") String userName, @JsonProperty("password") String password, @JsonProperty("schedule") Calendar schedule) {
+//        this.username = userName;
+//        this.password = password;
+//        this.schedule = schedule;
+//    }
 
     public String getUsername() {
         return this.username;
@@ -59,7 +64,7 @@ public class Student implements Person, Serializable {
     }
 
     @Override
-    public ArrayList<Task> getOpenTasks() {
+    public ArrayList<Task> OpenTasks() {
         ArrayList<Task> openTasks = new ArrayList<>();
         for (Task task: this.tasks.getTasks()) {
             if (!task.isClosed()) {
@@ -71,7 +76,7 @@ public class Student implements Person, Serializable {
     }
 
     @Override
-    public ArrayList<Task> getClosedTasks() {
+    public ArrayList<Task> ClosedTasks() {
         ArrayList<Task> closedTasks = new ArrayList<>();
         for (Task task: this.tasks.getTasks()) {
             if (task.isClosed()) {
@@ -83,14 +88,14 @@ public class Student implements Person, Serializable {
     }
 
     @Override
-    public int getNumTasks() {
+    public int NumTasks() {
         return this.tasks.getTasks().size();
     }
 
     @Override
     public float totalMinutesCloseTasks() {
         float totalTimeMinutes = (float) 0;
-        for (Task task: this.getClosedTasks()) {
+        for (Task task: this.ClosedTasks()) {
             float completionTime = (float) task.getStartDT().until(task.getEndDT(), ChronoUnit.MINUTES);
             totalTimeMinutes += completionTime;
         }
@@ -100,7 +105,7 @@ public class Student implements Person, Serializable {
     @Override
     public float avgTaskCloseTimeDays() {
         float totalTimeMinutes = this.totalMinutesCloseTasks();
-        float avgMinutes = totalTimeMinutes / this.getNumTasks();
+        float avgMinutes = totalTimeMinutes / this.NumTasks();
         return avgMinutes / 1440;
 
 
@@ -109,7 +114,7 @@ public class Student implements Person, Serializable {
     @Override
     public float avgTaskCloseTimeHours() {
         float totalTimeMinutes = this.totalMinutesCloseTasks();
-        float avgMinutes = totalTimeMinutes / this.getNumTasks();
+        float avgMinutes = totalTimeMinutes / this.NumTasks();
         return avgMinutes / 60;
     }
 }

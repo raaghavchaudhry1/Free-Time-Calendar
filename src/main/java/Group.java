@@ -1,13 +1,25 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Group implements Person {
+public class Group implements Person, Serializable {
 
     private ArrayList<Person> members;
     private String name;
     private String gID;
 
-    public Group(String name) {
+    public Group() {
+        this.members = new ArrayList<Person>();
+        this.name = null;
+        this.gID = null;
+    }
+
+    @JsonCreator
+    public Group(@JsonProperty("name") String name) {
         this.members = new ArrayList<Person>();
         this.name = name;
         this.gID = null;
@@ -50,6 +62,7 @@ public class Group implements Person {
         this.gID = gID;
     }
 
+    @JsonIgnore
     public ArrayList<Calendar> getCalendars() {
 
         ArrayList<Calendar> calendars = new ArrayList<Calendar>();
@@ -77,30 +90,31 @@ public class Group implements Person {
     }
 
     @Override
-    public ArrayList<Task> getOpenTasks() {
+    public ArrayList<Task> OpenTasks() {
         ArrayList<Task> openTasks = new ArrayList<>();
         for (Person member: this.members) {
-            openTasks.addAll(member.getOpenTasks());
+            openTasks.addAll(member.OpenTasks());
 
         }
         return openTasks;
 
     }
 
+    @JsonIgnore
     @Override
-    public ArrayList<Task> getClosedTasks() {
+    public ArrayList<Task> ClosedTasks() {
         ArrayList<Task> closedTasks = new ArrayList<>();
         for (Person member: this.members) {
-            closedTasks.addAll(member.getClosedTasks());
+            closedTasks.addAll(member.ClosedTasks());
         }
         return closedTasks;
     }
 
     @Override
-    public int getNumTasks() {
+    public int NumTasks() {
         int totalTasks = 0;
         for (Person member: this.members) {
-            totalTasks += member.getNumTasks();
+            totalTasks += member.NumTasks();
         }
         return totalTasks;
     }
@@ -117,7 +131,7 @@ public class Group implements Person {
     @Override
     public float avgTaskCloseTimeDays() {
         float totalMinutes = this.totalMinutesCloseTasks();
-        int totalTasks = this.getNumTasks();
+        int totalTasks = this.NumTasks();
         float avgMinutes = totalMinutes / totalTasks;
         return avgMinutes / 1440;
 
@@ -126,7 +140,7 @@ public class Group implements Person {
     @Override
     public float avgTaskCloseTimeHours() {
         float totalMinutes = this.totalMinutesCloseTasks();
-        int totalTasks = this.getNumTasks();
+        int totalTasks = this.NumTasks();
         float avgMinutes = totalMinutes / totalTasks;
         return avgMinutes / 60;
 

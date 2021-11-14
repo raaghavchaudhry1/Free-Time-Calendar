@@ -1,5 +1,8 @@
 // import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.WeakHashMap;
 
@@ -10,7 +13,8 @@ public class CalendarEvent implements Comparable<CalendarEvent>, EventInterface,
     private float duration;     // end - start
     private String day;     // day of the week
 
-    public CalendarEvent(String name, float start, float end, String day) {
+    @JsonCreator
+    public CalendarEvent(@JsonProperty("name") String name, @JsonProperty("start") float start, @JsonProperty("end") float end, @JsonProperty("day") String day) {
         this.name = name;
         this.start = start;
         this.end = end;

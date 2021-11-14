@@ -1,3 +1,6 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 public class OneOffEvent implements EventInterface, Serializable {
@@ -7,7 +10,8 @@ public class OneOffEvent implements EventInterface, Serializable {
     private float duration;     // end - start
     private float date;     // month and day of the year in format mm.dd
 
-    public OneOffEvent(String name, float start, float end, float date) {
+    @JsonCreator
+    public OneOffEvent(@JsonProperty("name") String name, @JsonProperty("start") float start, @JsonProperty("end") float end, @JsonProperty("date") float date) {
         this.name = name;
         this.start = start;
         this.end = end;

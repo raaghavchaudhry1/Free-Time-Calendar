@@ -58,6 +58,10 @@ class GroupManager {
 
     public Group getGroup(String gID) { return this.groupMap.get(gID); }
 
+    public HashMap<String, Group> getGroups() {
+        return this.groupMap;
+    }
+
     public void addTask(String gID, Task task) {
         this.groupMap.get(gID).getTaskList().addTask(task);
 
