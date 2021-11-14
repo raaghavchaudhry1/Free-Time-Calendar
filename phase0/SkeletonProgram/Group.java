@@ -16,6 +16,19 @@ public class Group {
         return students;
     }
 
+    public ArrayList<String> getStudentsUsername() {
+
+        ArrayList<String> list = new ArrayList<>();
+
+        for (Student student: this.students) {
+            list.add(student.getUsername());
+
+        }
+
+        return list;
+
+    }
+
     public void setStudentsInGroup(ArrayList<Student> students) {
         this.students = students;
     }
@@ -42,6 +55,16 @@ public class Group {
 
         for (Student student : this.students) { calendars.add(student.getStudentSchedule()); }
         return calendars;
+    }
+
+    public Boolean checkStudent(Student student) {
+
+        if (this.students.contains(student)) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }

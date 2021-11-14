@@ -4,7 +4,7 @@ public class LogIn {
 
     private HashMap<String, Student> userMap;
 
-    public LogIn(StudentManager students) {
+    public LogIn(StudentController students) {
 
         this.userMap = students.getAllStudents();
 

@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 
-class CalendarManager {
+public class CalendarManager {
+
+
 
     public void addRecurringEvents(Student student, ArrayList<CalendarEvent> events) {
+
         for (CalendarEvent event: events) {
 //            Wrote with the assumption that recurring events have a day attribute and a getDay method to retrieve said attribute
             String day = event.getDayOrDate();

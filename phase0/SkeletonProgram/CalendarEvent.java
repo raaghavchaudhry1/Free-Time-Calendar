@@ -2,7 +2,7 @@
 
 import java.util.WeakHashMap;
 
-public class CalendarEvent implements Comparable<CalendarEvent>, EventInterface{
+public class CalendarEvent implements EventInterface{
     private String name;
     private float start;     // hour.minute
     private float end;
@@ -63,7 +63,7 @@ public class CalendarEvent implements Comparable<CalendarEvent>, EventInterface{
     }
 
     @Override
-    public int compareTo(CalendarEvent other) {
+    public int compareTo(EventInterface other) {
         /* Compares 2 events based on their start times
         Returns -1 if current event starts earlier than other event
                 1 if current event starts later than other event
