@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/** SignupMenu is window where a student can register in the app. */
+
 public class SignupMenu implements ActionListener{
     private JTextField userText;
     private JPasswordField passwordText;
@@ -16,6 +19,12 @@ public class SignupMenu implements ActionListener{
     private CalendarController calendarController;
     private StudentController studentController;
 
+    /** Constructs a new student, and stores his input (login and password)
+     * @param login
+     * @param group
+     * @param calendarController
+     * @param studentController
+     */
     public SignupMenu(LogIn login, GroupController group,
                       CalendarController calendarController, StudentController studentController) {
         this.loginController = login;
@@ -27,7 +36,7 @@ public class SignupMenu implements ActionListener{
         this.frame = new JFrame();
         this.frame.setLayout(null);
         this.frame.setSize(500,500);
-        this.frame.getContentPane().setBackground(Color.decode("#F4E2CB"));
+//        this.frame.getContentPane().setBackground(Color.decode("#F4E2CB"));
 
         JLabel userLabel = new JLabel("Username");
         userLabel.setBounds(10,20,80,25);
@@ -60,6 +69,10 @@ public class SignupMenu implements ActionListener{
 
 
     }
+
+    /** Makes button to perform based on a choise of a user.
+     * @param e
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {

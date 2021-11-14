@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 
+/** When User is successfully logged in, MainMenu window pops with 4 options to continue*/
 public class MainMenu implements ActionListener {
     private JFrame frame;
     private JButton addRecurButton;
@@ -15,7 +16,14 @@ public class MainMenu implements ActionListener {
     private CalendarController calendarController;
     private StudentController studentController;
 
-    //pass in parameters including username to access it in studentController
+    /** constructor StartMenu with 4 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     */
+
     public MainMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
                     StudentController studentController, String studentUsername) {
         this.loginController = loginController;
@@ -51,6 +59,10 @@ public class MainMenu implements ActionListener {
 
 
     }
+
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {

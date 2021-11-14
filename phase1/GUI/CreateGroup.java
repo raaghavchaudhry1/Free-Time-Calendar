@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/** CreateGroup window is made to create a new group.*/
+
 public class CreateGroup implements ActionListener {
 
     private JFrame frame;
@@ -17,7 +19,13 @@ public class CreateGroup implements ActionListener {
     private StudentController studentController;
     private String studentUsername;
 
-    /** This constructor is used for creating a new */
+    /** This constructor is used for creating a new Group, has 5 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     * */
 
     public CreateGroup(LogIn loginController, GroupController groupController, CalendarController calendarController,
                        StudentController studentController, String studentUsername){
@@ -55,6 +63,10 @@ public class CreateGroup implements ActionListener {
         this.frame.setVisible(true);
     }
 
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.submitButton){
 
@@ -67,29 +79,14 @@ public class CreateGroup implements ActionListener {
             Group group = this.groupController.createGroup(newGroup, name);
             String id = this.groupController.getID(group);
 
-
-
-
             this.frame.dispose();
             new CreateGroupPopUp(this.loginController, this.groupController, this.calendarController,
                         this.studentController, this.studentUsername,id);
-
-
-//            this.frame.dispose();
-//            MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
-//                        this.studentController, this.studentUsername);
-
-
         }
         else if(e.getSource() == this.cancelButton){
             this.frame.dispose();
             GroupMenu menu = new GroupMenu(this.loginController, this.groupController, this.calendarController,
                     this.studentController, this.studentUsername);
-//            going back to GroupMenu
         }
     }
-
-//    public static void main(String[] args) {
-//        new CreateGroup();
-//    }
 }

@@ -7,9 +7,11 @@ import java.util.GregorianCalendar;
 
 import javax.swing.*;
 
+/** CalendarFrame window is where the monthly calendar presented.*/
+
 public class CalendarFrame implements ActionListener {
 
-    private JFrame  frame;
+    private JFrame frame;
     private int currentYear;
     private int currentMonth;
     private JButton previousMonth;
@@ -20,6 +22,17 @@ public class CalendarFrame implements ActionListener {
     private CalendarController calendarController;
     private StudentController studentController;
 
+    /**
+     * constructor CalendarFrame with 4 parameters
+     *
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     * @param currentMonth
+     * @param currentYear
+     */
     public CalendarFrame(LogIn loginController, GroupController groupController,
                          CalendarController calendarController,
                          StudentController studentController, String studentUsername,
@@ -47,12 +60,12 @@ public class CalendarFrame implements ActionListener {
         });
 
         this.previousMonth = new JButton("Prev");
-        this.previousMonth.setBounds(10,10,80,25);
+        this.previousMonth.setBounds(10, 10, 80, 25);
         this.previousMonth.addActionListener(this);
         this.frame.add(this.previousMonth);
 
         this.nextMonth = new JButton("Next");
-        this.nextMonth.setBounds(100,10,80,25);
+        this.nextMonth.setBounds(100, 10, 80, 25);
         this.nextMonth.addActionListener(this);
         this.frame.add(this.nextMonth);
 
@@ -68,27 +81,33 @@ public class CalendarFrame implements ActionListener {
         System.exit(0);
     }
 
+    /**
+     * Makes button to perform based on a choice of a user.
+     *
+     * @param e
+     */
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == this.previousMonth){
+        if (e.getSource() == this.previousMonth) {
             this.frame.dispose();
-            if(this.currentMonth == 0){
+            if (this.currentMonth == 0) {
                 new CalendarFrame(this.loginController, this.groupController,
                         this.calendarController, this.studentController,
                         this.studentUsername, 11, this.currentYear - 1);
-            }else{
+            } else {
                 new CalendarFrame(this.loginController, this.groupController,
                         this.calendarController, this.studentController,
                         this.studentUsername, this.currentMonth - 1, this.currentYear);
             }
 
-        }else if(e.getSource() == this.nextMonth){
+        } else if (e.getSource() == this.nextMonth) {
             this.frame.dispose();
-            if(this.currentMonth == 11){
+            if (this.currentMonth == 11) {
                 new CalendarFrame(this.loginController, this.groupController,
                         this.calendarController, this.studentController,
                         this.studentUsername, 0, this.currentYear + 1);
-            }else{
+            } else {
                 new CalendarFrame(this.loginController, this.groupController,
                         this.calendarController, this.studentController,
                         this.studentUsername, this.currentMonth + 1, this.currentYear);

@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** Startmenu class the first window that pops up. */
+
 public class StartMenu implements ActionListener {
 
     private JFrame frame;
@@ -13,7 +15,7 @@ public class StartMenu implements ActionListener {
     private CalendarController calendarController;
     private StudentController studentController;
 
-    /** Start menu with 4 parameters
+    /** constructor StartMenu with 4 parameters
      * @param  login
      * @param group
      * @param calendarController
@@ -28,18 +30,22 @@ public class StartMenu implements ActionListener {
         this.studentController = studentController;
         this.calendarController = calendarController;
         this.frame = new JFrame();
-        this.frame.getContentPane().setBackground(Color.decode("#F4E2CB"));
+//        this.frame.getContentPane().setBackground(Color.decode("#F4E2CB"));
 //        this.frame.setForeground(Color.ORANGE);
 
 //        ImageIcon logo = new ImageIcon(getClass() .getResource("Variable logo.png"));
 //        JLabel displayField = new JLabel(logo);
 //        frame.add(displayField);
 
+//        ImageIcon image = new ImageIcon(getClass().getResource("/Images/Variable logo.png"));
+//        JLabel imageLabel = new JLabel(image);
+//        this.frame.add(imageLabel);
+
         this.signupButton= new JButton("Sign up");
 
         this.loginButton=  new JButton("Login");
-        this.loginButton.setBounds(100,300, 120, 30);
-        this.signupButton.setBounds(250, 300, 120,30);
+        this.loginButton.setBounds(100,200, 120, 30);
+        this.signupButton.setBounds(250, 200, 120,30);
         this.loginButton.addActionListener(this);
         this.signupButton.addActionListener(this);
         this.frame.setLayout(null);
@@ -63,11 +69,14 @@ public class StartMenu implements ActionListener {
         CalendarController calendarController = new CalendarController(studentController);
         new StartMenu(login, groupController, calendarController, studentController);
 
-        ImageIcon logo = new ImageIcon("Variable logo.png");
+        ImageIcon logo = new ImageIcon("Images/Variable logo.png");
 
     }
-    /** Makes button to perform in the prgrammed way
-     *  */
+
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.signupButton){
