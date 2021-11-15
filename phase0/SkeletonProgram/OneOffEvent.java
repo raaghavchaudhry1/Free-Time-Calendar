@@ -31,6 +31,7 @@ public class OneOffEvent implements EventInterface {
     @Override
     public void setStartTime(float start) {
         this.start = start;
+        this.duration = getEndTime() - start;
     }
 
     @Override
@@ -41,6 +42,7 @@ public class OneOffEvent implements EventInterface {
     @Override
     public void setEndTime(float end) {
         this.end = end;
+        this.duration = end - getStartTime();
     }
 
     @Override
@@ -68,6 +70,10 @@ public class OneOffEvent implements EventInterface {
         Returns -1 if current event starts earlier than other event
                 1 if current event starts later than other event
                 0 if 2 events have the same start time */
-        return Float.compare(this.start, other.getStartTime());
+        float otherDate = Float.parseFloat(other.getDayOrDate());
+        if (Float.compare(this.date, otherDate) != 0){
+            return Float.compare(this.date, otherDate);}
+        else{
+            return Float.compare(this.start, other.getStartTime());}
     }
 }
