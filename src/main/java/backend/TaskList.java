@@ -1,3 +1,5 @@
+package backend;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.io.Serializable;

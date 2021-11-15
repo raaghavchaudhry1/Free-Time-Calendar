@@ -1,3 +1,5 @@
+package backend;
+
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
@@ -6,14 +8,11 @@ import java.util.ArrayList;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.gson.reflect.TypeToken;
-
-import java.util.Scanner;
+import users.groups.Group;
+import users.students.Student;
 
 public class JsonReader {
     private String studentJsonLoc;

@@ -1,4 +1,5 @@
-import java.sql.Array;
+package backend;
+
 import java.util.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,12 +7,16 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
-import java.util.Scanner;
+
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import users.*;
+import users.groups.Group;
+import users.groups.GroupController;
+import users.students.Student;
+import users.students.StudentController;
 
 public class JsonWriter {
     private String studentJsonLoc;
