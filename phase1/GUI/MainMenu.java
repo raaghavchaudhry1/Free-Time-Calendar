@@ -170,8 +170,6 @@ public class MainMenu implements ActionListener {
                 Date endDate = ((VEvent) i).getEndDate().getDate();
 
 
-
-
             }
 
 
