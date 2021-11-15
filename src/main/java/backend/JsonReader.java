@@ -65,7 +65,7 @@ public class JsonReader {
 
     }
 
-    public HashMap<String, ArrayList<Student>> readGroupJsonSimplified() throws IOException {
+    public HashMap<String, ArrayList<String>> readGroupJsonSimplified() throws IOException {
         String grpfilePath = this.groupJsonLoc;
 
         GsonBuilder gbuild = new GsonBuilder();
@@ -73,8 +73,8 @@ public class JsonReader {
         Gson gson = gbuild.setPrettyPrinting().create();
 
         Reader reader = new FileReader(grpfilePath);
-        Type type = new TypeToken<HashMap<String, ArrayList<Student>>>(){}.getType();
-        HashMap<String, ArrayList<Student>> groupHash = gson.fromJson(reader, type);
+        Type type = new TypeToken<HashMap<String, ArrayList<String>>>(){}.getType();
+        HashMap<String, ArrayList<String>> groupHash = gson.fromJson(reader, type);
 
         reader.close();
 

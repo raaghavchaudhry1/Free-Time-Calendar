@@ -105,7 +105,7 @@ public class MainMenu implements ActionListener {
                 ioException.printStackTrace();
             }
             try {
-                jsonWriter.groupJsonWriter(groupController);
+                jsonWriter.groupJsonWriterSimplified(groupController);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

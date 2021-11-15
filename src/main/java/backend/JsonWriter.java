@@ -75,15 +75,15 @@ public class JsonWriter {
 
         int totalGroups = grpMan.getGroups().size();
 //        HashMap[] groupArray = new HashMap[totalGroups];
-        HashMap<String, ArrayList<Student>> groupHash = new HashMap<>();
+        HashMap<String, ArrayList<String>> groupHash = new HashMap<>();
 
         ArrayList<Group> groups = new ArrayList<>(grpMan.getGroups().values());
         for (int i = 0; i < totalGroups; i++) {
             if (groups.get(i) instanceof Group) {
-                ArrayList<Student> students = new ArrayList<>();
+                ArrayList<String> students = new ArrayList<>();
                 for (Person student: groups.get(i).getMembers()) {
                     if (student instanceof Student) {
-                        students.add((Student) student);
+                        students.add(((Student) student).getUsername());
                     }
                 }
                 groupHash.put(groups.get(i).getGroupName(), students);

@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GUIRunner {
     public static void main(String[] args) {
@@ -24,8 +27,13 @@ public class GUIRunner {
 
         try {
             if (jsonReader.savedInfoGroups()) {
-                for (Group group: jsonReader.readGroupJson()) {
-                    groupController.createGroup(group.getMembers(), group.getGroupName());
+                HashMap<String, ArrayList<String>> groupHash = jsonReader.readGroupJsonSimplified();
+                for (Map.Entry<String, ArrayList<String>> entry: groupHash.entrySet()) {
+                    ArrayList<Person>  students = new ArrayList<>();
+                    for (String username: entry.getValue()) {
+                        students.add(studentController.getAllStudents().get(username));
+                    }
+                    groupController.createGroup(students, entry.getKey());
                 }
             }
         } catch (IOException e) {
