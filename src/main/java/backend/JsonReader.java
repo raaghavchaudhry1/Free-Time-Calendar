@@ -14,10 +14,17 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.util.Scanner;
 
 public class JsonReader {
+    private String studentJsonLoc;
+    private String groupJsonLoc;
+
+    public JsonReader() {
+        this.studentJsonLoc = "src/main/java/students.json";
+        this.groupJsonLoc = "src/main/java/groups.json";
+    }
 
     public Student[] readStudentJson() throws FileNotFoundException {
 
-        String filePath = "src/main/java/students.json";
+        String filePath = this.studentJsonLoc;
 
         GsonBuilder gbuild = new GsonBuilder();
         gbuild.serializeNulls();
@@ -31,7 +38,7 @@ public class JsonReader {
 
     public Group[] readGroupJson() throws IOException {
 
-        String grpfilePath = "src/main/java/groups.json";
+        String grpfilePath = this.groupJsonLoc;
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerSubtypes(new NamedType(Student.class, "Student"));
@@ -48,6 +55,22 @@ public class JsonReader {
             groupArray[i] = groups.get(i);
         }
         return groupArray;
+
+    }
+
+    public boolean savedInfoStudents() {
+        String filePath = "src/main/java/students.json";
+        File studentJson = new File(filePath);
+        return studentJson.exists();
+
+    }
+
+    public boolean savedInfoGroups() {
+
+        String grpfilePath = "src/main/java/groups.json";
+
+        File groupJson = new File(grpfilePath);
+        return groupJson.exists();
 
     }
 }

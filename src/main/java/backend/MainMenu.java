@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.GregorianCalendar;
 
 /** When User is successfully logged in, MainMenu window pops with 4 options to continue*/
@@ -97,6 +98,18 @@ public class MainMenu implements ActionListener {
                     this.calendarController, this.studentController, this.studentUsername, realMonth, realYear);
 
         } else if (e.getSource() == this.returnButton) {
+            JsonWriter jsonWriter = new JsonWriter();
+            try {
+                jsonWriter.studentJsonWriter(studentController);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            try {
+                jsonWriter.groupJsonWriter(groupController);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
             this.frame.dispose();
             StartMenu startMenu = new StartMenu(this.loginController, this.groupController,
                     this.calendarController, this.studentController);

@@ -14,10 +14,17 @@ import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class JsonWriter {
+    private String studentJsonLoc;
+    private String groupJsonLoc;
 
-    public void studentJsonWriter(StudentManager stuMan) throws IOException {
+    public JsonWriter() {
+        this.studentJsonLoc = "src/main/java/students.json";
+        this.groupJsonLoc = "src/main/java/groups.json";
+    }
 
-        String filePath = "src/main/java/students.json";
+    public void studentJsonWriter(StudentController stuMan) throws IOException {
+
+        String filePath = this.studentJsonLoc;
 
         int totalStudents = stuMan.getAllStudents().size();
         Student[] studentArray = new Student[totalStudents];
@@ -38,9 +45,9 @@ public class JsonWriter {
 
     }
 
-    public void groupJsonWriter(GroupManager grpMan) throws IOException {
+    public void groupJsonWriter(GroupController grpMan) throws IOException {
 
-        String grpfilePath = "src/main/java/groups.json";
+        String grpfilePath = this.groupJsonLoc;
 
         int totalGroups = grpMan.getGroups().size();
         Group[] groupArray = new Group[totalGroups];

@@ -45,6 +45,10 @@ public class GroupController {
 
     }
 
+    public HashMap<String, Group> getGroups() {
+        return this.manager.getGroups();
+    }
+
     public ArrayList<ArrayList<Object>> getStudentGroups(Student currStudent) {
 
         return this.manager.getStudentGroups(currStudent);
