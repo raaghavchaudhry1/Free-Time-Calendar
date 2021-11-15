@@ -1,9 +1,11 @@
 package frontend;
 
-import backend.CalendarController;
-import backend.GroupController;
-import backend.LogIn;
-import backend.StudentController;
+import calendar.CalendarController;
+import users.groups.GroupController;
+import login.LogIn;
+import users.students.StudentController;
+import login.LoginMenu;
+import login.SignupMenu;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

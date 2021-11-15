@@ -3,7 +3,7 @@ Parent class: None
 
 Responsibilities:
 * Create a group (and assigns unique ID to each group)
-* Keep track of all groups
+* Keep track of all users
 * Add a member to a group
 * Delete a member from a group
 

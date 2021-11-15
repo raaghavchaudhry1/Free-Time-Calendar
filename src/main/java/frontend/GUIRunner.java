@@ -1,6 +1,12 @@
 package frontend;
 
 import backend.*;
+import calendar.CalendarController;
+import login.LogIn;
+import users.groups.GroupController;
+import users.Person;
+import users.students.Student;
+import users.students.StudentController;
 
 import javax.swing.*;
 import java.io.IOException;
