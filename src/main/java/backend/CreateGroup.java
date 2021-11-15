@@ -72,7 +72,7 @@ public class CreateGroup implements ActionListener {
 
             HashMap<String, Student> studentHashMap =  this.studentController.getAllStudents();
             Student curr =  studentHashMap.get(this.studentUsername);
-            ArrayList<Student> newGroup = new ArrayList<Student>();
+            ArrayList<Person> newGroup = new ArrayList<Person>();
             newGroup.add(curr);
 
             String name = this.groupName.getText();
