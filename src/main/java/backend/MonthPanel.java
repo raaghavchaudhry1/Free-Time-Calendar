@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 
 import javax.swing.*;
 
+/** MonthPanel window*/
 public class MonthPanel extends JPanel implements ActionListener {
 
     private static final long   serialVersionUID    = 1L;
@@ -28,6 +29,15 @@ public class MonthPanel extends JPanel implements ActionListener {
     private CalendarController calendarController;
     private StudentController studentController;
 
+    /** MonthPanel constructor has 7 parameters
+     * @param month
+     * @param year
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     * */
     public MonthPanel(int month, int year, LogIn loginController, GroupController groupController,
                       CalendarController calendarController,
                       StudentController studentController, String studentUsername) {
@@ -152,6 +162,11 @@ public class MonthPanel extends JPanel implements ActionListener {
         return dayPanel;
     }
 
+    /**
+     * Makes button to perform based on a choice of a user.
+     * @param e
+     */
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -207,7 +222,4 @@ public class MonthPanel extends JPanel implements ActionListener {
     public StudentController getStudentController() {
         return studentController;
     }
-
-
-
 }

@@ -18,7 +18,7 @@ public class GroupMenu implements ActionListener {
     private StudentController studentController;
     private String studentUsername;
 
-    /** constructor StartMenu with 4 parameters
+    /** constructor StartMenu with 5 parameters
      * @param loginController
      * @param groupController
      * @param calendarController

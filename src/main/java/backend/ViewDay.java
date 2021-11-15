@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+/** ViewDay window is to check all the planned meeting during a selected day.*/
+
 public class ViewDay {
     private LogIn loginController;
     private GroupController groupController;
@@ -68,6 +70,13 @@ public class ViewDay {
         this.frame.setVisible(true);
     }
 
+    /** This constructor is used for creating a new window of a events during the day, has 5 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     * */
     public ViewDay(LogIn loginController, GroupController groupController, CalendarController calendarController,
                    StudentController studentController, String studentUsername) {
 
@@ -82,13 +91,10 @@ public class ViewDay {
     }
 
 
-
+    /** populate method populates Hashmap */
     public void populate() {
-
         ArrayList<ArrayList<Object>> times = this.studentController.getTimes(this.studentUsername, this.date, this.day);
-
         for (ArrayList<Object> curr : times) {
-
             float start = (float) curr.get(0);
             float end = (float) curr.get(1);
 
@@ -110,14 +116,12 @@ public class ViewDay {
                 } else {
                     counter = 0;
                     i += 0.7;
-
                 }
-
             }
         }
-
     }
 
+    /** convertHashMapToNestedArray method converts Hashmap to a Nested Array*/
     public String[][] convertHashMapToNestedArray(){
 
         int length = timeTable.size();
@@ -136,7 +140,6 @@ public class ViewDay {
         }
         return arrayToReturn;
     }
-
 
     public LogIn getLoginController() {
         return loginController;

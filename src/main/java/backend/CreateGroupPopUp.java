@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** CreateGroupPopUp window is a confirmation that the group was created successfully.*/
+
 public class CreateGroupPopUp implements ActionListener {
 
     private JFrame frame;
@@ -20,6 +22,13 @@ public class CreateGroupPopUp implements ActionListener {
 
     private String ID;
 
+    /** This constructor is used for confirming that a new Groupis created, has 5 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     * */
 
     public CreateGroupPopUp(LogIn loginController, GroupController groupController, CalendarController calendarController,
                             StudentController studentController, String studentUsername, String ID){
@@ -61,8 +70,9 @@ public class CreateGroupPopUp implements ActionListener {
         this.frame.setVisible(true);
     }
 
-
-
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.returnHome){

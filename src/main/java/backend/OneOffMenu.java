@@ -29,7 +29,7 @@ public class OneOffMenu implements ActionListener {
     private StudentController studentController;
     private String studentUsername;
 
-    /** constructor OneOffMenu with 4 parameters
+    /** constructor OneOffMenu with 5 parameters
      * @param loginController
      * @param groupController
      * @param calendarController

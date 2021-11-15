@@ -29,7 +29,7 @@ public class RecurringMenu implements ActionListener {
     private StudentController studentController;
     private String studentUsername;
 
-    /** constructor RecurringMenu with 4 parameters
+    /** constructor RecurringMenu with 5 parameters
      * @param loginController
      * @param groupController
      * @param calendarController

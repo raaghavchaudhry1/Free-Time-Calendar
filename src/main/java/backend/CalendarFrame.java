@@ -23,7 +23,7 @@ public class CalendarFrame implements ActionListener {
     private StudentController studentController;
 
     /**
-     * constructor CalendarFrame with 4 parameters
+     * constructor CalendarFrame with 7 parameters
      *
      * @param loginController
      * @param groupController

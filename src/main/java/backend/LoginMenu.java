@@ -18,7 +18,7 @@ public class LoginMenu implements ActionListener {
     private CalendarController calendarController;
     private StudentController studentController;
 
-    /** student logs in with using login and password.
+    /** student logs in with using login and password. LoginMenu passes has 4 parameters.
      * @param login
      * @param group
      * @param calendarController

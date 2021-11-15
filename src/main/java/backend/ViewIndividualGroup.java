@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
+
+/** ViewIndividualGroup window is to look information about a certain group.*/
+
 public class ViewIndividualGroup implements ActionListener {
 
     private LogIn loginController;
@@ -20,16 +23,19 @@ public class ViewIndividualGroup implements ActionListener {
     private JButton freeTime;
 
 
-
-
-
+    /** constructor ViewIndividualGroup with 6 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     * @param gID
+     */
     public ViewIndividualGroup(LogIn loginController, GroupController groupController, CalendarController calendarController,
                                StudentController studentController, String studentUsername, String gID) {
-
         this.frame = new JFrame();
         this.frame.setSize(300, 1200);
         this.frame.setLayout(new GridLayout(6, 6));
-
 
         this.mappings = new HashMap<JButton, String>();
         this.loginController = loginController;
@@ -45,7 +51,6 @@ public class ViewIndividualGroup implements ActionListener {
         this.frame.add(back);
         this.frame.add(freeTime);
 
-
         ArrayList<String> list = this.groupController.getStudentUsername(gID);
         for (String username: list) {
             String s = username;
@@ -56,27 +61,12 @@ public class ViewIndividualGroup implements ActionListener {
             this.mappings.put(button, username);
         }
 
-
         this.frame.setVisible(true);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -90,20 +80,13 @@ public class ViewIndividualGroup implements ActionListener {
                 this.frame.dispose();
                 new ViewIndividualGroup(this.loginController, this.groupController,
                         this.calendarController, this.studentController, this.studentUsername, gID);
-
-
             }
-
-
         }
-
-
         if (e.getSource() == this.back) {
 
             this.frame.dispose();
             MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
                     this.studentController, this.studentUsername);
-
 
         } else if (e.getSource() == this.freeTime){
 
@@ -113,9 +96,6 @@ public class ViewIndividualGroup implements ActionListener {
             int realYear = cal.get(GregorianCalendar.YEAR);
             new FreeCalendarFrame(this.loginController, this.groupController, this.calendarController,
                     this.studentController, this.studentUsername, realMonth, realYear, this.gID);
-
-
-
         }
     }
 }

@@ -3,7 +3,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/** FreeViewDay is a subclass of ViewDay */
 
 public class FreeViewDay extends ViewDay{
     private String gID;
@@ -46,6 +46,8 @@ public class FreeViewDay extends ViewDay{
         super.getFrame().setVisible(true);
     }
 
+    /** populate method  modifies the timeTable*/
+
     @Override
     public void populate() {
 
@@ -80,6 +82,5 @@ public class FreeViewDay extends ViewDay{
 
             }
         }
-
     }
 }

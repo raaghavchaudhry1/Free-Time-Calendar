@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/** ViewGroups window is to view current joined groups.*/
+
 public class ViewGroups implements ActionListener {
 
     private LogIn loginController;
@@ -16,6 +18,14 @@ public class ViewGroups implements ActionListener {
     private HashMap<JButton, String> mappings;
     private  JButton back;
     private JLabel noGroups;
+
+    /** constructor ViewGroups with 5 parameters
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     */
 
     public ViewGroups(LogIn loginController, GroupController groupController, CalendarController calendarController,
                       StudentController studentController, String studentUsername)  {
@@ -42,9 +52,7 @@ public class ViewGroups implements ActionListener {
 
         if (groups.isEmpty()) {
             this.frame.add(this.noGroups);
-
         }
-
         for (ArrayList<Object> temp : groups) {
             String s = (String) temp.get(1);
             String s1 = String.format("View Group: %s", s);
@@ -53,51 +61,27 @@ public class ViewGroups implements ActionListener {
             String groupID = (String) temp.get(2);
             this.frame.add(button);
             this.mappings.put(button, groupID);
-
-
-
         }
-
-
-
         this.frame.setVisible(true);
-
-
-
     }
 
-
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         for (JButton button: this.mappings.keySet()) {
-
             if (e.getSource() == button) {
-
                 String gID = this.mappings.get(button);
-
                 new ViewIndividualGroup(this.loginController, this.groupController,
                         this.calendarController, this.studentController, this.studentUsername, gID);
-
-
             }
-
-
-
         }
-
-
         if (e.getSource() == this.back) {
-
             this.frame.dispose();
             MainMenu menu = new MainMenu(this.loginController, this.groupController, this.calendarController,
                     this.studentController, this.studentUsername);
-
-
         }
-
-
-
     }
 }

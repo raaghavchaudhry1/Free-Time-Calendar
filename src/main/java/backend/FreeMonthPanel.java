@@ -1,10 +1,20 @@
 import java.awt.event.ActionEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
+/** FreeMontPanel is a subclass of MonthPanel*/
 public class FreeMonthPanel extends MonthPanel{
     private String gID;
 
+    /** constructor FreeMonthPanel has 8 parameters
+     * @param month
+     * @param year
+     * @param loginController
+     * @param groupController
+     * @param calendarController
+     * @param studentController
+     * @param studentUsername
+     * @param gID
+     */
     public FreeMonthPanel(int month, int year, LogIn loginController,
                           GroupController groupController, CalendarController calendarController,
                           StudentController studentController, String studentUsername, String gID) {
@@ -12,6 +22,9 @@ public class FreeMonthPanel extends MonthPanel{
         this.gID = gID;
     }
 
+    /** Makes button to perform based on a choice of a user.
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 

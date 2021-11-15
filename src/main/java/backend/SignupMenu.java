@@ -19,7 +19,7 @@ public class SignupMenu implements ActionListener{
     private CalendarController calendarController;
     private StudentController studentController;
 
-    /** Constructs a new student, and stores his input (login and password)
+    /** Constructs a new student, and stores his input (login and password), has 4 parameters
      * @param login
      * @param group
      * @param calendarController
