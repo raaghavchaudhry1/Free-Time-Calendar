@@ -1,11 +1,13 @@
+package frontend;
+
+import backend.*;
+
 import javax.swing.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /** FreeViewDay is a subclass of ViewDay */
 
-public class FreeViewDay extends ViewDay{
+public class FreeViewDay extends ViewDay {
     private String gID;
     private float date;
     private String day;

@@ -1,5 +1,11 @@
+package frontend;
+
+import backend.CalendarController;
+import backend.GroupController;
+import backend.LogIn;
+import backend.StudentController;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

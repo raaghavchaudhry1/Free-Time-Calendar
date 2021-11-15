@@ -1,9 +1,10 @@
-import java.awt.event.ActionEvent;
-import java.util.GregorianCalendar;
+package frontend;
+
+import backend.*;
 
 /** FreetimeCalendarFrame is a subclass of CalendarFrame*/
 
-public class FreeCalendarFrame extends CalendarFrame{
+public class FreeCalendarFrame extends CalendarFrame {
     private String gID;
     public FreeCalendarFrame(LogIn loginController, GroupController groupController,
                              CalendarController calendarController,

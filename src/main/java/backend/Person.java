@@ -1,3 +1,5 @@
+package backend;
+
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.ArrayList;

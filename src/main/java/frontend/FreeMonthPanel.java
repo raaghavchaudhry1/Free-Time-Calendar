@@ -1,8 +1,12 @@
+package frontend;
+
+import backend.*;
+
 import java.awt.event.ActionEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 /** FreeMontPanel is a subclass of MonthPanel*/
-public class FreeMonthPanel extends MonthPanel{
+public class FreeMonthPanel extends MonthPanel {
     private String gID;
 
     /** constructor FreeMonthPanel has 8 parameters

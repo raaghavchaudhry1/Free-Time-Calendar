@@ -1,3 +1,5 @@
+package backend;
+
 import java.util.HashMap;
 
 public class LogIn {

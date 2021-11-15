@@ -1,3 +1,5 @@
+package backend;
+
 public interface EventInterface extends Comparable<EventInterface>{
     public String getName();
 
