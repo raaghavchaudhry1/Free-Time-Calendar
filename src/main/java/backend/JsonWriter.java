@@ -68,4 +68,35 @@ public class JsonWriter {
         mapwriter.writeValue(groupJson, groupArray);
 
     }
+
+    public void groupJsonWriterSimplified(GroupController grpMan) throws IOException {
+
+        String grpfilePath = this.groupJsonLoc;
+
+        int totalGroups = grpMan.getGroups().size();
+//        HashMap[] groupArray = new HashMap[totalGroups];
+        HashMap<String, ArrayList<Student>> groupHash = new HashMap<>();
+
+        ArrayList<Group> groups = new ArrayList<>(grpMan.getGroups().values());
+        for (int i = 0; i < totalGroups; i++) {
+            if (groups.get(i) instanceof Group) {
+                ArrayList<Student> students = new ArrayList<>();
+                for (Person student: groups.get(i).getMembers()) {
+                    if (student instanceof Student) {
+                        students.add((Student) student);
+                    }
+                }
+                groupHash.put(groups.get(i).getGroupName(), students);
+            }
+        }
+
+        GsonBuilder gbuild = new GsonBuilder();
+        gbuild.serializeNulls();
+        Gson gson = gbuild.setPrettyPrinting().create();
+
+        FileWriter studentJson = new FileWriter(grpfilePath);
+        gson.toJson(groupHash, studentJson);
+        studentJson.close();
+
+    }
 }

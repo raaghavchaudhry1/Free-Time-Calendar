@@ -18,7 +18,7 @@ public class GUIRunner {
                     studentController.addStudent(student);
                 }
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

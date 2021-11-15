@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.*;
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.Scanner;
 
@@ -22,7 +24,7 @@ public class JsonReader {
         this.groupJsonLoc = "src/main/java/groups.json";
     }
 
-    public Student[] readStudentJson() throws FileNotFoundException {
+    public Student[] readStudentJson() throws IOException {
 
         String filePath = this.studentJsonLoc;
 
@@ -32,6 +34,9 @@ public class JsonReader {
 
         Reader reader = new FileReader(filePath);
         Student[] studentArray = gson.fromJson(reader, Student[].class);
+
+        reader.close();
+
         return studentArray;
 
     }
@@ -54,8 +59,26 @@ public class JsonReader {
         for (int i = 0; i < groups.size(); i++) {
             groupArray[i] = groups.get(i);
         }
+
+
         return groupArray;
 
+    }
+
+    public HashMap<String, ArrayList<Student>> readGroupJsonSimplified() throws IOException {
+        String grpfilePath = this.groupJsonLoc;
+
+        GsonBuilder gbuild = new GsonBuilder();
+        gbuild.serializeNulls();
+        Gson gson = gbuild.setPrettyPrinting().create();
+
+        Reader reader = new FileReader(grpfilePath);
+        Type type = new TypeToken<HashMap<String, ArrayList<Student>>>(){}.getType();
+        HashMap<String, ArrayList<Student>> groupHash = gson.fromJson(reader, type);
+
+        reader.close();
+
+        return groupHash;
     }
 
     public boolean savedInfoStudents() {
