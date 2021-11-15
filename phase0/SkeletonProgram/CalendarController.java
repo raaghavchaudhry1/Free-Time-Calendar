@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CalendarController {
-
-
-
     private CalendarManager calendarManager;
     private EventCreator eventCreator;
     private StudentController studentController;
@@ -34,5 +31,6 @@ public class CalendarController {
         HashMap<String, Student> students = this.studentController.getAllStudents();
         return students.get(student);
     }
+
 
 }

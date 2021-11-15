@@ -2,8 +2,6 @@ import java.util.ArrayList;
 
 public class CalendarManager {
 
-
-
     public void addRecurringEvents(Student student, ArrayList<CalendarEvent> events) {
 
         for (CalendarEvent event: events) {
