@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'junit:junit:4.13.2'
+    testImplementation('org.junit.jupiter:junit-jupiter:5.8.1')
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'org.danilopianini:gson-extras:0.2.2-dev1n+f8657bfc'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
