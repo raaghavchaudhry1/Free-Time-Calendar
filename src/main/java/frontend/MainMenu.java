@@ -9,11 +9,11 @@ import login.LogIn;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 
-import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.ComponentList;
-import net.fortuna.ical4j.model.Date;
+import net.fortuna.ical4j.model.*;
 import net.fortuna.ical4j.model.component.CalendarComponent;
 import net.fortuna.ical4j.model.component.VEvent;
+import net.fortuna.ical4j.model.property.RRule;
+import net.fortuna.ical4j.model.property.RecurrenceId;
 import users.groups.GroupController;
 import users.groups.GroupMenu;
 import users.students.StudentController;
@@ -169,12 +169,19 @@ public class MainMenu implements ActionListener {
         for (CalendarComponent i : list) {
 
             if (i instanceof VEvent) {
-                String name = i.getName();
                 String nameEvent = ((VEvent) i).getSummary().getValue();
                 System.out.println(nameEvent);
 
+                Date startDate = ((VEvent) i).getStartDate().getDate();
+                System.out.println("start date");
+                System.out.println(startDate);
                 Date endDate = ((VEvent) i).getEndDate().getDate();
+                System.out.println("end date");
+                System.out.println(endDate);
+                Property rrule = ((VEvent) i).getProperty("Rrule");
+                WeekDayList s = ((RRule)rrule).getRecur().getDayList();
 
+                System.out.println("DayList:" + s);
 
 
 
