@@ -6,6 +6,14 @@ import calendar.CalendarFrame;
 import events.OneOffMenu;
 import events.RecurringMenu;
 import login.LogIn;
+
+import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.Calendar;
+import net.fortuna.ical4j.model.ComponentList;
+import net.fortuna.ical4j.model.Date;
+import net.fortuna.ical4j.model.component.CalendarComponent;
+import net.fortuna.ical4j.model.component.VEvent;
 import users.groups.GroupController;
 import users.groups.GroupMenu;
 import users.students.StudentController;
@@ -13,6 +21,8 @@ import users.students.StudentController;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.GregorianCalendar;
 
@@ -31,6 +41,7 @@ public class MainMenu implements ActionListener {
     private String studentUsername;
     private CalendarController calendarController;
     private StudentController studentController;
+    private JButton uploadFile;
 
     /**
      * constructor StartMenu with 5 parameters
@@ -56,25 +67,30 @@ public class MainMenu implements ActionListener {
         this.groupsButton = new JButton("Groups");
         this.viewCalendarButton = new JButton("View Your Calendar");
         this.returnButton = new JButton("Logout");
+        this.uploadFile = new JButton("Upload Ical File");
 
         this.addRecurButton.setBounds(50, 150, 170, 40);
         this.addOneOffButton.setBounds(250, 150, 170, 40);
         this.groupsButton.setBounds(50, 300, 170, 40);
         this.viewCalendarButton.setBounds(250, 300, 170, 40);
         this.returnButton.setBounds(0, 0, 100, 20);
+        this.uploadFile.setBounds(50, 50, 170, 140);
 
         this.addRecurButton.addActionListener(this);
         this.addOneOffButton.addActionListener(this);
         this.groupsButton.addActionListener(this);
         this.viewCalendarButton.addActionListener(this);
         this.returnButton.addActionListener(this);
+        this.uploadFile.addActionListener(this);
         this.frame.setLayout(null);
+
 
         this.frame.add(addRecurButton);
         this.frame.add(addOneOffButton);
         this.frame.add(groupsButton);
         this.frame.add(viewCalendarButton);
         this.frame.add(returnButton);
+        this.frame.add(uploadFile);
 
         this.frame.setVisible(true);
         this.frame.setSize(500, 500);
@@ -112,24 +128,65 @@ public class MainMenu implements ActionListener {
                     this.calendarController, this.studentController, this.studentUsername, realMonth, realYear);
 
         } else if (e.getSource() == this.returnButton) {
-            JsonWriter jsonWriter = new JsonWriter();
-            try {
-                jsonWriter.studentJsonWriter(studentController);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-            try {
-                jsonWriter.groupJsonWriterSimplified(groupController);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-
             this.frame.dispose();
             StartMenu startMenu = new StartMenu(this.loginController, this.groupController,
                     this.calendarController, this.studentController);
+
+        } else if (e.getSource() == this.uploadFile) {
+
+            JFileChooser fileChooser = new JFileChooser();
+            int response = fileChooser.showOpenDialog(null);
+
+            if (response == JFileChooser.APPROVE_OPTION) {
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                System.out.println(file);
+                try {
+                    this.useFile(file);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (ParserException ex) {
+                    ex.printStackTrace();
+                }
+
+
+            }
+
 
         }
 
 
     }
+
+
+    public void useFile(File file) throws IOException, ParserException {
+
+        FileInputStream fin = new FileInputStream(file);
+        CalendarBuilder builder = new CalendarBuilder();
+        Calendar calendar = builder.build(fin);
+        ComponentList<CalendarComponent> list = calendar.getComponents();
+
+
+        for (CalendarComponent i : list) {
+
+            if (i instanceof VEvent) {
+
+                String name = i.getName();
+                String startDate = ((VEvent) i).getStartDate().getValue();
+                System.out.println("this is it:");
+                System.out.println(name);
+                System.out.println(startDate);
+
+                Date endDate = ((VEvent) i).getEndDate().getDate();
+
+
+            }
+
+
+        }
+
+
+    }
+
 }
+
+
