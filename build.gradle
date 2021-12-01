@@ -16,6 +16,10 @@ dependencies {
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0'
     implementation fileTree(dir: 'lib', include: ['*.jar'])
 
+
+
+    implementation 'org.blazingcache:blazingcache-jcache:1.9.0'
+
 }
 
 test {

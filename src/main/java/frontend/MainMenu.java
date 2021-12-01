@@ -6,8 +6,14 @@ import events.OneOffMenu;
 import events.RecurringMenu;
 import login.LogIn;
 
+import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 
+import net.fortuna.ical4j.model.Calendar;
+import net.fortuna.ical4j.model.ComponentList;
+import net.fortuna.ical4j.model.Date;
+import net.fortuna.ical4j.model.component.CalendarComponent;
+import net.fortuna.ical4j.model.component.VEvent;
 import users.groups.GroupController;
 import users.groups.GroupMenu;
 import users.students.StudentController;
@@ -154,37 +160,30 @@ public class MainMenu implements ActionListener {
     public void useFile(File file) throws IOException, ParserException {
 
 
+        FileInputStream fin = new FileInputStream(file);
+        CalendarBuilder builder = new CalendarBuilder();
+        Calendar calendar = builder.build(fin);
+        ComponentList<CalendarComponent> list = calendar.getComponents();
+
+
+        for (CalendarComponent i : list) {
+
+            if (i instanceof VEvent) {
+                String name = i.getName();
+                String nameEvent = ((VEvent) i).getSummary().getValue();
+                System.out.println(nameEvent);
+
+                Date endDate = ((VEvent) i).getEndDate().getDate();
 
 
 
 
-//        FileInputStream fin = new FileInputStream(file);
-//        CalendarBuilder builder = new CalendarBuilder();
-//        Calendar calendar = builder.build(fin);
-//        ComponentList<CalendarComponent> list = calendar.getComponents();
-//
-//
-//        for (CalendarComponent i : list) {
-//
-//            if (i instanceof VEvent) {
-//
-//                String name = i.getName();
-//                String startDate = ((VEvent) i).getStartDate().getValue();
-//                System.out.println("this is it:");
-//                System.out.println(name);
-//                System.out.println(startDate);
-//
-//                Date endDate = ((VEvent) i).getEndDate().getDate();
-//
-//
-//            }
-//
-//
-//        }
+            }
 
+
+        }
 
     }
-
 }
 
 
