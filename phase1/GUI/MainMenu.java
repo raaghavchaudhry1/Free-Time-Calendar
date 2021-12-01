@@ -1,7 +1,17 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.GregorianCalendar;
+
+import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.*;
+import net.fortuna.ical4j.model.Calendar;
+import net.fortuna.ical4j.model.component.CalendarComponent;
+import net.fortuna.ical4j.model.component.VEvent;
 
 
 
@@ -18,6 +28,8 @@ public class MainMenu implements ActionListener {
     private String studentUsername;
     private CalendarController calendarController;
     private StudentController studentController;
+    private JButton upload;
+
 
     /**
      * constructor StartMenu with 4 parameters
@@ -36,6 +48,10 @@ public class MainMenu implements ActionListener {
         this.calendarController = calendarController;
         this.studentController = studentController;
         this.studentUsername = studentUsername;
+        this.upload = new JButton("Upload iCal File");
+        this.upload.setBounds(150, 0, 150,40);
+        this.upload.addActionListener(this);
+
 
         this.frame = new JFrame();
         this.addRecurButton = new JButton("Create Recurring Events");
@@ -62,6 +78,7 @@ public class MainMenu implements ActionListener {
         this.frame.add(groupsButton);
         this.frame.add(viewCalendarButton);
         this.frame.add(returnButton);
+        this.frame.add(upload);
 
         this.frame.setVisible(true);
         this.frame.setSize(500, 500);
@@ -103,8 +120,74 @@ public class MainMenu implements ActionListener {
             StartMenu startMenu = new StartMenu(this.loginController, this.groupController,
                     this.calendarController, this.studentController);
 
+        } else if (e.getSource() == this.upload) {
+
+            JFileChooser fileChooser = new JFileChooser();
+            int response = fileChooser.showOpenDialog(null);
+            System.setProperty("net.fortuna.ical4j.timezone.cache.impl", "net.fortuna.ical4j.util.MapTimeZoneCache");
+            if (response== JFileChooser.APPROVE_OPTION) {
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                System.out.println(file);
+                try {
+                    this.useFile(file);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (ParserException ex) {
+                    ex.printStackTrace();
+                }
+
+
+            }
+
+
+
+
+
         }
 
 
     }
+
+
+    public void useFile(File file) throws IOException, ParserException {
+
+        FileInputStream fin = new FileInputStream(file);
+        CalendarBuilder builder = new CalendarBuilder();
+        Calendar calendar = builder.build(fin);
+        ComponentList<CalendarComponent> list = calendar.getComponents();
+
+
+        for (CalendarComponent i : list) {
+
+            if (i instanceof VEvent) {
+
+                String name = i.getName();
+                String startDate = ((VEvent) i).getStartDate().getValue();
+                System.out.println("this is it:");
+                System.out.println(name);
+                System.out.println(startDate);
+
+                Date endDate = ((VEvent) i).getEndDate().getDate();
+
+
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
 }
