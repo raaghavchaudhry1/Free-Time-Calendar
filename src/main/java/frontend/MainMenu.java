@@ -1,19 +1,13 @@
 package frontend;
 
-import backend.*;
 import calendar.CalendarController;
 import calendar.CalendarFrame;
 import events.OneOffMenu;
 import events.RecurringMenu;
 import login.LogIn;
 
-import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
-import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.ComponentList;
-import net.fortuna.ical4j.model.Date;
-import net.fortuna.ical4j.model.component.CalendarComponent;
-import net.fortuna.ical4j.model.component.VEvent;
+
 import users.groups.GroupController;
 import users.groups.GroupMenu;
 import users.students.StudentController;
@@ -25,7 +19,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.GregorianCalendar;
-
 
 
 /** When User is successfully logged in, MainMenu window pops with 4 options to continue*/
@@ -74,7 +67,7 @@ public class MainMenu implements ActionListener {
         this.groupsButton.setBounds(50, 300, 170, 40);
         this.viewCalendarButton.setBounds(250, 300, 170, 40);
         this.returnButton.setBounds(0, 0, 100, 20);
-        this.uploadFile.setBounds(50, 50, 170, 140);
+        this.uploadFile.setBounds(150, 50, 170, 40);
 
         this.addRecurButton.addActionListener(this);
         this.addOneOffButton.addActionListener(this);
@@ -160,29 +153,34 @@ public class MainMenu implements ActionListener {
 
     public void useFile(File file) throws IOException, ParserException {
 
-        FileInputStream fin = new FileInputStream(file);
-        CalendarBuilder builder = new CalendarBuilder();
-        Calendar calendar = builder.build(fin);
-        ComponentList<CalendarComponent> list = calendar.getComponents();
 
 
-        for (CalendarComponent i : list) {
-
-            if (i instanceof VEvent) {
-
-                String name = i.getName();
-                String startDate = ((VEvent) i).getStartDate().getValue();
-                System.out.println("this is it:");
-                System.out.println(name);
-                System.out.println(startDate);
-
-                Date endDate = ((VEvent) i).getEndDate().getDate();
 
 
-            }
 
-
-        }
+//        FileInputStream fin = new FileInputStream(file);
+//        CalendarBuilder builder = new CalendarBuilder();
+//        Calendar calendar = builder.build(fin);
+//        ComponentList<CalendarComponent> list = calendar.getComponents();
+//
+//
+//        for (CalendarComponent i : list) {
+//
+//            if (i instanceof VEvent) {
+//
+//                String name = i.getName();
+//                String startDate = ((VEvent) i).getStartDate().getValue();
+//                System.out.println("this is it:");
+//                System.out.println(name);
+//                System.out.println(startDate);
+//
+//                Date endDate = ((VEvent) i).getEndDate().getDate();
+//
+//
+//            }
+//
+//
+//        }
 
 
     }
