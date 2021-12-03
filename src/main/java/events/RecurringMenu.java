@@ -46,9 +46,7 @@ public class RecurringMenu implements GUIEventMenu {
                          StudentController studentController, String studentUsername) {
         setControllers(loginController, groupController, calendarController, studentController);
         this.studentUsername = studentUsername;
-        setButtons();
-        setEventDropDown();
-        setLabelsAndText();
+
         this.day = "";
         this.startHour = 0;
         this.startMinute = 0;
@@ -58,6 +56,9 @@ public class RecurringMenu implements GUIEventMenu {
         this.frame = new JFrame();
         this.frame.setLayout(null);
         this.frame.setSize(500,500);
+        setButtons();
+        setEventDropDown();
+        setLabelsAndText();
         this.frame.setVisible(true);
 
     }

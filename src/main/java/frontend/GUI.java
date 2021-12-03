@@ -15,8 +15,8 @@ public interface GUI extends ActionListener {
 
     public void setButtons();
 
-    public void setControllers(LogIn loginController, GroupController groupController, CalendarController calendarController,
-                                      StudentController studentController);
+    public void setControllers(LogIn loginController, GroupController groupController,
+                               CalendarController calendarController, StudentController studentController);
 
     @Override
     public void actionPerformed(ActionEvent e);

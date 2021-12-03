@@ -1,6 +1,7 @@
 package login;
 
 import calendar.CalendarController;
+import frontend.GUI;
 import frontend.StartMenu;
 import users.groups.GroupController;
 import users.students.StudentController;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 
 /** SignupMenu is window where a student can register in the app. */
 
-public class SignupMenu implements ActionListener{
+public class SignupMenu implements GUI {
     private JTextField userText;
     private JPasswordField passwordText;
     private JFrame frame;
@@ -26,24 +27,27 @@ public class SignupMenu implements ActionListener{
     private StudentController studentController;
 
     /** Constructs a new student, and stores his input (login and password), has 4 parameters
-     * @param login
-     * @param group
+     * @param loginController
+     * @param groupController
      * @param calendarController
      * @param studentController
      */
-    public SignupMenu(LogIn login, GroupController group,
+    public SignupMenu(LogIn loginController, GroupController groupController,
                       CalendarController calendarController, StudentController studentController) {
-        this.loginController = login;
-        this.groupController = group;
-        this.calendarController = calendarController;
-        this.studentController = studentController;
+        setControllers(loginController, groupController, calendarController, studentController);
         this.username = new String();
         this.password = new String();
         this.frame = new JFrame();
         this.frame.setLayout(null);
-        this.frame.setSize(500,500);
+        this.frame.setSize(500, 500);
+        setButtons();
+        setLabelsAndText();
 //        this.frame.getContentPane().setBackground(Color.decode("#F4E2CB"));
+        this.frame.setVisible(true);
+    }
 
+    @Override
+    public void setLabelsAndText() {
         JLabel userLabel = new JLabel("Username");
         userLabel.setBounds(10,20,80,25);
         this.frame.add(userLabel);
@@ -59,7 +63,10 @@ public class SignupMenu implements ActionListener{
         this.passwordText = new JPasswordField();
         this.passwordText.setBounds(100,50,165,25);
         this.frame.add(this.passwordText);
+    }
 
+    @Override
+    public void setButtons() {
         this.signUpButton = new JButton("Sign Up");
         this.signUpButton.setBounds(10,80,80,25);
         this.signUpButton.addActionListener(this);
@@ -69,14 +76,17 @@ public class SignupMenu implements ActionListener{
         this.cancelButton.setBounds(100,80,80,25);
         this.cancelButton.addActionListener(this);
         this.frame.add(this.cancelButton);
-
-        this.frame.setVisible(true);
-
-
-
     }
 
-    /** Makes button to perform based on a choise of a user.
+    @Override
+    public void setControllers(LogIn loginController, GroupController groupController, CalendarController calendarController, StudentController studentController) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+    }
+
+    /** Makes button to perform based on a choice of a user.
      * @param e
      */
 
@@ -95,17 +105,7 @@ public class SignupMenu implements ActionListener{
             this.frame.dispose();
             StartMenu startMenu = new StartMenu(this.loginController, this.groupController,
                     this.calendarController, this.studentController);
-
         }
     }
-
-
-
-
-
-
-
-
-
 
 }
