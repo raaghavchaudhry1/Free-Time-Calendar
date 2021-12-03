@@ -40,7 +40,7 @@ import java.util.GregorianCalendar;
 
 
 /** When User is successfully logged in, MainMenu window pops with 4 options to continue*/
-public class MainMenu implements ActionListener {
+public class MainMenu implements GUI {
     private JFrame frame;
     private JButton addRecurButton;
     private JButton addOneOffButton;
@@ -67,14 +67,25 @@ public class MainMenu implements ActionListener {
 
     public MainMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
                     StudentController studentController, String studentUsername) {
-        this.loginController = loginController;
-        this.groupController = groupController;
-        this.calendarController = calendarController;
-        this.studentController = studentController;
-        this.studentUsername = studentUsername;
 
+        this.studentUsername = studentUsername;
+        setControllers(loginController, groupController, calendarController, studentController);
         this.frame = new JFrame();
         JPanel panel = new JPanel();
+        this.frame.setLayout(null);
+        this.frame.setVisible(true);
+        setLabelsAndText();
+        setButtons();
+        this.frame.setSize(500, 500);
+    }
+
+    @Override
+    public void setLabelsAndText() {
+
+    }
+
+    @Override
+    public void setButtons() {
         this.addRecurButton = new JButton("Create Recurring Events");
         this.addOneOffButton = new JButton("Create OneOff Events");
         this.groupsButton = new JButton("Groups");
@@ -97,8 +108,6 @@ public class MainMenu implements ActionListener {
         this.viewCalendarButton.addActionListener(this);
         this.returnButton.addActionListener(this);
         this.uploadFile.addActionListener(this);
-        this.frame.setLayout(null);
-
 
         this.frame.add(addRecurButton);
         this.frame.add(addOneOffButton);
@@ -107,11 +116,14 @@ public class MainMenu implements ActionListener {
         this.frame.add(returnButton);
         this.frame.add(uploadFile);
 
+    }
 
-        this.frame.setVisible(true);
-        this.frame.setSize(500, 500);
-
-
+    @Override
+    public void setControllers(LogIn loginController, GroupController groupController, CalendarController calendarController, StudentController studentController) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
     }
 
     /**
@@ -162,17 +174,9 @@ public class MainMenu implements ActionListener {
                 } catch (ParserException ex) {
                     ex.printStackTrace();
                 }
-
                 JOptionPane.showMessageDialog(null, "File Succesfully Uploaded");
-
-
-
             }
-
-
         }
-
-
     }
 
 
@@ -211,8 +215,6 @@ public class MainMenu implements ActionListener {
                     singles.add(this.calendarController.createOneOffEvent(nameEvent,
                             Float.parseFloat(arrOfStr[1]),
                             Float.parseFloat(formattedEnd), Float.parseFloat(arrOfStr[0])));
-
-
                 } else {
 
                     String rule = rrule.getValue();
@@ -238,54 +240,25 @@ public class MainMenu implements ActionListener {
                         personalCalendar.setTimeZone(TimeZone.getTimeZone("EST"));
                         int numb = personalCalendar.get(GregorianCalendar.DAY_OF_WEEK);
                         String str;
-
                         if (numb ==1) {
-
                             str = "Monday";
-
                         } else if (numb == 2) {
-
                             str = "Tuesday";
-
-
                         } else if (numb == 3) {
-
                             str = "Wednesday";
-
-
                         }else if (numb == 4) {
-
                             str = "Thursday";
-
-
                         }else if (numb == 5) {
-
                             str = "Friday";
-
-
                         }else if (numb == 6) {
-
                             str = "Saturday";
-
-
                         } else {
                             str = "Sunday";
                         }
-
                         recurring.add(this.calendarController.createRecEvent(nameEvent,
                                 Float.parseFloat(arrOfStr[1]), Float.parseFloat(formattedEnd), str));
-
-
                     }
-
-
                 }
-
-
-
-
-
-
                 /*
                 System.out.println("Event Name: ");
                 System.out.println(nameEvent);
