@@ -2,6 +2,8 @@ package frontend;
 
 import calendar.CalendarController;
 import calendar.CalendarFrame;
+import events.CalendarEvent;
+import events.OneOffEvent;
 import events.OneOffMenu;
 import events.RecurringMenu;
 import login.LogIn;
@@ -11,7 +13,10 @@ import net.fortuna.ical4j.data.ParserException;
 
 import net.fortuna.ical4j.model.*;
 import net.fortuna.ical4j.model.component.CalendarComponent;
+
 import net.fortuna.ical4j.model.component.VEvent;
+import net.fortuna.ical4j.model.property.DtEnd;
+import net.fortuna.ical4j.model.property.DtStart;
 import net.fortuna.ical4j.model.property.RRule;
 import net.fortuna.ical4j.model.property.RecurrenceId;
 import users.groups.GroupController;
@@ -24,6 +29,13 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 
@@ -41,6 +53,7 @@ public class MainMenu implements ActionListener {
     private CalendarController calendarController;
     private StudentController studentController;
     private JButton uploadFile;
+    private JLabel uploadLabel;
 
     /**
      * constructor StartMenu with 5 parameters
@@ -61,6 +74,7 @@ public class MainMenu implements ActionListener {
         this.studentUsername = studentUsername;
 
         this.frame = new JFrame();
+        JPanel panel = new JPanel();
         this.addRecurButton = new JButton("Create Recurring Events");
         this.addOneOffButton = new JButton("Create OneOff Events");
         this.groupsButton = new JButton("Groups");
@@ -68,12 +82,14 @@ public class MainMenu implements ActionListener {
         this.returnButton = new JButton("Logout");
         this.uploadFile = new JButton("Upload Ical File");
 
+
         this.addRecurButton.setBounds(50, 150, 170, 40);
         this.addOneOffButton.setBounds(250, 150, 170, 40);
         this.groupsButton.setBounds(50, 300, 170, 40);
         this.viewCalendarButton.setBounds(250, 300, 170, 40);
         this.returnButton.setBounds(0, 0, 100, 20);
         this.uploadFile.setBounds(150, 50, 170, 40);
+
 
         this.addRecurButton.addActionListener(this);
         this.addOneOffButton.addActionListener(this);
@@ -90,6 +106,7 @@ public class MainMenu implements ActionListener {
         this.frame.add(viewCalendarButton);
         this.frame.add(returnButton);
         this.frame.add(uploadFile);
+
 
         this.frame.setVisible(true);
         this.frame.setSize(500, 500);
@@ -138,7 +155,6 @@ public class MainMenu implements ActionListener {
 
             if (response == JFileChooser.APPROVE_OPTION) {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                System.out.println(file);
                 try {
                     this.useFile(file);
                 } catch (IOException ex) {
@@ -146,6 +162,9 @@ public class MainMenu implements ActionListener {
                 } catch (ParserException ex) {
                     ex.printStackTrace();
                 }
+
+                JOptionPane.showMessageDialog(null, "File Succesfully Uploaded");
+
 
 
             }
@@ -164,31 +183,166 @@ public class MainMenu implements ActionListener {
         CalendarBuilder builder = new CalendarBuilder();
         Calendar calendar = builder.build(fin);
         ComponentList<CalendarComponent> list = calendar.getComponents();
+        ArrayList<CalendarEvent> recurring = new ArrayList<CalendarEvent>();
+        ArrayList<OneOffEvent> singles = new ArrayList<OneOffEvent>();
 
 
         for (CalendarComponent i : list) {
 
             if (i instanceof VEvent) {
-                String nameEvent = ((VEvent) i).getSummary().getValue();
+
+                RRule rrule = ((VEvent) i).getProperty(Property.RRULE);
+
+                if (rrule == null) {
+
+                    String nameEvent = ((VEvent) i).getSummary().getValue();
+                    DtStart startDate = ((VEvent) i).getStartDate();
+                    DtEnd endDate = ((VEvent) i).getEndDate();
+                    long beginTime = startDate.getDate().getTime();
+                    long endTime =endDate.getDate().getTime();
+                    ZonedDateTime dateTimeBegin = Instant.ofEpochMilli(beginTime)
+                            .atZone(ZoneId.of("Canada/Eastern"));
+                    String formattedBegin = dateTimeBegin.format(DateTimeFormatter.ofPattern("MM.dd HH.mm"));
+                    ZonedDateTime dateTimeEnd = Instant.ofEpochMilli(endTime)
+                            .atZone(ZoneId.of("Canada/Eastern"));
+                    String formattedEnd = dateTimeEnd.format(DateTimeFormatter.ofPattern("HH.mm"));
+                    String[] arrOfStr = formattedBegin.split(" ");
+
+                    singles.add(this.calendarController.createOneOffEvent(nameEvent,
+                            Float.parseFloat(arrOfStr[1]),
+                            Float.parseFloat(formattedEnd), Float.parseFloat(arrOfStr[0])));
+
+
+                } else {
+
+                    String rule = rrule.getValue();
+                    if (rule.contains("WEEKLY")) {
+
+                        String nameEvent = ((VEvent) i).getSummary().getValue();
+                        DtStart startDate = ((VEvent) i).getStartDate();
+                        DtEnd endDate = ((VEvent) i).getEndDate();
+                        long beginTime = startDate.getDate().getTime();
+                        long endTime =endDate.getDate().getTime();
+                        ZonedDateTime dateTimeBegin = Instant.ofEpochMilli(beginTime)
+                                .atZone(ZoneId.of("Canada/Eastern"));
+                        String formattedBegin = dateTimeBegin.format(DateTimeFormatter.ofPattern("MM.dd HH.mm"));
+                        ZonedDateTime dateTimeEnd = Instant.ofEpochMilli(endTime)
+                                .atZone(ZoneId.of("Canada/Eastern"));
+                        String formattedEnd = dateTimeEnd.format(DateTimeFormatter.ofPattern("HH.mm"));
+                        String[] arrOfStr = formattedBegin.split(" ");
+
+                        // Get Day of the week
+                        GregorianCalendar personalCalendar =  new GregorianCalendar();
+                        Date date = new Date(beginTime);
+                        personalCalendar.setTime(date);
+                        personalCalendar.setTimeZone(TimeZone.getTimeZone("EST"));
+                        int numb = personalCalendar.get(GregorianCalendar.DAY_OF_WEEK);
+                        String str;
+
+                        if (numb ==1) {
+
+                            str = "Monday";
+
+                        } else if (numb == 2) {
+
+                            str = "Tuesday";
+
+
+                        } else if (numb == 3) {
+
+                            str = "Wednesday";
+
+
+                        }else if (numb == 4) {
+
+                            str = "Thursday";
+
+
+                        }else if (numb == 5) {
+
+                            str = "Friday";
+
+
+                        }else if (numb == 6) {
+
+                            str = "Saturday";
+
+
+                        } else {
+                            str = "Sunday";
+                        }
+
+                        recurring.add(this.calendarController.createRecEvent(nameEvent,
+                                Float.parseFloat(arrOfStr[1]), Float.parseFloat(formattedEnd), str));
+
+
+                    }
+
+
+                }
+
+
+
+
+
+
+                /*
+                System.out.println("Event Name: ");
                 System.out.println(nameEvent);
 
-                Date startDate = ((VEvent) i).getStartDate().getDate();
-                System.out.println("start date");
-                System.out.println(startDate);
+
+                DtStart startDate = ((VEvent) i).getStartDate();
+
+//                System.out.println(startDate.getDate());
+//                System.out.println("start date value");
+//                System.out.println(startDate.getValue());
+//                System.out.println("get time");
+//                System.out.println(startDate.getDate().getTime());
                 Date endDate = ((VEvent) i).getEndDate().getDate();
-                System.out.println("end date");
-                System.out.println(endDate);
-                Property rrule = ((VEvent) i).getProperty("Rrule");
-                WeekDayList s = ((RRule)rrule).getRecur().getDayList();
 
-                System.out.println("DayList:" + s);
+               // System.out.println(endDate);
 
 
+                long time = startDate.getDate().getTime();
+                GregorianCalendar personalCalendar =  new GregorianCalendar();
 
+                System.out.println("long Time:");
+                System.out.println(time);
+                Date date = new Date(time);
+                DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                format.setTimeZone(TimeZone.getTimeZone("EST"));
+                String formatted = format.format(date);
+
+
+                // -------------------------------------------
+
+                System.out.println("Formatted:");
+                ZonedDateTime dateTime = Instant.ofEpochMilli(time)
+                        .atZone(ZoneId.of("Canada/Central"));
+                String formatted = dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+                System.out.println(formatted);
+
+                // -------------------------------------------
+
+
+                personalCalendar.setTime(date);
+                personalCalendar.setTimeZone(TimeZone.getTimeZone("EST"));
+
+                System.out.println("Day of Week: ");
+                System.out.println(personalCalendar.get(GregorianCalendar.DAY_OF_WEEK));
+
+
+                */
             }
 
 
         }
+
+        this.calendarController.addOneOffEvent(this.studentUsername, singles);
+        this.calendarController.addRecEvent(this.studentUsername, recurring);
+
+
+
 
     }
 }
