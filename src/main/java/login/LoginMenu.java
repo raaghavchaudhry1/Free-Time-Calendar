@@ -1,7 +1,6 @@
 package login;
 
 import calendar.CalendarController;
-import frontend.GUI;
 import frontend.MainMenu;
 import frontend.StartMenu;
 import users.groups.GroupController;
@@ -13,7 +12,7 @@ import java.awt.event.ActionListener;
 
 /** LoginMenu class gives access to log in to the system. */
 
-public class LoginMenu implements GUI {
+public class LoginMenu implements ActionListener {
     private JTextField userText;
     private JPasswordField passwordText;
     private JFrame frame;
@@ -27,27 +26,30 @@ public class LoginMenu implements GUI {
     private StudentController studentController;
 
     /** student logs in with using login and password. LoginMenu passes has 4 parameters.
-     * @param loginController
-     * @param groupController
+     * @param login
+     * @param group
      * @param calendarController
      * @param studentController
      */
-    public LoginMenu(LogIn loginController, GroupController groupController,
+    public LoginMenu(LogIn login, GroupController group,
                      CalendarController calendarController, StudentController studentController) {
-        setControllers(loginController, groupController, calendarController, studentController);
+        this.loginController = login;
+        this.groupController = group;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
         this.username = new String();
         this.password = new String();
+
+
         this.frame = new JFrame();
+
+//        this.loginButton.addActionListener(this);
+//        this.cancelButton.addActionListener(this);
+
         this.frame.setLayout(null);
         this.frame.setSize(500,500);
-        setLabelsAndText();
-        setButtons();
 //        this.frame.getContentPane().setBackground(Color.decode("#F4E2CB"));
-        this.frame.setVisible(true);
-    }
 
-    @Override
-    public void setLabelsAndText() {
         JLabel userLabel = new JLabel("Username");
         userLabel.setBounds(10,20,80,25);
         this.frame.add(userLabel);
@@ -63,10 +65,7 @@ public class LoginMenu implements GUI {
         this.passwordText = new JPasswordField();
         this.passwordText.setBounds(100,50,165,25);
         this.frame.add(this.passwordText);
-    }
 
-    @Override
-    public void setButtons() {
         this.loginButton = new JButton("Log In");
         this.loginButton.setBounds(10,80,80,25);
         this.loginButton.addActionListener(this);
@@ -76,14 +75,8 @@ public class LoginMenu implements GUI {
         this.cancelButton.setBounds(100,80,80,25);
         this.cancelButton.addActionListener(this);
         this.frame.add(this.cancelButton);
-    }
 
-    @Override
-    public void setControllers(LogIn loginController, GroupController groupController, CalendarController calendarController, StudentController studentController) {
-        this.loginController = loginController;
-        this.groupController = groupController;
-        this.calendarController = calendarController;
-        this.studentController = studentController;
+        this.frame.setVisible(true);
     }
 
     /** Makes button to perform based on a choise of a user.
@@ -114,6 +107,31 @@ public class LoginMenu implements GUI {
                 this.frame.repaint();
 
             }
+
+
+
+
         }
     }
+
+
+
+
+
+    public String getUsername() {
+
+        return this.username;
+
+    }
+
+    public String getPassword() {
+
+        return this.password;
+
+    }
+
+
+
+
+
 }

@@ -1,7 +1,6 @@
 package users.groups;
 
 import calendar.CalendarController;
-import frontend.GUI;
 import login.LogIn;
 import users.*;
 import users.students.Student;
@@ -15,12 +14,13 @@ import java.util.HashMap;
 
 /** CreateGroup window is made to create a new group.*/
 
-public class CreateGroup implements GUI {
+public class CreateGroup implements ActionListener {
 
     private JFrame frame;
     private JTextField groupName;
     private JButton submitButton;
     private JButton cancelButton;
+
     private LogIn loginController;
     private GroupController groupController;
     private CalendarController calendarController;
@@ -38,19 +38,16 @@ public class CreateGroup implements GUI {
     public CreateGroup(LogIn loginController, GroupController groupController, CalendarController calendarController,
                        StudentController studentController, String studentUsername){
 
-        setControllers(loginController, groupController, calendarController, studentController);
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
         this.studentUsername = studentUsername;
 
         this.frame = new JFrame();
         this.frame.setLayout(null);
         this.frame.setSize(500,500);
-        setButtons();
-        setLabelsAndText();
-        this.frame.setVisible(true);
-    }
 
-    @Override
-    public void setLabelsAndText() {
         JLabel groupNameLabel = new JLabel("Group Name: ");
         groupNameLabel.setBounds(110,50,115, 30);
         this.frame.add(groupNameLabel);
@@ -58,10 +55,7 @@ public class CreateGroup implements GUI {
         this.groupName = new JTextField();
         this.groupName.setBounds(210,50,165,30);
         this.frame.add(this.groupName);
-    }
 
-    @Override
-    public void setButtons() {
         this.submitButton = new JButton("Submit");
         this.submitButton.setBounds(100,100,100,30);
         this.submitButton.addActionListener(this);
@@ -71,14 +65,10 @@ public class CreateGroup implements GUI {
         this.cancelButton.setBounds(240,100,100,30);
         this.cancelButton.addActionListener(this);
         this.frame.add(this.cancelButton);
-    }
 
-    @Override
-    public void setControllers(LogIn loginController, GroupController groupController, CalendarController calendarController, StudentController studentController) {
-        this.loginController = loginController;
-        this.groupController = groupController;
-        this.calendarController = calendarController;
-        this.studentController = studentController;
+
+
+        this.frame.setVisible(true);
     }
 
     /** Makes button to perform based on a choice of a user.
