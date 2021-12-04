@@ -1,6 +1,7 @@
 package users.groups;
 
 import calendar.CalendarController;
+import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
 import users.students.StudentController;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 
 /** GroupMenu window is for joining, creating a group and to view current groups.*/
 
-public class GroupMenu implements ActionListener {
+public class GroupMenu implements GUI {
     private JButton createGroup;
     private JButton joinGroup;
     private JButton viewGroups;
@@ -34,18 +35,23 @@ public class GroupMenu implements ActionListener {
      */
     public GroupMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
                      StudentController studentController, String studentUsername) {
-
-        this.loginController = loginController;
-        this.groupController = groupController;
-        this.calendarController = calendarController;
-        this.studentController = studentController;
+        setControllers(loginController, groupController, calendarController, studentController);
         this.studentUsername = studentUsername;
-
-
         this.frame = new JFrame();
         this.frame.setLayout(null);
         this.frame.setSize(500,500);
+        setButtons();
+        setLabelsAndText();
+        this.frame.setVisible(true);
+    }
 
+    @Override
+    public void setLabelsAndText() {
+
+    }
+
+    @Override
+    public void setButtons() {
         this.joinGroup = new JButton("Join Group");
         this.joinGroup.setBounds(30,120,200,40);
         this.joinGroup.addActionListener(this);
@@ -65,8 +71,14 @@ public class GroupMenu implements ActionListener {
         this.homeMenu.setBounds(250,200,200,40);
         this.homeMenu.addActionListener(this);
         this.frame.add(this.homeMenu);
-        this.frame.setVisible(true);
+    }
 
+    @Override
+    public void setControllers(LogIn loginController, GroupController groupController, CalendarController calendarController, StudentController studentController) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
     }
 
     /** Makes button to perform based on a choice of a user.

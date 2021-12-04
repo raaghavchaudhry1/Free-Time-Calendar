@@ -1,6 +1,7 @@
 package users.groups;
 
 import calendar.CalendarController;
+import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
 import users.students.StudentController;
@@ -11,7 +12,7 @@ import java.awt.event.ActionListener;
 
 /** CreateGroupPopUp window is a confirmation that the group was created successfully.*/
 
-public class CreateGroupPopUp implements ActionListener {
+public class CreateGroupPopUp implements GUI {
 
     private JFrame frame;
     private JLabel groupIdPopUp;
@@ -39,17 +40,20 @@ public class CreateGroupPopUp implements ActionListener {
 
     public CreateGroupPopUp(LogIn loginController, GroupController groupController, CalendarController calendarController,
                             StudentController studentController, String studentUsername, String ID){
-        this.loginController = loginController;
-        this.groupController = groupController;
-        this.calendarController = calendarController;
-        this.studentController = studentController;
+        setControllers(loginController, groupController, calendarController, studentController);
         this.studentUsername = studentUsername;
 
         this.frame =  new JFrame();
         this.frame.setLayout(null);
         this.frame.setSize(250,250);
         this.ID = ID;
+        setButtons();
+        setLabelsAndText();
+        this.frame.setVisible(true);
+    }
 
+    @Override
+    public void setLabelsAndText() {
         groupIdPopUp = new JLabel("The Group is successfully ");
         groupIdPopUp.setBounds(25,20,200,35);
         this.frame.add(groupIdPopUp);
@@ -57,7 +61,6 @@ public class CreateGroupPopUp implements ActionListener {
         groupIdPopUp2 = new JLabel("created!");
         groupIdPopUp2.setBounds(25,45,200,35);
         this.frame.add(groupIdPopUp2);
-
 
         String s = String.format("Your Group ID is : %s", this.ID);
         groupIdPopUp3 = new JLabel(s);
@@ -67,14 +70,22 @@ public class CreateGroupPopUp implements ActionListener {
         groupIdPopUp4 = new JLabel("Please record the Group ID");
         groupIdPopUp4.setBounds(35,140,200,35);
         this.frame.add(groupIdPopUp4);
+    }
 
+    @Override
+    public void setButtons() {
         returnHome = new JButton("Return");
         returnHome.setBounds(55,170,120,30);
         this.returnHome.addActionListener(this);
         this.frame.add(returnHome);
+    }
 
-
-        this.frame.setVisible(true);
+    @Override
+    public void setControllers(LogIn loginController, GroupController groupController, CalendarController calendarController, StudentController studentController) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
     }
 
     /** Makes button to perform based on a choice of a user.

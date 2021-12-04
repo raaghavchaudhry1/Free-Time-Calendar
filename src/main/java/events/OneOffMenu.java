@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /** OneOffMenu window is made to create one event,without any recurrence
  */
-public class OneOffMenu implements ActionListener {
+public class OneOffMenu implements GUIEventMenu {
     private JTextField eventNameText;
     private JFrame frame;
     private JButton returnButton;
@@ -47,41 +47,34 @@ public class OneOffMenu implements ActionListener {
 
     public OneOffMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
                       StudentController studentController, String studentUsername) {
-        this.loginController = loginController;
-        this.groupController = groupController;
-        this.calendarController = calendarController;
-        this.studentController = studentController;
+        setControllers(loginController, groupController, calendarController, studentController);
         this.studentUsername = studentUsername;
-
-        String[] months = new String[12];
-        String[] days = new String[31];
-        for(int i = 0; i != 12; i++){
-            months[i] = (String.valueOf(i + 1));
-        }
-        for(int i = 0; i != 31; i++){
-            days[i] = (String.valueOf(i + 1));
-        }
-        String[] hours = new String[24];
-        for(int i = 0; i != 24; i++){
-            hours[i] = (String.valueOf(i));
-        }
-        String[] minutes = {"00", "30"};
         this.dateMonth = 0;
         this.dateDay = 0;
         this.startHour = 0;
         this.startMinute = 0;
         this.endHour = 0;
         this.endMinute = 0;
-
         this.eventName = "";
         this.frame = new JFrame();
         this.frame.setLayout(null);
         this.frame.setSize(500,500);
+        setButtons();
+        setEventDropDown();
+        setLabelsAndText();
+        this.frame.setVisible(true);
+    }
 
+
+    @Override
+    public void setLabelsAndText() {
         JLabel userLabel = new JLabel("Event Name");
         userLabel.setBounds(110,50,110,30);
         this.frame.add(userLabel);
+    }
 
+    @Override
+    public void setButtons() {
         this.returnButton = new JButton("Return");
         this.returnButton.setBounds(0,0,100,20);
         this.returnButton.addActionListener(this);
@@ -95,6 +88,32 @@ public class OneOffMenu implements ActionListener {
         this.eventNameText = new JTextField();
         this.eventNameText.setBounds(200,50,150,30);
         this.frame.add(this.eventNameText);
+    }
+
+    @Override
+    public void setControllers(LogIn loginController, GroupController groupController, CalendarController calendarController,
+                                      StudentController studentController) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
+    }
+
+    @Override
+    public void setEventDropDown() {
+        String[] months = new String[12];
+        String[] days = new String[31];
+        for(int i = 0; i != 12; i++){
+            months[i] = (String.valueOf(i + 1));
+        }
+        for(int i = 0; i != 31; i++){
+            days[i] = (String.valueOf(i + 1));
+        }
+        String[] hours = new String[24];
+        for(int i = 0; i != 24; i++){
+            hours[i] = (String.valueOf(i));
+        }
+        String[] minutes = {"00", "30"};
 
         this.month = new JComboBox(months);
         this.month.setBounds(10,120,70,30);
@@ -125,13 +144,7 @@ public class OneOffMenu implements ActionListener {
         this.endMinutes.setBounds(385,120,70,30);
         this.endMinutes.addActionListener(this);
         this.frame.add(this.endMinutes);
-
-        this.frame.setVisible(true);
-
-
-
     }
-
 
     /** Makes button to perform based on a choice of a user.
      * @param e
@@ -174,4 +187,5 @@ public class OneOffMenu implements ActionListener {
         }
 
     }
+
 }
