@@ -38,6 +38,8 @@ public class ViewDay {
                    StudentController studentController, String studentUsername, Float date, String day) {
 
         this.timeTable = new HashMap<Float, String>();
+
+
         float i = 0;
         int counter = 0;
         while (i < 24) {
@@ -49,6 +51,7 @@ public class ViewDay {
             } else {
                 counter = 0;
                 i += 0.7;
+
             }
         }
         this.loginController = loginController;

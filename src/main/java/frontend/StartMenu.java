@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 /** StartMenu class the first window that pops up.
  * With two options to continue, either logIn or SignUp */
 
-public class StartMenu implements GUI {
+public class StartMenu implements ActionListener {
 
     private JFrame frame;
     private JButton signupButton;
@@ -25,16 +25,19 @@ public class StartMenu implements GUI {
     private StudentController studentController;
 
     /** constructor StartMenu with 4 parameters
-     * @param loginController
-     * @param groupController
+     * @param  login
+     * @param group
      * @param calendarController
      * @param studentController
      */
 
-    public StartMenu(LogIn loginController, GroupController groupController,
+    public StartMenu(LogIn login, GroupController group,
                      CalendarController calendarController, StudentController studentController){
 
-        setControllers(loginController, groupController, calendarController, studentController);
+        this.loginController = login;
+        this.groupController = group;
+        this.studentController = studentController;
+        this.calendarController = calendarController;
         this.frame = new JFrame();
 //        this.frame.getContentPane().setBackground(Color.decode("#F4E2CB"));
 //        this.frame.setForeground(Color.ORANGE);
@@ -47,39 +50,26 @@ public class StartMenu implements GUI {
 //        JLabel imageLabel = new JLabel(image);
 //        this.frame.add(imageLabel);
 
-
-        this.frame.setLayout(null);
-        this.frame.setSize(500,500);
-        setLabelsAndText();
-        setButtons();
-        this.frame.setVisible(true);
-    }
-
-
-    @Override
-    public void setLabelsAndText() {
-
-    }
-
-    @Override
-    public void setButtons() {
         this.signupButton= new JButton("Sign up");
+
         this.loginButton=  new JButton("Login");
         this.loginButton.setBounds(100,200, 120, 30);
         this.signupButton.setBounds(250, 200, 120,30);
         this.loginButton.addActionListener(this);
         this.signupButton.addActionListener(this);
+        this.frame.setLayout(null);
         this.frame.add(loginButton);
         this.frame.add(signupButton);
+
+        this.frame.setSize(500,500);
+
+
+
+
+
+        this.frame.setVisible(true);
     }
 
-    @Override
-    public void setControllers(LogIn loginController, GroupController groupController, CalendarController calendarController, StudentController studentController) {
-        this.loginController = loginController;
-        this.groupController = groupController;
-        this.studentController = studentController;
-        this.calendarController = calendarController;
-    }
 
     /** Makes button to perform based on a choice of a user.
      * @param e
@@ -95,6 +85,9 @@ public class StartMenu implements GUI {
             this.frame.dispose();
             LoginMenu loginMenu = new LoginMenu(this.loginController, this.groupController,
                     this.calendarController, this.studentController);
+
         }
     }
+
+
 }

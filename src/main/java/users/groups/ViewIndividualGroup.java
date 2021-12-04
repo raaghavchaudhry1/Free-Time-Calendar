@@ -2,7 +2,6 @@ package users.groups;
 
 import calendar.CalendarController;
 import calendar.FreeCalendarFrame;
-import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
 import users.students.Student;
@@ -19,7 +18,7 @@ import java.util.HashMap;
 
 /** ViewIndividualGroup window is to look information about a certain group.*/
 
-public class ViewIndividualGroup implements GUI {
+public class ViewIndividualGroup implements ActionListener {
 
     private LogIn loginController;
     private GroupController groupController;
@@ -41,34 +40,26 @@ public class ViewIndividualGroup implements GUI {
      * @param studentUsername
      * @param gID
      */
-    public ViewIndividualGroup(LogIn loginController, GroupController groupController,
-                               CalendarController calendarController, StudentController studentController,
-                               String studentUsername, String gID) {
+    public ViewIndividualGroup(LogIn loginController, GroupController groupController, CalendarController calendarController,
+                               StudentController studentController, String studentUsername, String gID) {
         this.frame = new JFrame();
         this.frame.setSize(300, 1200);
         this.frame.setLayout(new GridLayout(6, 6));
-        setControllers(loginController, groupController, calendarController, studentController);
+
         this.mappings = new HashMap<JButton, String>();
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
         this.studentUsername = studentUsername;
         this.gID = gID;
-        setButtons();
-        setLabelsAndText();
-        this.frame.setVisible(true);
-    }
-
-    @Override
-    public void setLabelsAndText() {
-
-    }
-
-    @Override
-    public void setButtons() {
         this.freeTime = new JButton("View Shared Freetime Calendar");
         this.freeTime.addActionListener(this);
         this.back = new JButton("Return Home");
         this.back.addActionListener(this);
         this.frame.add(back);
         this.frame.add(freeTime);
+
         ArrayList<String> list = this.groupController.getStudentUsername(gID);
         for (String username: list) {
             String s = username;
@@ -78,15 +69,8 @@ public class ViewIndividualGroup implements GUI {
             this.frame.add(button);
             this.mappings.put(button, username);
         }
-    }
 
-    @Override
-    public void setControllers(LogIn loginController, GroupController groupController,
-                               CalendarController calendarController, StudentController studentController) {
-        this.loginController = loginController;
-        this.groupController = groupController;
-        this.calendarController = calendarController;
-        this.studentController = studentController;
+        this.frame.setVisible(true);
     }
 
     /** Makes button to perform based on a choice of a user.
