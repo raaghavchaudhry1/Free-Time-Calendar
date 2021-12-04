@@ -28,8 +28,8 @@ public class FreeTimeCalculator {
 
     /**
      * Calculates the free-times of a given aggregateRoutine and returns the Calendar for the free-times
-     * @param aggregateRoutine
-     * @param aggregateOneOff
+     * @param aggregateRoutine The union of all the user's recurring events
+     * @param aggregateOneOff The union of all the user's one-Off events
      * @return the free-time Calendar
      */
     private calendar.Calendar calculateFreeTime(Map<String, List<CalendarEvent>> aggregateRoutine,
