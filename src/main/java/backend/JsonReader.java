@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.google.gson.reflect.TypeToken;
 import users.groups.Group;
-import users.students.Student;
+import users.students.StudentBuilder;
 
 public class JsonReader {
     private String studentJsonLoc;
@@ -23,7 +23,7 @@ public class JsonReader {
         this.groupJsonLoc = "src/main/java/groups.json";
     }
 
-    public Student[] readStudentJson() throws IOException {
+    public StudentBuilder[] readStudentJson() throws IOException {
 
         String filePath = this.studentJsonLoc;
 
@@ -32,11 +32,11 @@ public class JsonReader {
         Gson gson = gbuild.setPrettyPrinting().create();
 
         Reader reader = new FileReader(filePath);
-        Student[] studentArray = gson.fromJson(reader, Student[].class);
+        StudentBuilder[] studentBuilderArray = gson.fromJson(reader, StudentBuilder[].class);
 
         reader.close();
 
-        return studentArray;
+        return studentBuilderArray;
 
     }
 
@@ -45,7 +45,7 @@ public class JsonReader {
         String grpfilePath = this.groupJsonLoc;
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerSubtypes(new NamedType(Student.class, "Student"));
+        mapper.registerSubtypes(new NamedType(StudentBuilder.class, "Student"));
         mapper.registerSubtypes(new NamedType(Group.class, "Group"));
         mapper.findAndRegisterModules();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

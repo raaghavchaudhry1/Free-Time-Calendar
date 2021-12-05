@@ -1,13 +1,13 @@
 package login;
 
-import users.students.Student;
+import users.students.StudentBuilder;
 import users.students.StudentController;
 
 import java.util.HashMap;
 
 public class LogIn {
 
-    private HashMap<String, Student> userMap;
+    private HashMap<String, StudentBuilder> userMap;
 
     public LogIn(StudentController students) {
 

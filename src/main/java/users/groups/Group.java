@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import users.Person;
-import users.students.Student;
+import users.students.StudentBuilder;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class Group implements Person, Serializable {
     public ArrayList<Person> getStudentsInGroup() {
         ArrayList<Person> students = new ArrayList<>();
         for (Person member: this.members) {
-            if (member instanceof Student) {
+            if (member instanceof StudentBuilder) {
                 students.add(member);
             } else {
                 students.addAll(((Group) member).getStudentsInGroup());
@@ -54,7 +54,7 @@ public class Group implements Person, Serializable {
         ArrayList<Person> students = this.getStudentsInGroup();
 
         for (Person student: students) {
-            list.add(((Student) student).getUsername());
+            list.add(((StudentBuilder) student).getUsername());
 
         }
 
@@ -89,7 +89,7 @@ public class Group implements Person, Serializable {
         ArrayList<Person> students = this.getStudentsInGroup();
 
         for (Person student : students) {
-            Calendar stuCal = ((Student) student).getStudentSchedule();
+            Calendar stuCal = ((StudentBuilder) student).getStudentSchedule();
             calendars.add(stuCal);
         }
         return calendars;

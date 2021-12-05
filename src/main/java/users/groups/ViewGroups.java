@@ -4,13 +4,12 @@ import calendar.CalendarController;
 import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
-import users.students.Student;
+import users.students.StudentBuilder;
 import users.students.StudentController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -62,7 +61,7 @@ public class ViewGroups implements GUI {
         this.back.addActionListener(this);
         this.frame.add(back);
 
-        Student curr = studentController.getAllStudents().get(this.studentUsername);
+        StudentBuilder curr = studentController.getAllStudents().get(this.studentUsername);
         ArrayList<ArrayList<Object>> groups = this.groupController.getStudentGroups(curr);
         this.noGroups = new JLabel("You aren't in any Groups!");
         this.noGroups.setBounds(600, 600, 200, 200 );

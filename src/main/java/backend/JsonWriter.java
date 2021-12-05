@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.jsontype.NamedType;
 import users.*;
 import users.groups.Group;
 import users.groups.GroupController;
-import users.students.Student;
+import users.students.StudentBuilder;
 import users.students.StudentController;
 
 public class JsonWriter {
@@ -32,11 +32,11 @@ public class JsonWriter {
         String filePath = this.studentJsonLoc;
 
         int totalStudents = stuMan.getAllStudents().size();
-        Student[] studentArray = new Student[totalStudents];
+        StudentBuilder[] studentBuilderArray = new StudentBuilder[totalStudents];
 
-        ArrayList<Student> students = new ArrayList<>(stuMan.getAllStudents().values());
+        ArrayList<StudentBuilder> studentBuilders = new ArrayList<>(stuMan.getAllStudents().values());
         for (int i = 0; i < totalStudents; i++) {
-            studentArray[i] = students.get(i);
+            studentBuilderArray[i] = studentBuilders.get(i);
         }
 
 
@@ -45,7 +45,7 @@ public class JsonWriter {
         Gson gson = gbuild.setPrettyPrinting().create();
 
         FileWriter studentJson = new FileWriter(filePath);
-        gson.toJson(studentArray, studentJson);
+        gson.toJson(studentBuilderArray, studentJson);
         studentJson.close();
 
     }
@@ -63,7 +63,7 @@ public class JsonWriter {
         }
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerSubtypes(new NamedType(Student.class, "Student"));
+        mapper.registerSubtypes(new NamedType(StudentBuilder.class, "Student"));
         mapper.registerSubtypes(new NamedType(Group.class, "Group"));
         mapper.findAndRegisterModules();
 
@@ -87,8 +87,8 @@ public class JsonWriter {
             if (groups.get(i) instanceof Group) {
                 ArrayList<String> students = new ArrayList<>();
                 for (Person student: groups.get(i).getMembers()) {
-                    if (student instanceof Student) {
-                        students.add(((Student) student).getUsername());
+                    if (student instanceof StudentBuilder) {
+                        students.add(((StudentBuilder) student).getUsername());
                     }
                 }
                 groupHash.put(groups.get(i).getGroupName(), students);

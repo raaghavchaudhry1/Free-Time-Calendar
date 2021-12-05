@@ -4,12 +4,11 @@ import calendar.CalendarController;
 import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
-import users.students.Student;
+import users.students.StudentBuilder;
 import users.students.StudentController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /** CreateGroup window is made to join an existing group.*/
 
@@ -93,7 +92,7 @@ public class JoinGroup implements GUI {
 
             String groupID = this.groupName.getText();
 
-            Student curr = this.studentController.getAllStudents().get(this.studentUsername);
+            StudentBuilder curr = this.studentController.getAllStudents().get(this.studentUsername);
             boolean check = this.groupController.addToGroup(curr, groupID);
 
             if (check) {

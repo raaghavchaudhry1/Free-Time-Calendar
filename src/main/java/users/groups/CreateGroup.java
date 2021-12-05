@@ -4,12 +4,11 @@ import calendar.CalendarController;
 import frontend.GUI;
 import login.LogIn;
 import users.*;
-import users.students.Student;
+import users.students.StudentBuilder;
 import users.students.StudentController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -88,8 +87,8 @@ public class CreateGroup implements GUI {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.submitButton){
 
-            HashMap<String, Student> studentHashMap =  this.studentController.getAllStudents();
-            Student curr =  studentHashMap.get(this.studentUsername);
+            HashMap<String, StudentBuilder> studentHashMap =  this.studentController.getAllStudents();
+            StudentBuilder curr =  studentHashMap.get(this.studentUsername);
             ArrayList<Person> newGroup = new ArrayList<Person>();
             newGroup.add(curr);
 

@@ -5,13 +5,12 @@ import calendar.FreeCalendarFrame;
 import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
-import users.students.Student;
+import users.students.StudentBuilder;
 import users.students.StudentController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -100,7 +99,7 @@ public class ViewIndividualGroup implements GUI {
 
             if (e.getSource() == button) {
                 String username = this.mappings.get(button);
-                Student curr = this.studentController.getAllStudents().get(username);
+                StudentBuilder curr = this.studentController.getAllStudents().get(username);
                 this.groupController.removeMember(curr, this.gID);
                 this.frame.dispose();
                 new ViewIndividualGroup(this.loginController, this.groupController,

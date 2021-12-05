@@ -2,8 +2,8 @@ Class name: StudentManager
 Parent class: None
 
 Responsibilities:
-* Create new students
-* Keeps track of all students created
+* Create new studentBuilders
+* Keeps track of all studentBuilders created
 
 Collaborators:
 * Student

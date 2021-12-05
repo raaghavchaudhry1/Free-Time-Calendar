@@ -1,7 +1,7 @@
 package users.groups;
 
 import users.Person;
-import users.students.Student;
+import users.students.StudentBuilder;
 
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -23,13 +23,13 @@ public class GroupController {
     }
 
 
-    public boolean addToGroup(Student member, String groupID){
+    public boolean addToGroup(StudentBuilder member, String groupID){
 
         return (this.manager).addToGroup(member, groupID);
 
     }
 
-    public boolean removeMember(Student member, String groupID){
+    public boolean removeMember(StudentBuilder member, String groupID){
 
         return (this.manager).removeGroupMember(member, groupID);
 
@@ -54,9 +54,9 @@ public class GroupController {
         return this.manager.getGroups();
     }
 
-    public ArrayList<ArrayList<Object>> getStudentGroups(Student currStudent) {
+    public ArrayList<ArrayList<Object>> getStudentGroups(StudentBuilder currStudentBuilder) {
 
-        return this.manager.getStudentGroups(currStudent);
+        return this.manager.getStudentGroups(currStudentBuilder);
 
 
 
