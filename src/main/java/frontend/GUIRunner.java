@@ -26,7 +26,7 @@ public class GUIRunner {
 
         try {
             if (jsonReader.savedInfoStudents()) {
-                for (Student student: jsonReader.readStudentJson()) {
+                for (Student student : jsonReader.readStudentJson()) {
                     studentController.addStudent(student);
                 }
             }
