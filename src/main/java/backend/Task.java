@@ -13,16 +13,14 @@ public class Task implements Serializable {
     private LocalDateTime startDT;
     private LocalDateTime endDT;
     private boolean finished;
-    private final int id;
 
     @JsonCreator
-    public Task(@JsonProperty("id") int id, @JsonProperty("title") String title, @JsonProperty("description") String description) {
+    public Task(@JsonProperty("title") String title, @JsonProperty("description") String description) {
         this.title = title;
         this.description = description;
         this.startDT = LocalDateTime.now();
         this.endDT = null;
         this.finished = false;
-        this.id = id;
     }
 
     public String toString() {
@@ -60,10 +58,6 @@ public class Task implements Serializable {
 
     public void editDescription(String newDesc) {
         this.description = newDesc;
-    }
-
-    public int getID() {
-        return this.id;
     }
 
     public boolean isClosed() {

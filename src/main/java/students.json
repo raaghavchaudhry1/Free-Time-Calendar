@@ -1,0 +1,21 @@
+[
+  {
+    "username": "12",
+    "password": "12",
+    "schedule": {
+      "recurring": {
+        "Monday": [],
+        "Thursday": [],
+        "Friday": [],
+        "Sunday": [],
+        "Wednesday": [],
+        "Tuesday": [],
+        "Saturday": []
+      },
+      "single": {}
+    },
+    "tasks": {
+      "tasks": []
+    }
+  }
+]
