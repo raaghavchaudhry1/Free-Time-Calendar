@@ -26,6 +26,7 @@ public class ViewIndividualGroup implements GUI {
     private CalendarController calendarController;
     private StudentController studentController;
     private String studentUsername;
+
     private String gID;
     private JButton back;
     private JFrame frame;

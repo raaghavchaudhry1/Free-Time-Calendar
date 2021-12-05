@@ -40,9 +40,13 @@ public class StudentManager {
         students.put(username, new Student(username, password));
     }
 
-    public void addTask(String user, Task task) {
-        this.students.get(user).getTaskList().addTask(task);
 
+    public ArrayList<Task> getTasks(String user){
+        return  this.students.get(user).getTaskList().getTasks();
+    }
+
+    public void addTask(String user, String title) {
+        this.students.get(user).getTaskList().createTask(title);
     }
 
     public void removeTask(String user, Task task) {
@@ -52,6 +56,9 @@ public class StudentManager {
     public void closeTask(String user, Task task) {
         this.students.get(user).getTaskList().closeTask(task);
     }
+
+
+
 
 
     public boolean checkValidStudent(Student student) {

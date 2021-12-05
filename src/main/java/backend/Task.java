@@ -9,30 +9,24 @@ import java.time.format.DateTimeFormatter;
 
 public class Task implements Serializable {
     private String title;
-    private String description;
     private LocalDateTime startDT;
     private LocalDateTime endDT;
     private boolean finished;
 
     @JsonCreator
-    public Task(@JsonProperty("title") String title, @JsonProperty("description") String description) {
+    public Task(@JsonProperty("title") String title) {
         this.title = title;
-        this.description = description;
         this.startDT = LocalDateTime.now();
         this.endDT = null;
         this.finished = false;
     }
 
     public String toString() {
-        return this.title + ":" + "\n" + this.description;
+        return this.title + ":" + "\n";
     }
 
     public String getTitle() {
         return this.title;
-    }
-
-    public String getDescription() {
-        return this.description;
     }
 
     public LocalDateTime getStartDT() {
@@ -54,10 +48,6 @@ public class Task implements Serializable {
 
     public void editTitle(String newTitle) {
         this.title = newTitle;
-    }
-
-    public void editDescription(String newDesc) {
-        this.description = newDesc;
     }
 
     public boolean isClosed() {
