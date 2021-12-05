@@ -5,7 +5,7 @@ import calendar.FreeCalendarFrame;
 import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
-import users.students.StudentBuilder;
+import users.students.Student;
 import users.students.StudentController;
 
 import javax.swing.*;
@@ -99,7 +99,7 @@ public class ViewIndividualGroup implements GUI {
 
             if (e.getSource() == button) {
                 String username = this.mappings.get(button);
-                StudentBuilder curr = this.studentController.getAllStudents().get(username);
+                Student curr = this.studentController.getAllStudents().get(username);
                 this.groupController.removeMember(curr, this.gID);
                 this.frame.dispose();
                 new ViewIndividualGroup(this.loginController, this.groupController,

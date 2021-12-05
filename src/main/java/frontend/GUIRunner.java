@@ -5,7 +5,7 @@ import calendar.CalendarController;
 import login.LogIn;
 import users.groups.GroupController;
 import users.Person;
-import users.students.StudentBuilder;
+import users.students.Student;
 import users.students.StudentController;
 
 import javax.swing.*;
@@ -26,8 +26,8 @@ public class GUIRunner {
 
         try {
             if (jsonReader.savedInfoStudents()) {
-                for (StudentBuilder studentBuilder : jsonReader.readStudentJson()) {
-                    studentController.addStudent(studentBuilder);
+                for (Student student : jsonReader.readStudentJson()) {
+                    studentController.addStudent(student);
                 }
             }
         } catch (IOException e) {

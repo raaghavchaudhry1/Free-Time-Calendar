@@ -4,7 +4,7 @@ import calendar.CalendarController;
 import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
-import users.students.StudentBuilder;
+import users.students.Student;
 import users.students.StudentController;
 
 import javax.swing.*;
@@ -92,7 +92,7 @@ public class JoinGroup implements GUI {
 
             String groupID = this.groupName.getText();
 
-            StudentBuilder curr = this.studentController.getAllStudents().get(this.studentUsername);
+            Student curr = this.studentController.getAllStudents().get(this.studentUsername);
             boolean check = this.groupController.addToGroup(curr, groupID);
 
             if (check) {

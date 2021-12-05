@@ -2,7 +2,7 @@ Class name: Calendar
 Parent class: None
 
 Responsibilities:
-* Keeps track of the studentBuilder's week-to-week and day-to-day schedule
+* Keeps track of the student's week-to-week and day-to-day schedule
 
 Collaborators:
 * CalendarEvent

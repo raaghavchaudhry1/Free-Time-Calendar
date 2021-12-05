@@ -4,7 +4,7 @@ import calendar.CalendarController;
 import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
-import users.students.StudentBuilder;
+import users.students.Student;
 import users.students.StudentController;
 
 import javax.swing.*;
@@ -61,7 +61,7 @@ public class ViewGroups implements GUI {
         this.back.addActionListener(this);
         this.frame.add(back);
 
-        StudentBuilder curr = studentController.getAllStudents().get(this.studentUsername);
+        Student curr = studentController.getAllStudents().get(this.studentUsername);
         ArrayList<ArrayList<Object>> groups = this.groupController.getStudentGroups(curr);
         this.noGroups = new JLabel("You aren't in any Groups!");
         this.noGroups.setBounds(600, 600, 200, 200 );

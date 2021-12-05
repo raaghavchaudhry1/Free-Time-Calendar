@@ -3,7 +3,7 @@ package calendar;
 import events.CalendarEvent;
 import events.EventFactory;
 import events.OneOffEvent;
-import users.students.StudentBuilder;
+import users.students.Student;
 import users.students.StudentController;
 
 import java.util.ArrayList;
@@ -35,8 +35,8 @@ public class CalendarController {
         return eventCreator.createEvent(name, start, end, date);
     }
 
-    public StudentBuilder getStudent(String student){
-        HashMap<String, StudentBuilder> students = this.studentController.getAllStudents();
+    public Student getStudent(String student){
+        HashMap<String, Student> students = this.studentController.getAllStudents();
         return students.get(student);
     }
 

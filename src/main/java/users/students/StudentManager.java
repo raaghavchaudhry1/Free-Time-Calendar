@@ -11,32 +11,32 @@ import java.util.Set;
 
 public class StudentManager {
 
-    private HashMap<String, StudentBuilder> students;
+    private HashMap<String, Student> students;
 
     public StudentManager() {
-        this.students = new HashMap<String, StudentBuilder>();
+        this.students = new HashMap<String, Student>();
     }
 
-    public StudentManager(HashMap<String, StudentBuilder> students) {
+    public StudentManager(HashMap<String, Student> students) {
         this.students = students;
     }
 
-    public void addStudent(StudentBuilder studentBuilder) {
-        this.students.put(studentBuilder.getUsername(), studentBuilder);
+    public void addStudent(Student student) {
+        this.students.put(student.getUsername(), student);
     }
 
-    public HashMap<String, StudentBuilder> getAllStudents() {
+    public HashMap<String, Student> getAllStudents() {
         return students;
     }
 
-    public void setAllStudents(HashMap<String, StudentBuilder> students) {
+    public void setAllStudents(HashMap<String, Student> students) {
         this.students = students;
     }
 
     public Set<String> getAllStudentUsers() { return this.students.keySet(); }
 
     public void addNewStudent(String username, String password){
-        students.put(username, new StudentBuilder(username, password));
+        students.put(username, new Student(username, password));
     }
 
     public void addTask(String user, Task task) {
@@ -53,9 +53,9 @@ public class StudentManager {
     }
 
 
-    public boolean checkValidStudent(StudentBuilder studentBuilder) {
+    public boolean checkValidStudent(Student student) {
         // returns true if student is already within hashmap, false otherwise
-        String user = studentBuilder.getUsername();
+        String user = student.getUsername();
         return this.students.containsKey(user);
     }
 
@@ -63,7 +63,7 @@ public class StudentManager {
 
         if (students.containsKey(username)) {
 
-            StudentBuilder curr  = students.get(username);
+            Student curr  = students.get(username);
             Calendar studentScehdule = curr.getStudentSchedule();
             return  studentScehdule.getRecurring();
 
@@ -76,7 +76,7 @@ public class StudentManager {
 
         if (students.containsKey(username)) {
 
-            StudentBuilder curr = students.get(username);
+            Student curr = students.get(username);
             Calendar studentScehdule = curr.getStudentSchedule();
             return studentScehdule.getSingle();
         } else {
@@ -89,7 +89,7 @@ public class StudentManager {
 
         if (students.containsKey(username)) {
 
-            StudentBuilder curr = students.get(username);
+            Student curr = students.get(username);
             Calendar studentScehdule = curr.getStudentSchedule();
 
             ArrayList<ArrayList<Object>> eventTimes = new ArrayList<>();

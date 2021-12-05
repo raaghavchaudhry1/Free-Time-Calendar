@@ -14,12 +14,12 @@ public class StudentController {
         this.studentManager = new StudentManager();
     }
 
-    public boolean addStudent(StudentBuilder studentBuilder) {
+    public boolean addStudent(Student student) {
         // returns true if student has been added to hashmap, false if student already exists
-        if (studentManager.checkValidStudent(studentBuilder)) {
+        if (studentManager.checkValidStudent(student)) {
             return false;
         } else {
-            studentManager.addStudent(studentBuilder);
+            studentManager.addStudent(student);
             return true;
         }
     }
@@ -27,7 +27,7 @@ public class StudentController {
         this.studentManager.addNewStudent(username,password);
     }
 
-    public HashMap<String, StudentBuilder> getAllStudents(){
+    public HashMap<String, Student> getAllStudents(){
         return this.studentManager.getAllStudents();
     }
 

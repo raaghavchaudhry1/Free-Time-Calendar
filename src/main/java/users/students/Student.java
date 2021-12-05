@@ -13,7 +13,7 @@ import users.Person;
 import users.StudentBuilderInterface;
 
 
-public class StudentBuilder implements Person, Serializable, StudentBuilderInterface {
+public class Student implements Person, Serializable, StudentBuilderInterface {
 
     private String username;
     private String password;
@@ -21,20 +21,20 @@ public class StudentBuilder implements Person, Serializable, StudentBuilderInter
     private TaskList tasks;
 
 
-    public StudentBuilder() {
+    public Student() {
         setEmptySchedule();
         setTaskList();
     }
 
     @JsonCreator
-    public StudentBuilder(@JsonProperty("username") String userName, @JsonProperty("password") String password) {
+    public Student(@JsonProperty("username") String userName, @JsonProperty("password") String password) {
         setUsername(userName);
         setPassword(password);
         setEmptySchedule();
         setTaskList();
     }
 
-    public StudentBuilder(String userName, String password, Calendar schedule) {
+    public Student(String userName, String password, Calendar schedule) {
         setUsername(userName);
         setPassword(password);
         setPopulatedSchedule(schedule);

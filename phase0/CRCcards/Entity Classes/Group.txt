@@ -2,7 +2,7 @@ Class name: Group
 Parent class: None
 
 Responsibilities:
-* Keeps track of all studentBuilders within a group
+* Keeps track of all students within a group
 
 Collaborators:
 * Student

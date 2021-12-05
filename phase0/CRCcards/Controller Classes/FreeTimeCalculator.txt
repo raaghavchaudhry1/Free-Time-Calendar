@@ -2,7 +2,7 @@ Class name: FreeTimeCalculator
 Parent class: None
 
 Responsibilities:
-* Generating all times for a group of studentBuilders in which they have no events
+* Generating all times for a group of students in which they have no events
 
 Collaborators:
 * GroupManager

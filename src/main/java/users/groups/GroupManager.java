@@ -6,7 +6,7 @@ import calendar.FreeTimeCalculator;
 import events.CalendarEvent;
 import events.OneOffEvent;
 import users.Person;
-import users.students.StudentBuilder;
+import users.students.Student;
 
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -84,12 +84,12 @@ public class GroupManager {
     }
 
 
-    public ArrayList<ArrayList<Object>> getStudentGroups(StudentBuilder currStudentBuilder) {
+    public ArrayList<ArrayList<Object>> getStudentGroups(Student currStudent) {
         ArrayList<ArrayList<Object>> groups = new ArrayList<>();
 
         for (Group group: this.groupMap.values()){
             ArrayList<Object> newList = new ArrayList<Object>();
-            if (group.checkStudent(currStudentBuilder)) {
+            if (group.checkStudent(currStudent)) {
                 newList.add(group);
                 newList.add(group.getGroupName());
                 newList.add(group.getgID());
