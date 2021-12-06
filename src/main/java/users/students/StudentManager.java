@@ -3,7 +3,7 @@ package users.students;
 import calendar.Calendar;
 import events.CalendarEvent;
 import events.OneOffEvent;
-import backend.Task;
+import tasks.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;

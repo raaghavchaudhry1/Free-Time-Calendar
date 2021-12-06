@@ -1,10 +1,11 @@
 package users.groups;
 
-import backend.*;
 import calendar.Calendar;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import tasks.Task;
+import tasks.TaskList;
 import users.Person;
 import users.students.Student;
 

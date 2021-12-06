@@ -1,6 +1,6 @@
 package users.students;
 
-import backend.Task;
+import tasks.Task;
 import events.CalendarEvent;
 import events.OneOffEvent;
 

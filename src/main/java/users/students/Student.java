@@ -5,8 +5,8 @@ import java.time.temporal.ChronoUnit;
 import java.io.Serializable;
 
 import calendar.Calendar;
-import backend.Task;
-import backend.TaskList;
+import tasks.Task;
+import tasks.TaskList;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import users.Person;
