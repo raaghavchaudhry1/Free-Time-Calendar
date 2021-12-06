@@ -20,6 +20,7 @@ public class CreateGroup implements GUI {
     private JTextField groupName;
     private JButton submitButton;
     private JButton cancelButton;
+
     private LogIn loginController;
     private GroupController groupController;
     private CalendarController calendarController;

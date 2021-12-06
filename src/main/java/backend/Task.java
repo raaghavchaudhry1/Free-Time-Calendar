@@ -10,32 +10,25 @@ import java.time.format.DateTimeFormatter;
 
 public class Task implements TaskInterface, Serializable {
     private String title;
-    private String description;
     private LocalDateTime startDT;
     private LocalDateTime endDT;
     private boolean finished;
-    private final int id;
 
     @JsonCreator
-    public Task(@JsonProperty("id") int id, @JsonProperty("title") String title, @JsonProperty("description") String description) {
+    public Task(@JsonProperty("title") String title) {
         this.title = title;
-        this.description = description;
         this.startDT = LocalDateTime.now();
         this.endDT = null;
         this.finished = false;
-        this.id = id;
     }
 
+    @Override
     public String toString() {
-        return this.title + ":" + "\n" + this.description;
+        return this.title;
     }
 
     public String getTitle() {
         return this.title;
-    }
-
-    public String getDescription() {
-        return this.description;
     }
 
     public LocalDateTime getStartDT() {
@@ -57,14 +50,6 @@ public class Task implements TaskInterface, Serializable {
 
     public void editTitle(String newTitle) {
         this.title = newTitle;
-    }
-
-    public void editDescription(String newDesc) {
-        this.description = newDesc;
-    }
-
-    public int getID() {
-        return this.id;
     }
 
     public boolean isClosed() {
