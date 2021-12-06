@@ -1,18 +1,13 @@
-package events;
-import backend.Task;
-import backend.TaskList;
+package tasks;
 import calendar.CalendarController;
 import frontend.GUI;
 import frontend.MainMenu;
 import login.LogIn;
 import users.groups.GroupController;
-import users.groups.GroupMenu;
-import users.students.Student;
 import users.students.StudentController;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
@@ -31,7 +26,7 @@ public class TaskListMenu implements GUI {
     private JButton returnButton;
 
     public TaskListMenu(LogIn loginController, GroupController groupController, CalendarController calendarController,
-                 StudentController studentController, String studentUsername) {
+                        StudentController studentController, String studentUsername) {
 
         this.mappings = new HashMap<JButton, Task>();
         this.frame = new JFrame();

@@ -1,6 +1,7 @@
-package backend;
+package tasks;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import tasks.Task;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

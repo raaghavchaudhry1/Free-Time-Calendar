@@ -1,12 +1,10 @@
-package backend;
+package tasks;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import net.fortuna.ical4j.model.DateTime;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Task implements TaskInterface, Serializable {
     private String title;
@@ -40,7 +38,7 @@ public class Task implements TaskInterface, Serializable {
     }
 
     public void editStartDT(LocalDateTime newStartDT) {
-       this.startDT = newStartDT;
+        this.startDT = newStartDT;
     }
 
     public void editEndDT(LocalDateTime newEndDT) {

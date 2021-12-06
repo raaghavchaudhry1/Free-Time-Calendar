@@ -1,19 +1,14 @@
-package events;
+package tasks;
 
-import backend.Task;
 import calendar.CalendarController;
 import frontend.GUI;
-import frontend.MainMenu;
 import login.LogIn;
 import users.groups.GroupController;
-import users.students.Student;
 import users.students.StudentController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class NewTaskWindow implements GUI {
     private LogIn loginController;
@@ -30,7 +25,7 @@ public class NewTaskWindow implements GUI {
 
 
     public NewTaskWindow(LogIn loginController, GroupController groupController, CalendarController calendarController,
-                       StudentController studentController, String studentUsername){
+                         StudentController studentController, String studentUsername){
 
         setControllers(loginController, groupController, calendarController, studentController);
         this.studentUsername = studentUsername;

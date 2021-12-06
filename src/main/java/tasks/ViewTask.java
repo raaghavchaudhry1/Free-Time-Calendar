@@ -1,6 +1,5 @@
-package events;
+package tasks;
 
-import backend.Task;
 import calendar.CalendarController;
 import frontend.GUI;
 import login.LogIn;
@@ -10,7 +9,6 @@ import users.students.StudentController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.HashMap;
 
 public class ViewTask implements GUI {
 
@@ -28,8 +26,8 @@ public class ViewTask implements GUI {
     private JButton back;
 
     public ViewTask(LogIn loginController, GroupController groupController,
-                               CalendarController calendarController, StudentController studentController,
-                               String studentUsername, Task task) {
+                    CalendarController calendarController, StudentController studentController,
+                    String studentUsername, Task task) {
         setControllers(loginController, groupController, calendarController, studentController);
         this.studentUsername = studentUsername;
         this.task = task;
@@ -66,11 +64,11 @@ public class ViewTask implements GUI {
 
     @Override
     public void setControllers(LogIn loginController, GroupController groupController,
-                CalendarController calendarController, StudentController studentController) {
-            this.loginController = loginController;
-            this.groupController = groupController;
-            this.calendarController = calendarController;
-            this.studentController = studentController;
+                               CalendarController calendarController, StudentController studentController) {
+        this.loginController = loginController;
+        this.groupController = groupController;
+        this.calendarController = calendarController;
+        this.studentController = studentController;
     }
 
     /** Makes button to perform based on a choice of a user.
