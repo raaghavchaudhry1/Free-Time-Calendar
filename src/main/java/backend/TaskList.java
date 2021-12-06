@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TaskList implements Serializable {
     private ArrayList<Task> tasks;
@@ -38,4 +39,7 @@ public class TaskList implements Serializable {
         return this.tasks;
     }
 
+    public void sortList() {
+        Collections.sort(tasks);
+    }
 }
