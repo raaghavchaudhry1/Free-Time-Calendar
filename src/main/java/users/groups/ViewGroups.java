@@ -23,6 +23,7 @@ public class ViewGroups implements GUI {
     private CalendarController calendarController;
     private StudentController studentController;
     private String studentUsername;
+
     private JFrame frame;
     private HashMap<JButton, String> mappings;
     private JButton back;
@@ -64,8 +65,10 @@ public class ViewGroups implements GUI {
 
         Student curr = studentController.getAllStudents().get(this.studentUsername);
         ArrayList<ArrayList<Object>> groups = this.groupController.getStudentGroups(curr);
+
         this.noGroups = new JLabel("You aren't in any Groups!");
         this.noGroups.setBounds(600, 600, 200, 200 );
+
         for (ArrayList<Object> temp : groups) {
             String s = (String) temp.get(1);
             String s1 = String.format("View Group: %s", s);

@@ -58,9 +58,6 @@ public class GroupController {
 
         return this.manager.getStudentGroups(currStudent);
 
-
-
-
     }
 
 

@@ -21,8 +21,9 @@ public class Task implements Serializable {
         this.finished = false;
     }
 
+    @Override
     public String toString() {
-        return this.title + ":" + "\n";
+        return this.title;
     }
 
     public String getTitle() {
