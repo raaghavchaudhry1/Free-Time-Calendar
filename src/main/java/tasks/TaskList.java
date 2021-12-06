@@ -1,4 +1,4 @@
-package backend;
+package tasks;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
