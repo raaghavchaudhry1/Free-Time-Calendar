@@ -1,7 +1,6 @@
 package tasks;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import tasks.Task;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -37,8 +36,6 @@ public class TaskList implements Serializable {
         return this.tasks.size();
     }
 
-
-
     public ArrayList<Task> getTasks() {
         return this.tasks;
     }
@@ -50,4 +47,18 @@ public class TaskList implements Serializable {
     public void sortList() {
         Collections.sort(tasks);
     }
+
+    public ArrayList<Task> filterByTime(LocalDateTime t1, LocalDateTime t2){
+        ArrayList<Task> tasksInRange = new ArrayList<>();
+
+        for (Task task : tasks) {
+            if (task.getStartDT().isAfter(t1) && task.getStartDT().isBefore(t2)){
+                tasksInRange.add(task);
+            }
+        }
+
+        return tasksInRange;
+
+    }
+
 }
