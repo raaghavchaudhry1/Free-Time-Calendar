@@ -1,5 +1,6 @@
 package frontend;
 
+import backend.JsonWriter;
 import backend.TaskList;
 import calendar.CalendarController;
 import calendar.CalendarFrame;
@@ -162,6 +163,17 @@ public class MainMenu implements GUI {
                     this.calendarController, this.studentController, this.studentUsername, realMonth, realYear);
 
         } else if (e.getSource() == this.returnButton) {
+            JsonWriter jsonWriter = new JsonWriter();
+            try {
+                jsonWriter.studentJsonWriter(studentController);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            try {
+                jsonWriter.groupJsonWriterSimplified(groupController);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
             this.frame.dispose();
             StartMenu startMenu = new StartMenu(this.loginController, this.groupController,
                     this.calendarController, this.studentController);
