@@ -2,12 +2,13 @@ package backend;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import net.fortuna.ical4j.model.DateTime;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Task implements Serializable {
+public class Task implements TaskInterface, Serializable {
     private String title;
     private String description;
     private LocalDateTime startDT;
@@ -68,6 +69,23 @@ public class Task implements Serializable {
 
     public boolean isClosed() {
         return this.finished;
+    }
+
+    @Override
+    public int compareTo(TaskInterface other){
+        /* Compares 2 tasks based on their start times
+        Returns -1 if current task starts earlier than other task
+                1 if current task starts later than other task
+                0 if 2 tasks have the same start time */
+        if (this.getStartDT().isBefore(other.getStartDT())){
+            return -1;
+        }
+        else if (this.getStartDT().isAfter(other.getStartDT())){
+            return 1;
+        }
+        else{
+            return 0;
+        }
     }
 
 }
