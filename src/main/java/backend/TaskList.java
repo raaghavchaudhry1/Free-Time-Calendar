@@ -37,4 +37,5 @@ public class TaskList implements Serializable {
     public ArrayList<Task> getTaskList() {
         return this.tasks;
     }
+
 }
