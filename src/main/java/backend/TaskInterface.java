@@ -7,7 +7,6 @@ public interface TaskInterface extends Comparable<TaskInterface>{
 
     public String getTitle();
 
-    public String getDescription();
 
     public LocalDateTime getStartDT();
 
@@ -19,9 +18,7 @@ public interface TaskInterface extends Comparable<TaskInterface>{
 
     public void editTitle(String newTitle);
 
-    public void editDescription(String newDesc);
 
-    public int getID();
 
     public boolean isClosed();
 }
